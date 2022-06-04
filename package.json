@@ -1,0 +1,55 @@
+{
+  "name": "billy-frontend",
+  "version": "1.0.0",
+  "description": "Your go to page for invoice creation and self time tracking",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --hot --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mercury-squad/billy-frontend.git"
+  },
+  "keywords": [
+    "billing",
+    "invoice",
+    "freelance"
+  ],
+  "author": "Mercury Team",
+  "license": "GPL Version 3",
+  "bugs": {
+    "url": "https://github.com/mercury-squad/billy-frontend/issues"
+  },
+  "homepage": "https://github.com/mercury-squad/billy-frontend#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router": "^6.4.0-pre.2",
+    "react-router-dom": "^6.4.0-pre.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.6.2",
+    "sass": "^1.52.2",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.1"
+  }
+}
