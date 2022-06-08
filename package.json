@@ -16,13 +16,17 @@
     "invoice",
     "freelance"
   ],
-  "author": "Mercury Team",
+  "author": "Mercury Squad",
   "license": "GPL Version 3",
   "bugs": {
     "url": "https://github.com/mercury-squad/billy-frontend/issues"
   },
   "homepage": "https://github.com/mercury-squad/billy-frontend#readme",
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.3",
+    "@mui/material": "^5.8.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router": "^6.4.0-pre.2",
