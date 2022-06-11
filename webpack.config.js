@@ -1,12 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  devtool: 'source-map',
+module.exports = (env) => ({
+  devtool: env === 'development' ? 'eval-source-map' : 'source-map',
   context: path.resolve(__dirname, 'src'),
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
   resolve: {
@@ -31,7 +31,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.s(a|c)ss$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
@@ -46,4 +46,4 @@ module.exports = {
       template: path.join(__dirname, 'src', 'index.html'),
     }),
   ],
-};
+});
