@@ -67,7 +67,7 @@ const useAuth = () => {
     if (accessToken) {
       const getUser = async () => {
         const response = await server.get(API.user);
-        updateUserState(response);
+        updateUserState(response.data);
       };
       getUser();
     }
