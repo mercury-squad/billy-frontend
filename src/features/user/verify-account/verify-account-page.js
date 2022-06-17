@@ -27,7 +27,7 @@ const VerifyAccount = () => {
     if (response?.status === 200) {
       setVerified(true);
     } else {
-      setError(response);
+      setError(response.message);
     }
   };
 
