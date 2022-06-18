@@ -1,19 +1,16 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useOutletContext } from 'react-router';
 
-const PAGE_TITLE = 'Dashboard';
-const Dashboard = () => {
-  const user = useSelector((state) => state.user);
+const PAGE_TITLE = 'Invoices';
+const Invoices = () => {
   const [setHeaderTitle] = useOutletContext();
 
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
-
   return (
     <div>
-      <p>Welcome to the Dashboard {user.firstName}</p>
+      <p>Invoices page</p>
     </div>
   );
 };
 
-export default Dashboard;
+export default Invoices;
