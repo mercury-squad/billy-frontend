@@ -22,10 +22,10 @@ const useAuth = () => {
 
   const saveCredentials = (response) => {
     const { accessToken } = response || {};
+    updateUserState(response);
     if (accessToken) {
       setAccessToken(accessToken);
       setIsLoggedIn(true);
-      updateUserState(response);
       const params = new URLSearchParams(location.search);
       const redirectUrl = params.get('redirect');
       const next = redirectUrl ? decodeURIComponent(redirectUrl) : ROUTES.dashboard;
@@ -35,12 +35,18 @@ const useAuth = () => {
 
   const signup = async (data) => {
     const response = await server.post(API.signup, data);
-    saveCredentials(response);
+    if (response.status === 200) {
+      saveCredentials(response.data);
+    }
+    return response;
   };
 
   const login = async (data) => {
     const response = await server.post(API.login, data);
-    saveCredentials(response?.user);
+    if (response.status === 200) {
+      saveCredentials(response?.data?.user);
+    }
+    return response;
   };
 
   const logout = async () => {
@@ -52,12 +58,16 @@ const useAuth = () => {
     setIsLoggedIn(false);
   };
 
+  const verifyAccount = async (data) => {
+    return server.post(API.confirmEmail, data);
+  };
+
   useEffect(() => {
     const accessToken = getAccessToken();
     if (accessToken) {
       const getUser = async () => {
         const response = await server.get(API.user);
-        updateUserState(response);
+        updateUserState(response.data);
       };
       getUser();
     }
@@ -69,6 +79,7 @@ const useAuth = () => {
     login,
     logout,
     signup,
+    verifyAccount,
   };
 };
 
