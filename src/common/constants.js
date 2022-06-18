@@ -1,3 +1,5 @@
+export const DRAWER_WIDTH = 217;
+
 export const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3200';
 
 export const API = {
@@ -13,4 +15,12 @@ export const ROUTES = {
   signup: '/signup',
   dashboard: '/',
   welcome: '/welcome',
+  invoices: '/invoices',
+  projects: '/projects',
 };
+
+export const NAVIGATION_ITEMS = [
+  { name: 'dashboard', label: 'Dashboard', link: ROUTES.dashboard },
+  { name: 'invoices', label: 'Invoices', link: ROUTES.invoices },
+  { name: 'projects', label: 'Projects', link: ROUTES.projects },
+];
