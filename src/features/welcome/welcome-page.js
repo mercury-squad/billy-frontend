@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Logo from '../../components/logo';
 import Feature from '../../components/Feature';
+import TeamMember from '../../components/TeamMember';
 
 import { ROUTES } from 'common/constants';
 
@@ -54,11 +55,57 @@ const LandingPage = () => {
         </section>
         <section>
           <h1>Our Team</h1>
-          <TeamMember 
-            name=""
-            member_image=""
-            
+          <TeamMember
+            memberName="Goku"
+            memberImage="https://picsum.photos/200?random=4"
+            memberImageAlt=""
+            memberPosition="Lorem ipsum"
+            memberLinkedin=""
           />
+          <TeamMember
+            memberName="Kuririn"
+            memberImage="https://picsum.photos/200?random=5"
+            memberImageAlt=""
+            memberPosition="Lorem ipsum"
+            memberLinkedin=""
+          />
+          <TeamMember
+            memberName="Bulma"
+            memberImage="https://picsum.photos/200?random=6"
+            memberImageAlt=""
+            memberPosition="Lorem ipsum"
+            memberLinkedin=""
+          />
+          <TeamMember
+            memberName="Chichi"
+            memberImage="https://picsum.photos/200?random=7"
+            memberImageAlt=""
+            memberPosition="Lorem ipsum"
+            memberLinkedin=""
+          />
+          <TeamMember
+            memberName="Gohan"
+            memberImage="https://picsum.photos/200?random=8"
+            memberImageAlt=""
+            memberPosition="Lorem ipsum"
+            memberLinkedin=""
+          />
+          <TeamMember
+            memberName="Vegeta"
+            memberImage="https://picsum.photos/200?random=9"
+            memberImageAlt=""
+            memberPosition="Lorem ipsum"
+            memberLinkedin="Dolor sit"
+          />
+        </section>
+        <section>
+          <div>
+            <h2>Contact Billy</h2>
+            <p>We're here to help and answer any questions you might have. We look forward to hearing from you.</p>
+          </div>
+          <form action="">
+            
+          </form>
         </section>
       </body>
     </div>
