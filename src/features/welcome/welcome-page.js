@@ -20,8 +20,11 @@ const LandingPage = () => {
       <body>
         <section>
           <div>
-            <h2>About app</h2>
-            <p>Brief description about the app</p>
+            <h2>Smart & easy invoice manager</h2>
+            <p>
+              Save time on creating professional invoices, tracking invoice payment status, and managing business
+              finances
+            </p>
             <Button variant="contained">Try now for free</Button>
           </div>
           <div>
@@ -31,70 +34,84 @@ const LandingPage = () => {
         <section>
           <h1>Main Features</h1>
           <Feature
-            title="Feature 1"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, corporis blanditiis sapiente provident ullam temporibus nihil esse veritatis suscipit voluptatem!"
+            title="Generate and schedule invoice  quickly"
+            text="Billy creates professional invoice in seconds, download as pdf, send to your customers or schedule for recurring invoice."
             imgPath="https://picsum.photos/200?random=1"
             imgAlt=""
           />
           <Feature
-            title="Feature 2"
-            text="Vel, inventore placeat, dignissimos repellendus harum eum non expedita, iste accusamus maiores reiciendis laboriosam! Molestias odio ducimus tempore possimus esse!"
+            title="Track your payment status"
+            text="No need to worry about forget getting paid. Billy helps you keep on eye on pending and overdue payments. Let’s get paid faster!"
             imgPath="https://picsum.photos/200?random=2"
             imgAlt=""
           />
           <Feature
-            title="Feature 3"
-            text="Atque nesciunt non fugiat dicta! Explicabo, quidem voluptatibus sapiente tenetur doloremque praesentium ut labore rem quis fuga iusto officiis dolore."
+            title="Manage business income and expense"
+            text="Billy easily manages all your projects, customers and invoices in one place. Get report of your business income and expense anywhere."
             imgPath="https://picsum.photos/200?random=3"
             imgAlt=""
           />
         </section>
         <section>
-          <h1>Simplify your projects invoice</h1>
-          <Button variant="contained">Try now for free</Button>
+          <h1>Invoicing made simple</h1>
+          <Button variant="contained">Try now for FREE</Button>
         </section>
         <section>
           <h1>Our Team</h1>
           <TeamMember
-            memberName="Goku"
+            memberName="Gabriel Gimenes"
             memberImage="https://picsum.photos/200?random=4"
             memberImageAlt=""
-            memberPosition="Lorem ipsum"
+            memberPosition="Project Manager / Developer"
             memberLinkedin=""
           />
           <TeamMember
-            memberName="Kuririn"
+            memberName="Ashim Karki"
             memberImage="https://picsum.photos/200?random=5"
             memberImageAlt=""
-            memberPosition="Lorem ipsum"
+            memberPosition="Lead Developer"
             memberLinkedin=""
           />
           <TeamMember
-            memberName="Bulma"
+            memberName="Luisa Rueda"
             memberImage="https://picsum.photos/200?random=6"
             memberImageAlt=""
-            memberPosition="Lorem ipsum"
+            memberPosition="Developer"
             memberLinkedin=""
           />
           <TeamMember
-            memberName="Chichi"
+            memberName="Karen Garcia"
             memberImage="https://picsum.photos/200?random=7"
             memberImageAlt=""
-            memberPosition="Lorem ipsum"
+            memberPosition="Developer"
             memberLinkedin=""
           />
           <TeamMember
-            memberName="Gohan"
+            memberName="Mita Trisnodjojo"
             memberImage="https://picsum.photos/200?random=8"
             memberImageAlt=""
-            memberPosition="Lorem ipsum"
+            memberPosition="Lead Designer"
             memberLinkedin=""
           />
           <TeamMember
-            memberName="Vegeta"
+            memberName="Karen Chiu"
             memberImage="https://picsum.photos/200?random=9"
             memberImageAlt=""
-            memberPosition="Lorem ipsum"
+            memberPosition="Designer"
+            memberLinkedin="Dolor sit"
+          />
+          <TeamMember
+            memberName="Dexter Bolasoc"
+            memberImage="https://picsum.photos/200?random=10"
+            memberImageAlt=""
+            memberPosition="Designer"
+            memberLinkedin="Dolor sit"
+          />
+          <TeamMember
+            memberName="Milly Tsou"
+            memberImage="https://picsum.photos/200?random=11"
+            memberImageAlt=""
+            memberPosition="Designer"
             memberLinkedin="Dolor sit"
           />
         </section>
@@ -104,7 +121,6 @@ const LandingPage = () => {
             <p>We're here to help and answer any questions you might have. We look forward to hearing from you.</p>
           </div>
           <form action="">
-            
           </form>
         </section>
       </body>
