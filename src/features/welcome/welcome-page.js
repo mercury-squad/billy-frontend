@@ -5,17 +5,27 @@ import Feature from '../../components/Feature';
 import TeamMember from '../../components/TeamMember';
 
 import { ROUTES } from 'common/constants';
+import styles from './welcome-page.module.scss';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className={styles.welcome}>
       <header>
         <Logo />
-        <Button onClick={() => navigate(ROUTES.signup)}>Sign up</Button>
-        <Button variant="contained" onClick={() => navigate(ROUTES.login)}>
-          Login
-        </Button>
+        <nav className="welcomePageNavigationMenu">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Our Team</a></li>
+            <li><a href="">Contact</a></li>
+            <li>
+              <Button variant="contained" onClick={() => navigate(ROUTES.login)}>
+                Login
+              </Button>
+            </li>
+          </ul>
+        </nav>
       </header>
       <body>
         <section>
