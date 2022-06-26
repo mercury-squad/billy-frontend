@@ -56,6 +56,7 @@ const useAuth = () => {
     }
     removeAccessToken();
     setIsLoggedIn(false);
+    navigate(ROUTES.welcome);
   };
 
   const verifyAccount = async (data) => {
