@@ -4,7 +4,10 @@ import { ReactComponent as ProjectIcon } from 'assets/img/project-icon.svg';
 
 export const DRAWER_WIDTH = 217;
 
-export const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3200';
+export const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'http://ec2-54-241-125-164.us-west-1.compute.amazonaws.com'
+    : 'http://localhost:3200';
 
 export const API = {
   signup: `${BASE_URL}/api/v1/signup`,
