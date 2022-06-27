@@ -36,13 +36,17 @@ module.exports = (env) => ({
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|svg|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.(svg)$/i,
         use: ['@svgr/webpack', 'file-loader'],
       },
     ],
   },
   devServer: {
-    port: 3000,
+    port: 8080,
     historyApiFallback: true,
   },
   plugins: [

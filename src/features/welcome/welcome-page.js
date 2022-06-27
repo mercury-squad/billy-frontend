@@ -3,9 +3,14 @@ import { ROUTES } from 'common/constants';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import styles from './welcome-page.module.scss';
+import LogoSVG from '../../assets/img/logo.svg';
 import Logo from '../../components/logo';
 import Feature from '../../components/Feature';
 import TeamMember from '../../components/TeamMember';
+import image1 from '../../assets/img/Billy-illust-01.png';
+import image2 from '../../assets/img/Billy-illust-02.png';
+import image3 from '../../assets/img/Billy-illust-03.png';
+import image4 from '../../assets/img/Billy-illust-04.png';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -13,7 +18,7 @@ const LandingPage = () => {
     <div className={styles.welcome}>
       <div className="gray-bg" />
       <header>
-        <Logo />
+        <Logo source={LogoSVG} />
         <nav className="welcomePageNavigationMenu">
           <ul>
             <li><a href="">Home</a></li>
@@ -32,7 +37,7 @@ const LandingPage = () => {
         <section className="intro">
           <div>
             <h1>Smart & easy invoice manager</h1>
-            <img src="https://picsum.photos/200?random=15" alt="" />
+            <img src={image1} alt="" />
             <p className="body-regular">
               Save time on creating professional invoices, tracking invoice payment status, and managing business
               finances
@@ -44,19 +49,19 @@ const LandingPage = () => {
           <Feature
             title="Generate and schedule invoice  quickly"
             text="Billy creates professional invoice in seconds, download as pdf, send to your customers or schedule for recurring invoice."
-            imgPath="https://picsum.photos/200?random=1"
+            imgPath={image2}
             imgAlt=""
           />
           <Feature
             title="Track your payment status"
             text="No need to worry about forget getting paid. Billy helps you keep on eye on pending and overdue payments. Let’s get paid faster!"
-            imgPath="https://picsum.photos/200?random=2"
+            imgPath={image3}
             imgAlt=""
           />
           <Feature
             title="Manage business income and expense"
             text="Billy easily manages all your projects, customers and invoices in one place. Get report of your business income and expense anywhere."
-            imgPath="https://picsum.photos/200?random=3"
+            imgPath={image4}
             imgAlt=""
           />
         </section>

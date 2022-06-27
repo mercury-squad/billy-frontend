@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-const feature = props => {
+const feature = (props) => {
   return (
     <div className="feature">
       <img src={props.imgPath} alt={props.imgAlt} />
@@ -10,7 +9,7 @@ const feature = props => {
         <p className="body-regular">{props.text}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default feature
+export default feature;
