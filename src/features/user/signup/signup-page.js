@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Container, Box, TextField, Button, Alert } from '@mui/material';
 
-import Logo from 'components/logo';
+import Logo from 'components/logo/logo';
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES } from 'common/constants';
 
@@ -58,45 +58,47 @@ const SignupPage = () => {
   const pendingVerification = user?.verified === false;
 
   return (
-    <Container component="main" maxWidth="xs" className={styles.signup}>
-      <Logo className="text-center" />
-      <Box>
-        {pendingVerification ? (
-          <Typography component="p" variant="p">
-            Please check your email to verify your account
-          </Typography>
-        ) : (
-          <>
-            <Typography component="h2" variant="h5">
-              Let&apos;s create your account
+    <Box className={styles.signup}>
+      <Container component="main" maxWidth="xs">
+        <Logo className="text-center" />
+        <Box>
+          {pendingVerification ? (
+            <Typography component="p" variant="p">
+              Please check your email to verify your account
             </Typography>
-            <Box component="form">
-              {signupInputs.map(({ name, label, type }) => (
-                <TextField
-                  required
-                  fullWidth
-                  name={name}
-                  autoComplete={name}
-                  margin="normal"
-                  key={`${name}Input`}
-                  id={`${name}Input`}
-                  label={label}
-                  InputLabelProps={{ shrink: true }}
-                  variant="standard"
-                  type={type}
-                  value={formValues[name]}
-                  onChange={handleInputChange}
-                />
-              ))}
-              <Button variant="contained" onClick={handleSignup}>
-                SIGN UP
-              </Button>
-              {error && <Alert severity="error">{error}</Alert>}
-            </Box>
-          </>
-        )}
-      </Box>
-    </Container>
+          ) : (
+            <>
+              <Typography component="h2" variant="h5">
+                Let&apos;s create your account
+              </Typography>
+              <Box component="form">
+                {signupInputs.map(({ name, label, type }) => (
+                  <TextField
+                    required
+                    fullWidth
+                    name={name}
+                    autoComplete={name}
+                    margin="normal"
+                    key={`${name}Input`}
+                    id={`${name}Input`}
+                    label={label}
+                    InputLabelProps={{ shrink: true }}
+                    variant="standard"
+                    type={type}
+                    value={formValues[name]}
+                    onChange={handleInputChange}
+                  />
+                ))}
+                <Button variant="contained" onClick={handleSignup}>
+                  SIGN UP
+                </Button>
+                {error && <Alert severity="error">{error}</Alert>}
+              </Box>
+            </>
+          )}
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

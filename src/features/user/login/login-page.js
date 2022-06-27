@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Container, Box, TextField, Button } from '@mui/material';
 
-import Logo from 'components/logo';
+import Logo from 'components/logo/logo';
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES } from 'common/constants';
 
