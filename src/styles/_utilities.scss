@@ -6,12 +6,18 @@
     position: absolute;
   }
 
+  // Font
+
   .bold {
     font-weight: bold;
   }
 
-  .active-item {
-    background-color: #ccc;
+  .text-center {
+    text-align: center;
+  }
+
+  .text-white {
+    color: #fff;
   }
 
   /* Flex & Grid */
@@ -75,9 +81,7 @@
     width: 100%;
   }
 
-  .text-center {
-    text-align: center;
-  }
+  // others
 
   .visually-hidden {
     clip: rect(0 0 0 0);
@@ -87,6 +91,10 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
+  }
+
+  .active-item {
+    background-color: #22237780;
   }
 }
 

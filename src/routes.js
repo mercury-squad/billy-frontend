@@ -8,7 +8,6 @@ import Welcome from 'features/welcome';
 import Dashboard from 'features/dashboard';
 import Invoices from 'features/invoices';
 import Projects from 'features/projects';
-import 'styles/utilities.scss';
 
 const AppRoutes = () => {
   return (
