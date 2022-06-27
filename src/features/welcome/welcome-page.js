@@ -18,7 +18,7 @@ const LandingPage = () => {
     <div className={styles.welcome}>
       <div className="gray-bg" />
       <header>
-        <Logo source={LogoSVG} />
+        <Logo className="welcomeLogo" source={LogoSVG} />
         <nav className="welcomePageNavigationMenu">
           <ul>
             <li><a href="">Home</a></li>
@@ -170,7 +170,7 @@ const LandingPage = () => {
               multiline="true"
               minRows="4"
             />
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" size="large">
               Submit
             </Button>
           </form>

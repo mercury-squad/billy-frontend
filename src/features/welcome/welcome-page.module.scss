@@ -42,6 +42,15 @@
             margin: 0;
         }
 
+        img {
+            max-width: 100%;
+        }
+
+        .welcomeLogo {
+            margin-top: 1.5rem;
+            margin-left: 1.25rem;
+        }
+
         .body-regular {
             font-family: Inter;
             font-size: 1rem;
@@ -103,6 +112,7 @@
             padding: 2.4rem 1.25rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
 
             .titleBlack {
                 grid-column: 1/-1;
@@ -110,13 +120,7 @@
 
             img {
                 border-radius: 6px;
-                max-height: 145px;
-                
                 display: block;
-            }
-
-            .member {
-                margin-bottom: 1rem;
             }
 
             .memberName {
