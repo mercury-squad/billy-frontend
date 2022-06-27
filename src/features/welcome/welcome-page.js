@@ -106,21 +106,21 @@ const LandingPage = () => {
             memberImage="https://picsum.photos/200?random=9"
             memberImageAlt=""
             memberPosition="Designer"
-            memberLinkedin="Dolor sit"
+            memberLinkedin=""
           />
           <TeamMember
             memberName="Dexter Bolasoc"
             memberImage="https://picsum.photos/200?random=10"
             memberImageAlt=""
             memberPosition="Designer"
-            memberLinkedin="Dolor sit"
+            memberLinkedin=""
           />
           <TeamMember
             memberName="Milly Tsou"
             memberImage="https://picsum.photos/200?random=11"
             memberImageAlt=""
             memberPosition="Designer"
-            memberLinkedin="Dolor sit"
+            memberLinkedin=""
           />
         </section>
         <section className="contactUs">
