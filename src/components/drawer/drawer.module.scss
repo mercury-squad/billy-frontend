@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.nav {
+  :global {
+    .MuiDrawer-paper {
+      background-color: $color-primary;
+      color: #fff;
+    }
+    .MuiListItemIcon-root {
+      min-width: fit-content;
+      padding-right: 8px;
+    }
+    .MuiSvgIcon-root * {
+      stroke: #fff;
+      fill: none;
+    }
+  }
+}
+
+.menu {
+  :global {
+    .MuiListItem-root {
+      .MuiListItemButton-root {
+        height: 48px;
+      }
+      &:first-child {
+        height: 98px;
+        align-items: flex-start;
+      }
+    }
+  }
+}

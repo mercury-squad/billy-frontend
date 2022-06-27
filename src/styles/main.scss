@@ -1,20 +1,8 @@
-html,
-body {
-  height: 100%;
-}
+@import './reset';
+@import './variables';
+@import './responsive';
+@import './utilities';
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
+#root {
+  @import './typography';
 }

@@ -20,9 +20,7 @@ const useAuth = () => {
     }
   };
 
-  const saveCredentials = (response) => {
-    const { accessToken } = response || {};
-    updateUserState(response);
+  const saveCredentials = (accessToken) => {
     if (accessToken) {
       setAccessToken(accessToken);
       setIsLoggedIn(true);
@@ -36,7 +34,7 @@ const useAuth = () => {
   const signup = async (data) => {
     const response = await server.post(API.signup, data);
     if (response.status === 200) {
-      saveCredentials(response.data);
+      updateUserState(response.data);
     }
     return response;
   };
@@ -44,7 +42,9 @@ const useAuth = () => {
   const login = async (data) => {
     const response = await server.post(API.login, data);
     if (response.status === 200) {
-      saveCredentials(response?.data?.user);
+      const { user, accessToken } = response?.data || {};
+      updateUserState(user);
+      saveCredentials(accessToken);
     }
     return response;
   };

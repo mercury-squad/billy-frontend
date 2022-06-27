@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppBar, Avatar, IconButton, Toolbar, Typography, Menu, MenuItem } from '@mui/material';
+import { AppBar, Avatar, IconButton, Toolbar, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -38,9 +38,7 @@ const Header = ({ title, handleDrawerToggle }) => {
             sx={{ mr: 2, display: { sm: 'none' } }}>
             <MenuIcon />
           </IconButton>
-          <Typography className="bold" variant="h4" noWrap component="h1">
-            {title}
-          </Typography>
+          <h1 className="h2">{title}</h1>
         </div>
         <div className="flex align-center">
           <Avatar />

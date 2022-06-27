@@ -7,13 +7,17 @@ const useServer = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const handleUnauthorized = () => {
+    const { pathname, search } = location;
+    removeAccessToken();
+    const currentUrl = encodeURIComponent(pathname.concat(search));
+    navigate(`${ROUTES.login}?redirect=${currentUrl}`);
+  };
+
   const handleResponse = (response) => {
     if (response.error) {
       if (response.status === 401) {
-        const { pathname, search } = location;
-        removeAccessToken();
-        const currentUrl = encodeURIComponent(pathname.concat(search));
-        navigate(`${ROUTES.login}?redirect=${currentUrl}`);
+        handleUnauthorized();
       }
 
       const errorMessage = response.data?.message || response.statusText;
@@ -25,6 +29,9 @@ const useServer = () => {
   };
 
   const handleError = (error) => {
+    if (error.response?.status === 401) {
+      handleUnauthorized();
+    }
     return {
       status: error.response?.status,
       message: error.response?.data?.message,

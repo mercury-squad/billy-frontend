@@ -7,8 +7,6 @@ import { ROUTES, DRAWER_WIDTH } from 'common/constants';
 import Drawer from 'components/drawer/drawer';
 import Header from 'components/header/header';
 
-import './styles/main.scss';
-
 const App = () => {
   const auth = useAuth();
   const navigate = useNavigate();

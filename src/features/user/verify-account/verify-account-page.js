@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Box, CircularProgress, Button } from '@mui/material';
 
-import Logo from 'components/logo';
+import Logo from 'components/logo/logo';
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES } from 'common/constants';
 
