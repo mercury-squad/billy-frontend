@@ -3,11 +3,11 @@ import React from 'react';
 
 const feature = props => {
   return (
-    <div>
+    <div className="feature">
       <img src={props.imgPath} alt={props.imgAlt} />
       <div>
         <h2>{props.title}</h2>
-        <p>{props.text}</p>
+        <p className="body-regular">{props.text}</p>
       </div>
     </div>
   )

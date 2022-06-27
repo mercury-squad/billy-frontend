@@ -1,6 +1,65 @@
 .welcome {
 
+    body {
+        margin: 0;
+    }
+
     :global {
+
+        $title_color: #1417CC;
+        $font-tertiary: #1C284E;
+        $background_light_gray: #F5F7F9;
+        $background_light_green: #C3EEEB;
+
+        .gray-bg {
+            background-color: $background_light_gray;
+            height: 550px;
+            width: 100%;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: -5;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        h1 {
+            font-family: Inter;
+            color: $title_color;
+            font-weight: 800;
+            letter-spacing: -2%;
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-family: Inter;
+            color: $title_color;
+            font-weight: 700;
+            letter-spacing: -2%;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .body-regular {
+            font-family: Inter;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: 400;
+            color: $font-tertiary;
+            margin: .5rem 0;
+        }
+
+        .intro {
+            margin: 0 1.25rem 5rem 1.25rem;
+
+            img {
+                margin: 0 auto;
+                display: block;
+            }
+        }
+
         .welcomePageNavigationMenu {
         
             @media screen and (max-width: 680px) {
@@ -8,7 +67,95 @@
             }
         }
 
+        .features {
+            margin: 0 1.25rem;
         
+            .feature {
+                padding: 1rem 0rem;
+
+                img {
+                    display: block;
+                    margin: 0 auto;
+                }
+
+            }
+        }
+
+        .titleBlack {
+            color: $font-tertiary;
+            margin: 1rem 0;
+        }
+
+        .titleCenter {
+            text-align: center;
+        }
+
+        .buttonCenter {
+            margin: 0 auto;
+        }
+
+        .madeSimple {
+            margin-bottom: 2rem;
+        }
+
+        .team {
+            background-color: $background_light_green;
+            padding: 2.4rem 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .titleBlack {
+                grid-column: 1/-1;
+            }
+
+            img {
+                border-radius: 6px;
+                max-height: 145px;
+                
+                display: block;
+            }
+
+            .member {
+                margin-bottom: 1rem;
+            }
+
+            .memberName {
+                color: $title_color;
+                font-weight: 600;
+                font-size: 18px;
+            }
+
+            p {
+                margin: 0 0 0 ;
+                line-height: 27px;
+                font-family: Inter;
+            }
+
+        }
+
+        .contactUs {
+            margin: 0 1.25rem 3rem 1.25rem;
+
+            p {
+                font-family: Inter;
+            }
+
+            form {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+
+                .email, .message {
+                    grid-column: 1/-1;
+                }
+
+                Button {
+                    grid-column: 1/-1;
+                }
+
+            }
+
+        }
 
     }
     

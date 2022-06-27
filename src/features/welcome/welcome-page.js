@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from 'common/constants';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import styles from './welcome-page.module.scss';
 import Logo from '../../components/logo';
 import Feature from '../../components/Feature';
 import TeamMember from '../../components/TeamMember';
-
-import { ROUTES } from 'common/constants';
-import styles from './welcome-page.module.scss';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.welcome}>
+      <div className="gray-bg" />
       <header>
         <Logo />
         <nav className="welcomePageNavigationMenu">
@@ -28,21 +29,18 @@ const LandingPage = () => {
         </nav>
       </header>
       <body>
-        <section>
+        <section className="intro">
           <div>
-            <h2>Smart & easy invoice manager</h2>
-            <p>
+            <h1>Smart & easy invoice manager</h1>
+            <img src="https://picsum.photos/200?random=15" alt="" />
+            <p className="body-regular">
               Save time on creating professional invoices, tracking invoice payment status, and managing business
               finances
             </p>
-            <Button variant="contained">Try now for free</Button>
-          </div>
-          <div>
-            <img src="" alt="" />
+            <Button variant="contained" size="large">Try now for free</Button>
           </div>
         </section>
-        <section>
-          <h1>Main Features</h1>
+        <section className="features">
           <Feature
             title="Generate and schedule invoice  quickly"
             text="Billy creates professional invoice in seconds, download as pdf, send to your customers or schedule for recurring invoice."
@@ -62,12 +60,12 @@ const LandingPage = () => {
             imgAlt=""
           />
         </section>
-        <section>
-          <h1>Invoicing made simple</h1>
-          <Button variant="contained">Try now for FREE</Button>
+        <section className="madeSimple">
+          <h2 className="titleBlack titleCenter">Invoicing made simple</h2>
+          <Button variant="contained" className="block buttonCenter">Try now for FREE</Button>
         </section>
-        <section>
-          <h1>Our Team</h1>
+        <section className="team">
+          <h2 className="titleBlack">Our Team</h2>
           <TeamMember
             memberName="Gabriel Gimenes"
             memberImage="https://picsum.photos/200?random=4"
@@ -125,12 +123,51 @@ const LandingPage = () => {
             memberLinkedin="Dolor sit"
           />
         </section>
-        <section>
+        <section className="contactUs">
           <div>
-            <h2>Contact Billy</h2>
+            <h2 className="titleBlack">Contact us</h2>
             <p>We're here to help and answer any questions you might have. We look forward to hearing from you.</p>
           </div>
           <form action="">
+            <TextField
+              className="firstName"
+              id="outlined-password-input"
+              label="First Name"
+              type="text"
+              placeholder="First Name"
+              margin="normal"
+            />
+            <TextField
+              className="lastName"
+              id="outlined-password-input"
+              label="Last Name"
+              type="text"
+              placeholder="Last Name"
+              margin="normal"
+            />
+            <TextField
+              className="email"
+              id="outlined-password-input"
+              label="Email"
+              type="email"
+              placeholder="Email"
+              fullWidth="true"
+              margin="normal"
+            />
+            <TextField
+              className="message"
+              id="outlined-textarea"
+              label="Message"
+              type="text"
+              placeholder="Message"
+              fullWidth="true"
+              margin="normal"
+              multiline="true"
+              minRows="4"
+            />
+            <Button variant="contained" type="submit">
+              Submit
+            </Button>
           </form>
         </section>
       </body>
