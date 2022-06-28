@@ -46,7 +46,7 @@ module.exports = (env) => ({
     ],
   },
   devServer: {
-    port: 8080,
+    port: 3000,
     historyApiFallback: true,
   },
   plugins: [

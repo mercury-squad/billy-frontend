@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import styles from './welcome-page.module.scss';
 import LogoSVG from '../../assets/img/logo.svg';
-import Logo from '../../components/logo';
+import Logo from '../../components/logo/logo';
 import Feature from '../../components/Feature';
 import TeamMember from '../../components/TeamMember';
 import image1 from '../../assets/img/Billy-illust-01.png';
