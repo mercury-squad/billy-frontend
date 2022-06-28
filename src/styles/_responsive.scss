@@ -1,0 +1,12 @@
+@mixin desktop {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Phones and tablets
+@mixin mobile {
+  @media only screen and (max-width: 1023px) {
+    @content;
+  }
+}

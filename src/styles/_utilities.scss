@@ -6,6 +6,20 @@
     position: absolute;
   }
 
+  // Font
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-white {
+    color: #fff;
+  }
+
   /* Flex & Grid */
 
   .flex {
@@ -67,9 +81,7 @@
     width: 100%;
   }
 
-  .text-center {
-    text-align: center;
-  }
+  // others
 
   .visually-hidden {
     clip: rect(0 0 0 0);
@@ -80,4 +92,12 @@
     white-space: nowrap;
     width: 1px;
   }
+
+  .active-item {
+    background-color: #22237780;
+  }
+}
+
+.disable-link-styles {
+  all: unset;
 }
