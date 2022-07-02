@@ -3,13 +3,12 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loadUser } from 'features/user/user-slice';
 
-import useServer from 'common/hooks/use-server';
+import server from 'common/server';
 import { API, ROUTES } from 'common/constants';
 import { getAccessToken, setAccessToken, removeAccessToken } from 'common/utils';
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  const server = useServer();
   const [isLoggedIn, setIsLoggedIn] = useState(!!getAccessToken());
   const navigate = useNavigate();
   const location = useLocation();
