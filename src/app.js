@@ -28,7 +28,7 @@ const App = () => {
     <>
       <CssBaseline />
       <Box className="flex">
-        <Header title={headerTitle} handleDrawerToggle={handleDrawerToggle} />
+        <Header title={headerTitle} handleDrawerToggle={handleDrawerToggle} logout={auth.logout} />
         <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
         <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
           <Toolbar />

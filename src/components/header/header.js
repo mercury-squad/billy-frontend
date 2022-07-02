@@ -3,11 +3,9 @@ import { AppBar, Avatar, IconButton, Toolbar, Menu, MenuItem } from '@mui/materi
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import useAuth from 'common/hooks/use-auth';
 import { DRAWER_WIDTH } from 'common/constants';
 
-const Header = ({ title, handleDrawerToggle }) => {
-  const auth = useAuth();
+const Header = ({ title, handleDrawerToggle, logout }) => {
   const [menuTriggerEl, setMenuTriggerEl] = useState(null);
 
   const openMenu = (event) => {
@@ -47,7 +45,7 @@ const Header = ({ title, handleDrawerToggle }) => {
             <MenuItem
               onClick={() => {
                 closeMenu();
-                auth.logout();
+                logout();
               }}>
               Logout
             </MenuItem>
