@@ -156,7 +156,7 @@ const LandingPage = () => {
               label="Email"
               type="email"
               placeholder="Email"
-              fullWidth="true"
+              fullWidth
               margin="normal"
             />
             <TextField
@@ -165,9 +165,9 @@ const LandingPage = () => {
               label="Message"
               type="text"
               placeholder="Message"
-              fullWidth="true"
+              fullWidth
               margin="normal"
-              multiline="true"
+              multiline
               minRows="4"
             />
             <Button variant="contained" type="submit" size="large">
