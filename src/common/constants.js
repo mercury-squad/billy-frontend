@@ -15,6 +15,7 @@ export const API = {
   logout: `${BASE_URL}/api/v1/logout`,
   user: `${BASE_URL}/api/v1/user/me`,
   confirmEmail: `${BASE_URL}/api/v1/confirmEmail`,
+  invoices: `${BASE_URL}/api/v1/invoice`,
 };
 
 export const ROUTES = {
