@@ -1,3 +1,5 @@
+@import '../../styles/main.scss';
+
 .welcome {
 
     body {
@@ -6,13 +8,8 @@
 
     :global {
 
-        $title_color: #1417CC;
-        $font-tertiary: #1C284E;
-        $background_light_gray: #F5F7F9;
-        $background_light_green: #C3EEEB;
-
         .gray-bg {
-            background-color: $background_light_gray;
+            background-color: $color-neutral-light;
             height: 550px;
             width: 100%;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
@@ -26,16 +23,16 @@
 
 
         h1 {
-            font-family: Inter;
-            color: $title_color;
+            font-family: $main-font-family;
+            color: $color-primary-alt;
             font-weight: 800;
             letter-spacing: -2%;
             font-size: 2rem;
         }
 
         h2 {
-            font-family: Inter;
-            color: $title_color;
+            font-family: $main-font-family;
+            color: $color-primary-alt;
             font-weight: 700;
             letter-spacing: -2%;
             font-size: 1.5rem;
@@ -52,11 +49,11 @@
         }
 
         .body-regular {
-            font-family: Inter;
+            font-family: $main-font-family;
             font-size: 1rem;
             line-height: 1.5rem;
             font-weight: 400;
-            color: $font-tertiary;
+
             margin: .5rem 0;
         }
 
@@ -91,7 +88,7 @@
         }
 
         .titleBlack {
-            color: $font-tertiary;
+
             margin: 1rem 0;
         }
 
@@ -108,7 +105,7 @@
         }
 
         .team {
-            background-color: $background_light_green;
+            background-color: $color-light-variant-2;
             padding: 2.4rem 1.25rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -124,7 +121,7 @@
             }
 
             .memberName {
-                color: $title_color;
+                color: $color-primary-alt;
                 font-weight: 600;
                 font-size: 18px;
             }
@@ -132,7 +129,7 @@
             p {
                 margin: 0 0 0 ;
                 line-height: 27px;
-                font-family: Inter;
+                font-family: $main-font-family;
             }
 
         }
@@ -141,7 +138,7 @@
             margin: 0 1.25rem 3rem 1.25rem;
 
             p {
-                font-family: Inter;
+                font-family: $main-font-family;
             }
 
             form {
