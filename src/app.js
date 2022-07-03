@@ -27,11 +27,13 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Box className="flex">
+      <Box className="flex h-100">
         <Header title={headerTitle} handleDrawerToggle={handleDrawerToggle} logout={auth.logout} />
         <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
-          <Toolbar />
+        <Box
+          className="bg-neutral"
+          component="main"
+          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` }, mt: '72px' }}>
           <Outlet context={[setHeaderTitle]} />
         </Box>
         {/* TODO: Footer */}
