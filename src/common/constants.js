@@ -6,7 +6,7 @@ export const DRAWER_WIDTH = 217;
 
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'http://ec2-54-241-125-164.us-west-1.compute.amazonaws.com'
+    ? 'https://ec2-54-241-125-164.us-west-1.compute.amazonaws.com'
     : 'http://localhost:3200';
 
 export const API = {
