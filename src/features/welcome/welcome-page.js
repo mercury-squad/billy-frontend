@@ -14,6 +14,66 @@ import feature3Illustration from '../../assets/img/billy-feature-3-illustration.
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
+  const teamMembers = [
+    {
+      Name: 'Gabriel Gimenes',
+      Image: 'https://picsum.photos/200?random=4',
+      ImageAlt: '',
+      Position: 'Project Manager / Developer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Ashim Karki',
+      Image: 'https://picsum.photos/200?random=5',
+      ImageAlt: '',
+      Position: 'Lead Developer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Luisa Rueda',
+      Image: 'https://picsum.photos/200?random=6',
+      ImageAlt: '',
+      Position: 'Developer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Karen Garcia',
+      Image: 'https://picsum.photos/200?random=7',
+      ImageAlt: '',
+      Position: 'Developer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Mita Trisnodjojo',
+      Image: 'https://picsum.photos/200?random=8',
+      ImageAlt: '',
+      Position: 'Lead Designer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Karen Chiu',
+      Image: 'https://picsum.photos/200?random=9',
+      ImageAlt: '',
+      Position: 'Designer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Dexter Bolasoc',
+      Image: 'https://picsum.photos/200?random=10',
+      ImageAlt: '',
+      Position: 'Designer',
+      Linkedin: '',
+    },
+    {
+      Name: 'Milly Tsou',
+      Image: 'https://picsum.photos/200?random=11',
+      ImageAlt: '',
+      Position: 'Designer',
+      Linkedin: '',
+    },
+  ];
+
   return (
     <div className={styles.welcome}>
       <div className="gray-bg" />
@@ -71,62 +131,16 @@ const LandingPage = () => {
         </section>
         <section className="team">
           <h2 className="titleBlack">Our Team</h2>
-          <TeamMember
-            memberName="Gabriel Gimenes"
-            memberImage="https://picsum.photos/200?random=4"
-            memberImageAlt=""
-            memberPosition="Project Manager / Developer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Ashim Karki"
-            memberImage="https://picsum.photos/200?random=5"
-            memberImageAlt=""
-            memberPosition="Lead Developer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Luisa Rueda"
-            memberImage="https://picsum.photos/200?random=6"
-            memberImageAlt=""
-            memberPosition="Developer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Karen Garcia"
-            memberImage="https://picsum.photos/200?random=7"
-            memberImageAlt=""
-            memberPosition="Developer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Mita Trisnodjojo"
-            memberImage="https://picsum.photos/200?random=8"
-            memberImageAlt=""
-            memberPosition="Lead Designer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Karen Chiu"
-            memberImage="https://picsum.photos/200?random=9"
-            memberImageAlt=""
-            memberPosition="Designer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Dexter Bolasoc"
-            memberImage="https://picsum.photos/200?random=10"
-            memberImageAlt=""
-            memberPosition="Designer"
-            memberLinkedin=""
-          />
-          <TeamMember
-            memberName="Milly Tsou"
-            memberImage="https://picsum.photos/200?random=11"
-            memberImageAlt=""
-            memberPosition="Designer"
-            memberLinkedin=""
-          />
+          {teamMembers.map((member) => (
+            <TeamMember
+              key={member.Name}
+              memberName={member.Name}
+              memberImage={member.Image}
+              memberImageAlt={member.ImageAlt}
+              memberPosition={member.Position}
+              memberLinkedin={member.Linkedin}
+            />
+          ))}
         </section>
         <section className="contactUs">
           <div>
