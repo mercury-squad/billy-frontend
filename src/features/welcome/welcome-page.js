@@ -7,10 +7,10 @@ import LogoSVG from '../../assets/img/logo.svg';
 import Logo from '../../components/logo/logo';
 import Feature from '../../components/feature';
 import TeamMember from '../../components/team-member';
-import image1 from '../../assets/img/Billy-illust-01.png';
-import image2 from '../../assets/img/Billy-illust-02.png';
-import image3 from '../../assets/img/Billy-illust-03.png';
-import image4 from '../../assets/img/Billy-illust-04.png';
+import summaryIllustration from '../../assets/img/billy-summary-welcome-illustration.png';
+import feature1Illustration from '../../assets/img/billy-feature-1-illustration.png';
+import feature2Illustration from '../../assets/img/billy-feature-2-illustration.png';
+import feature3Illustration from '../../assets/img/billy-feature-3-illustration.png';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const LandingPage = () => {
         <section className="intro">
           <div>
             <h1>Smart & easy invoice manager</h1>
-            <img src={image1} alt="" />
+            <img src={summaryIllustration} alt="" />
             <p className="body-regular">
               Save time on creating professional invoices, tracking invoice payment status, and managing business
               finances
@@ -49,19 +49,19 @@ const LandingPage = () => {
           <Feature
             title="Generate and schedule invoice  quickly"
             text="Billy creates professional invoice in seconds, download as pdf, send to your customers or schedule for recurring invoice."
-            imgPath={image2}
+            imgPath={feature1Illustration}
             imgAlt=""
           />
           <Feature
             title="Track your payment status"
             text="No need to worry about forget getting paid. Billy helps you keep on eye on pending and overdue payments. Let’s get paid faster!"
-            imgPath={image3}
+            imgPath={feature2Illustration}
             imgAlt=""
           />
           <Feature
             title="Manage business income and expense"
             text="Billy easily manages all your projects, customers and invoices in one place. Get report of your business income and expense anywhere."
-            imgPath={image4}
+            imgPath={feature3Illustration}
             imgAlt=""
           />
         </section>
