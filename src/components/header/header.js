@@ -26,7 +26,7 @@ const Header = ({ title, handleDrawerToggle, logout }) => {
         width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
         ml: { sm: `${DRAWER_WIDTH}px` },
       }}>
-      <Toolbar className="flex justify-s-between bg-neutral" sx={{ height: { sm: '72px' } }}>
+      <Toolbar className="flex justify-s-between bg-white" sx={{ height: { sm: '72px' } }}>
         <div className="flex align-center">
           <IconButton
             color="inherit"

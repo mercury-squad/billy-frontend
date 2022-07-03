@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Toolbar, CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES, DRAWER_WIDTH } from 'common/constants';
