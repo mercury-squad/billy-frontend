@@ -1,0 +1,12 @@
+.filters {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 40px;
+
+  :global {
+    .MuiButton-root {
+      margin-right: auto;
+    }
+  }
+}
