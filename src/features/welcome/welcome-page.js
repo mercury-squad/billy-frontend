@@ -93,32 +93,35 @@ const LandingPage = () => {
           </ul>
         </nav>
       </header>
-      <body>
+      <div>
         <section className="intro">
+          <h1>Smart & easy invoice manager</h1>
+          <img src={summaryIllustration} alt="" />
           <div>
-            <h1>Smart & easy invoice manager</h1>
-            <img src={summaryIllustration} alt="" />
             <p className="body-regular">
               Save time on creating professional invoices, tracking invoice payment status, and managing business
               finances
             </p>
-            <Button variant="contained" size="large">Try now for free</Button>
+            <Button className="but" variant="contained" size="large">Try now for free</Button>
           </div>
         </section>
         <section className="features">
           <Feature
+            className="feature"
             title="Generate and schedule invoice  quickly"
             text="Billy creates professional invoice in seconds, download as pdf, send to your customers or schedule for recurring invoice."
             imgPath={feature1Illustration}
             imgAlt=""
           />
           <Feature
+            className="feature-inverted feature"
             title="Track your payment status"
             text="No need to worry about forget getting paid. Billy helps you keep on eye on pending and overdue payments. Let’s get paid faster!"
             imgPath={feature2Illustration}
             imgAlt=""
           />
           <Feature
+            className="feature"
             title="Manage business income and expense"
             text="Billy easily manages all your projects, customers and invoices in one place. Get report of your business income and expense anywhere."
             imgPath={feature3Illustration}
@@ -189,7 +192,7 @@ const LandingPage = () => {
             </Button>
           </form>
         </section>
-      </body>
+      </div>
     </div>
   );
 };
