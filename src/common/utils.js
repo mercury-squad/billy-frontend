@@ -12,9 +12,14 @@ export const removeAccessToken = () => {
 
 // Updates only the existing keys (or the ones provided) in the target obj
 export const updateValues = (target, source, keys) => {
+  if (!source) return;
   (keys || Object.keys(target)).forEach((key) => {
     if (source[key]) {
       target[key] = source[key];
     }
   });
+};
+
+export const formatDate = () => {
+  return '';
 };

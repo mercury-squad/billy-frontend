@@ -1,12 +1,22 @@
+@import 'styles/responsive';
+@import 'styles/utilities';
+
 .filters {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   gap: 40px;
+  @include mobile {
+    justify-content: flex-start;
+    flex-grow: 1;
+  }
 
   :global {
     .MuiButton-root {
       margin-right: auto;
+      @include mobile {
+        display: none;
+      }
     }
   }
 }
