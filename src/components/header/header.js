@@ -23,17 +23,17 @@ const Header = ({ title, handleDrawerToggle, logout }) => {
       position="fixed"
       color="transparent"
       sx={{
-        width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-        ml: { sm: `${DRAWER_WIDTH}px` },
+        width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
+        ml: { md: `${DRAWER_WIDTH}px` },
       }}>
-      <Toolbar className="flex justify-s-between bg-white" sx={{ height: { sm: '72px' } }}>
+      <Toolbar className="flex justify-s-between bg-white" sx={{ height: { xs: '72px' } }}>
         <div className="flex align-center">
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}>
+            sx={{ mr: 2, display: { md: 'none' } }}>
             <MenuIcon />
           </IconButton>
           <h1 className="h2">{title}</h1>

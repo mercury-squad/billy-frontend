@@ -31,9 +31,9 @@ const App = () => {
         <Header title={headerTitle} handleDrawerToggle={handleDrawerToggle} logout={auth.logout} />
         <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
         <Box
-          className="bg-neutral"
+          className="main-container"
           component="main"
-          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` }, mt: '72px' }}>
+          sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${DRAWER_WIDTH}px)` }, mt: '72px' }}>
           <Outlet context={[setHeaderTitle]} />
         </Box>
         {/* TODO: Footer */}
