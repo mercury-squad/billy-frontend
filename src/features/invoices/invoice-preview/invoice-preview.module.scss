@@ -1,3 +1,5 @@
+@import 'styles/responsive.scss';
+
 .invoicePreview {
   padding-top: 16px;
   padding-bottom: 40px;
@@ -15,6 +17,29 @@
       }
       svg {
         cursor: pointer;
+      }
+    }
+    #invoice-preview-container {
+      @include phone {
+        min-width: 1000px;
+      }
+    }
+    .invoice-preview-img {
+      @include desktop {
+        display: none;
+      }
+    }
+    .preview-wrapper {
+      opacity: 0;
+      &.hide {
+        display: none;
+      }
+      @include desktop {
+        opacity: 1;
+        display: initial;
+        &.hide {
+          display: initial;
+        }
       }
     }
   }

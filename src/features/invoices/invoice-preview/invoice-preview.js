@@ -12,9 +12,19 @@ const InvoicePreview = () => {
   const { id } = useParams();
   const [preview, setPreview] = useState('');
   const [invoiceData, setInvoiceData] = useState();
+  const [image, setpImage] = useState('');
   const previewRef = useRef(null);
   const [setHeaderTitle] = useOutletContext();
 
+  useEffect(() => {
+    if (previewRef?.current && invoiceData) {
+      const invoice = document.getElementById('invoice-preview-container');
+      html2canvas(invoice).then((canvas) => {
+        const dataUrl = canvas.toDataURL('image/png');
+        setpImage(dataUrl);
+      });
+    }
+  }, [previewRef, invoiceData]);
   useEffect(() => {
     const getPreview = async () => {
       const data = await server.get(`${API.invoices}/${id}`);
@@ -48,12 +58,15 @@ const InvoicePreview = () => {
         <EditIcon onClick={() => console.info('test')} />
         <DownloadIcon onClick={downloadPDF} />
       </div>
-      <div
-        ref={previewRef}
-        id="invoice-preview-container"
-        className="preview bg-white"
-        dangerouslySetInnerHTML={{ __html: preview }}
-      />
+      <div>{image && <img className="invoice-preview-img" src={image} alt="" />}</div>
+      <div className={`preview-wrapper ${image ? 'hide' : ''}`}>
+        <div
+          ref={previewRef}
+          id="invoice-preview-container"
+          className="preview bg-white"
+          dangerouslySetInnerHTML={{ __html: preview }}
+        />
+      </div>
     </div>
   );
 };
