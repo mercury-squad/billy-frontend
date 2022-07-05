@@ -6,7 +6,7 @@ export const DRAWER_WIDTH = 217;
 
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'http://ec2-54-241-125-164.us-west-1.compute.amazonaws.com'
+    ? 'https://ec2-54-241-125-164.us-west-1.compute.amazonaws.com'
     : 'http://localhost:3200';
 
 export const API = {
@@ -15,6 +15,7 @@ export const API = {
   logout: `${BASE_URL}/api/v1/logout`,
   user: `${BASE_URL}/api/v1/user/me`,
   confirmEmail: `${BASE_URL}/api/v1/confirmEmail`,
+  invoices: `${BASE_URL}/api/v1/invoice`,
 };
 
 export const ROUTES = {

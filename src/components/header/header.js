@@ -3,11 +3,9 @@ import { AppBar, Avatar, IconButton, Toolbar, Menu, MenuItem } from '@mui/materi
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import useAuth from 'common/hooks/use-auth';
 import { DRAWER_WIDTH } from 'common/constants';
 
-const Header = ({ title, handleDrawerToggle }) => {
-  const auth = useAuth();
+const Header = ({ title, handleDrawerToggle, logout }) => {
   const [menuTriggerEl, setMenuTriggerEl] = useState(null);
 
   const openMenu = (event) => {
@@ -28,7 +26,7 @@ const Header = ({ title, handleDrawerToggle }) => {
         width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
         ml: { sm: `${DRAWER_WIDTH}px` },
       }}>
-      <Toolbar className="flex justify-s-between">
+      <Toolbar className="flex justify-s-between bg-white" sx={{ height: { sm: '72px' } }}>
         <div className="flex align-center">
           <IconButton
             color="inherit"
@@ -47,7 +45,7 @@ const Header = ({ title, handleDrawerToggle }) => {
             <MenuItem
               onClick={() => {
                 closeMenu();
-                auth.logout();
+                logout();
               }}>
               Logout
             </MenuItem>

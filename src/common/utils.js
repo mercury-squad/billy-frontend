@@ -9,3 +9,12 @@ export const setAccessToken = (accessToken) => {
 export const removeAccessToken = () => {
   return window.localStorage.removeItem('accessToken');
 };
+
+// Updates only the existing keys (or the ones provided) in the target obj
+export const updateValues = (target, source, keys) => {
+  (keys || Object.keys(target)).forEach((key) => {
+    if (source[key]) {
+      target[key] = source[key];
+    }
+  });
+};

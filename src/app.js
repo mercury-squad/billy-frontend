@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Toolbar, CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES, DRAWER_WIDTH } from 'common/constants';
@@ -27,11 +27,13 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Box className="flex">
-        <Header title={headerTitle} handleDrawerToggle={handleDrawerToggle} />
+      <Box className="flex h-100">
+        <Header title={headerTitle} handleDrawerToggle={handleDrawerToggle} logout={auth.logout} />
         <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
-          <Toolbar />
+        <Box
+          className="bg-neutral"
+          component="main"
+          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` }, mt: '72px' }}>
           <Outlet context={[setHeaderTitle]} />
         </Box>
         {/* TODO: Footer */}
