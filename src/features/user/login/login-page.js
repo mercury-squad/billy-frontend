@@ -38,36 +38,46 @@ const LoginPage = () => {
   }, [auth.isLoggedIn]);
 
   return (
-    <Container component="main" maxWidth="xs" className={styles.signup}>
-      <Logo className="text-center" />
-      <Box>
-        <Typography component="h2" variant="h5">
-          Welcome back to Billy!
-        </Typography>
-        <Box component="form">
-          {signInInputs.map(({ name, label, type }) => (
-            <TextField
-              required
-              fullWidth
-              name={name}
-              autoComplete={name}
-              margin="normal"
-              key={`${name}Input`}
-              id={`${name}Input`}
-              label={label}
-              InputLabelProps={{ shrink: true }}
-              variant="standard"
-              type={type}
-              value={formValues[name]}
-              onChange={handleInputChange}
-            />
-          ))}
-          <Button variant="contained" onClick={() => auth.login(formValues)}>
-            LOGIN
-          </Button>
+    <Box className={styles.signup}>
+      <Container component="main" maxWidth="sm">
+        <Logo className="text-center logo" />
+        <Box className="white-container">
+          <Typography component="h2" variant="h5">
+            Welcome back to Billy!
+          </Typography>
+          <Box component="form">
+            {signInInputs.map(({ name, label, type }) => (
+              <TextField
+                required
+                fullWidth
+                name={name}
+                autoComplete={name}
+                margin="normal"
+                key={`${name}Input`}
+                id={`${name}Input`}
+                label={label}
+                /* InputLabelProps={{ shrink: true }} */
+                /* variant="standard" */
+                type={type}
+                value={formValues[name]}
+                onChange={handleInputChange}
+              />
+            ))}
+            <a href="" className="small-link">Forgot password?</a>
+            <Button variant="contained" onClick={() => auth.login(formValues)} fullWidth size="large">
+              LOG IN
+            </Button>
+          </Box>
+          <div className="signup-in-link">
+            <p>Don't have Billy account?</p>
+            <a onClick={() => navigate(ROUTES.signup)}>Create account</a>
+          </div>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+      <div className="footer">
+        <p className="footer-text">InvoiceBilly©2022</p>
+      </div>
+    </Box>
   );
 };
 
