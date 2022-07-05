@@ -16,6 +16,7 @@ export const API = {
   user: `${BASE_URL}/api/v1/user/me`,
   confirmEmail: `${BASE_URL}/api/v1/confirmEmail`,
   invoices: `${BASE_URL}/api/v1/invoice`,
+  projects: `${BASE_URL}/api/v1/project`,
 };
 
 export const ROUTES = {
