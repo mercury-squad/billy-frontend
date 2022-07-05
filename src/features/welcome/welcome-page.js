@@ -103,7 +103,9 @@ const LandingPage = () => {
                 Save time on creating professional invoices, tracking invoice payment status, and managing business
                 finances
               </p>
-              <Button variant="contained" size="large">Try now for free</Button>
+              <Button variant="contained" size="large">
+                Try now for free
+              </Button>
             </div>
           </section>
           <section className="features">
@@ -131,7 +133,9 @@ const LandingPage = () => {
           </section>
           <section className="madeSimple">
             <h2 className="titleBlack titleCenter">Invoicing made simple</h2>
-            <Button variant="contained" className="buttonCenter" onClick={() => navigate(ROUTES.login)}>Try now for FREE</Button>
+            <Button variant="contained" className="buttonCenter" onClick={() => navigate(ROUTES.login)}>
+              Try now for FREE
+            </Button>
           </section>
           <section className="team">
             <h2 className="titleBlack">Our Team</h2>
@@ -149,7 +153,9 @@ const LandingPage = () => {
           <section className="contactUs">
             <div>
               <h2 className="titleBlack">Contact us</h2>
-              <p>We're here to help and answer any questions you might have. We look forward to hearing from you.</p>
+              <p>
+                We`&apos`re here to help and answer any questions you might have. We look forward to hearing from you.
+              </p>
             </div>
             <form action="">
               <TextField
