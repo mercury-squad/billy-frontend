@@ -39,7 +39,7 @@ const LoginPage = () => {
 
   return (
     <Box className={styles.signup}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <Logo className="text-center logo" />
         <Box className="white-container">
           <Typography component="h2" variant="h5">
@@ -56,20 +56,22 @@ const LoginPage = () => {
                 key={`${name}Input`}
                 id={`${name}Input`}
                 label={label}
-                InputLabelProps={{ shrink: true }}
-                variant="standard"
+                /* InputLabelProps={{ shrink: true }} */
+                /* variant="standard" */
                 type={type}
                 value={formValues[name]}
                 onChange={handleInputChange}
               />
             ))}
             <a href="" className="small-link">Forgot password?</a>
-            <Button variant="contained" onClick={() => auth.login(formValues)}>
-              LOGIN
+            <Button variant="contained" onClick={() => auth.login(formValues)} fullWidth size="large">
+              LOG IN
             </Button>
           </Box>
-          <p>Don't have Billy account?</p>
-          <a onClick={() => navigate(ROUTES.signup)}>Create account</a>
+          <div className="signup-in-link">
+            <p>Don't have Billy account?</p>
+            <a onClick={() => navigate(ROUTES.signup)}>Create account</a>
+          </div>
         </Box>
       </Container>
     </Box>

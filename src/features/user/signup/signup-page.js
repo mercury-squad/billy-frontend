@@ -18,11 +18,10 @@ const defaultValues = {
 };
 
 const signupInputs = [
-  { name: 'firstName', label: 'First Name', type: 'text' },
-  { name: 'lastName', label: 'Last Name', type: 'text' },
-  { name: 'email', label: 'Email', type: 'text' },
-  { name: 'password', label: 'Password', type: 'password' },
-  { name: 'confirmPassword', label: 'Confirm Password', type: 'password' },
+  { name: 'firstName', fullWidth: false, label: 'First Name', type: 'text' },
+  { name: 'lastName', fullWidth: false, label: 'Last Name', type: 'text' },
+  { name: 'email', fullWidth: true, label: 'Email', type: 'text' },
+  { name: 'password', fullWidth: true, label: 'Password', type: 'password' },
 ];
 
 const SignupPage = () => {
@@ -59,7 +58,7 @@ const SignupPage = () => {
 
   return (
     <Box className={styles.signup}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <Logo className="text-center logo" />
         <Box className="white-container">
           {pendingVerification ? (
@@ -71,33 +70,35 @@ const SignupPage = () => {
               <Typography component="h2" variant="h5">
                 Create your account
               </Typography>
-              <Box component="form">
-                {signupInputs.map(({ name, label, type }) => (
+              <Box component="form" className="signup-form">
+                {signupInputs.map(({ name, fullWidth, label, type }) => (
                   <TextField
                     required
-                    fullWidth
+                    fullWidth={fullWidth}
                     name={name}
                     autoComplete={name}
                     margin="normal"
                     key={`${name}Input`}
                     id={`${name}Input`}
                     label={label}
-                    InputLabelProps={{ shrink: true }}
-                    variant="standard"
+                    /* InputLabelProps={{ shrink: true }} */
+                    /* variant="standard" */
                     type={type}
                     value={formValues[name]}
                     onChange={handleInputChange}
                   />
                 ))}
-                <Button variant="contained" onClick={handleSignup}>
+                <Button variant="contained" onClick={handleSignup} fullWidth size="large">
                   SIGN UP
                 </Button>
                 {error && <Alert severity="error">{error}</Alert>}
               </Box>
             </>
           )}
-          <p>Already had Billy account?</p>
-          <a onClick={() => navigate(ROUTES.login)}>Log in</a>
+          <div className="signup-in-link">
+            <p>Already had Billy account?</p>
+            <a onClick={() => navigate(ROUTES.login)}>Log in</a>
+          </div>
         </Box>
       </Container>
     </Box>
