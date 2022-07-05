@@ -1,0 +1,10 @@
+@import 'styles/variables';
+
+.sectionContainer :global {
+  margin-bottom: 34px;
+  .header {
+    border-bottom: 2px solid $color-primary;
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+  }
+}
