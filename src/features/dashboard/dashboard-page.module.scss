@@ -1,0 +1,95 @@
+@import '../../styles/variables';
+
+.dashboard {
+    :global {
+        .cards {
+            margin: 3rem 0;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            gap: 1rem;
+    
+            .card {
+                flex: 1 1 22%;
+            }
+
+            .card-value {
+                color: $color-primary;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+        }
+
+        .graphs-cards{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+
+            .card {
+                flex: 1 1 42%;
+            }
+
+            .card-title{
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+            .horizontal-graph{
+                width: 100%;
+                height: 200px;
+            }
+
+            .incomeIcon path{
+                color: $color-primary;
+                transform: translateY(7px);
+            }
+
+            .graph-caption{
+                text-align: center;
+            }
+
+            .total-value{
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .graph-container{
+                display: flex;
+                flex-flow: row nowrap;
+            }
+
+            .vertical-graph{
+                width: 100%;
+                height: 250px;
+            }
+
+            .final-invoiced{
+                color: $color-primary;
+            }
+
+            .final-payments{
+                color: $color-secondary-dark;
+            }
+
+            .final-overdue{
+                color: $color-accent;
+            }
+
+            .final-value{
+                font-weight: bold;
+                padding-bottom: 1rem;
+            }
+
+            .final-values{
+                padding: 0;
+            }
+            
+            
+        }
+    }
+    
+
+    
+}
+
