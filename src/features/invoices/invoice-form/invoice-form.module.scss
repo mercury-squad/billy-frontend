@@ -1,0 +1,91 @@
+.invoiceForm {
+  padding-top: 16px;
+  padding-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  :global {
+    .MuiInputBase-input {
+      max-height: 56px;
+      background-color: #fff;
+      input::placeholder {
+        color: #000;
+      }
+    }
+    .MuiInputAdornment-root,
+    .MuiFormControl-root {
+      background-color: #fff;
+    }
+    .section-base {
+      display: flex;
+      gap: 20px;
+    }
+    .section-items,
+    .section-expenses {
+      display: flex;
+      flex-direction: column;
+      .item,
+      .expense {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: 20px;
+      }
+      .expense {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .new-item-button,
+      .new-expense-button {
+        margin-left: auto;
+        text-transform: initial;
+      }
+    }
+    .section-billing {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      .MuiInputBase-input {
+        cursor: no-drop;
+      }
+    }
+    .section-payment {
+      display: grid;
+      grid-template-columns: 50%;
+      padding-right: 20px;
+      gap: 20px;
+      .account-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 70px;
+      }
+    }
+    .section-total {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 20px;
+    }
+    .section-notes {
+      display: grid;
+      grid-template-columns: 50%;
+      padding-right: 20px;
+    }
+    .section-finale {
+      display: flex;
+      gap: 20px;
+      // grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      .MuiButton-root {
+        text-transform: initial;
+        height: 48px;
+        &:not(:last-child) {
+          width: 157px;
+        }
+        &:last-child {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}

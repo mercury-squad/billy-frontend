@@ -5,7 +5,7 @@ import { updateValues } from 'common/utils';
 
 const initialState = {
   page: 1,
-  projects: [],
+  results: [],
   total: 0,
   perPage: null,
 };
@@ -20,13 +20,13 @@ export const projectsSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { loadProjects } = projectsSlice.actions;
 
 export const getProjects = () => async (dispatch) => {
   const res = await server.get(API.projects);
   if (res.status === 200) {
-    dispatch(loadProjects(res.data));
+    const { projects, ...data } = res.data;
+    dispatch(loadProjects({ ...data, results: projects }));
   }
 };
 
