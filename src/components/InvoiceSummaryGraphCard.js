@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Card, CardContent, Typography, Container } from '@mui/material';
-import SquareIcon from '@mui/icons-material/Square';
 
 const InvoiceSummaryGraphCard = (props) => {
   return (
