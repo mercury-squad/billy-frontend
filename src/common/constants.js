@@ -4,6 +4,8 @@ import { ReactComponent as ProjectIcon } from 'assets/img/project-icon.svg';
 
 export const DRAWER_WIDTH = 217;
 
+export const DATE_FORMAT = 'YYYY-MM-DD';
+
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://ec2-54-241-125-164.us-west-1.compute.amazonaws.com'
@@ -25,11 +27,24 @@ export const ROUTES = {
   dashboard: '/',
   welcome: '/welcome',
   invoices: '/invoices',
+  newInvoice: '/invoices/new',
   projects: '/projects',
 };
 
 export const NAVIGATION_ITEMS = [
-  { name: 'dashboard', label: 'Dashboard', link: ROUTES.dashboard, icon: DashboardIcon },
-  { name: 'invoices', label: 'Invoices', link: ROUTES.invoices, icon: InvoiceIcon },
-  { name: 'projects', label: 'Projects', link: ROUTES.projects, icon: ProjectIcon },
+  {
+    name: 'dashboard',
+    label: 'Dashboard',
+    link: ROUTES.dashboard,
+    pathsInScope: [ROUTES.dashboard],
+    icon: DashboardIcon,
+  },
+  {
+    name: 'invoices',
+    label: 'Invoices',
+    link: ROUTES.invoices,
+    pathsInScope: [ROUTES.invoices, ROUTES.newInvoice],
+    icon: InvoiceIcon,
+  },
+  { name: 'projects', label: 'Projects', link: ROUTES.projects, pathsInScope: [ROUTES.projects], icon: ProjectIcon },
 ];

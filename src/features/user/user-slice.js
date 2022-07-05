@@ -6,6 +6,7 @@ const initialState = {
   lastName: '',
   email: '',
   verified: false,
+  paymentOptions: [],
 };
 
 export const userSlice = createSlice({

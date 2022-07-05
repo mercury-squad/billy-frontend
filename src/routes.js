@@ -6,7 +6,7 @@ import Signup from 'features/user/signup';
 import VerifyAccount from 'features/user/verify-account';
 import Welcome from 'features/welcome';
 import Dashboard from 'features/dashboard';
-import Invoices from 'features/invoices';
+import Invoices, { InvoiceForm, InvoicePreview } from 'features/invoices';
 import Projects from 'features/projects';
 
 const AppRoutes = () => {
@@ -17,6 +17,8 @@ const AppRoutes = () => {
         <Route path="/" element={<App />}>
           <Route index element={<Dashboard />} />
           <Route path="invoices" element={<Invoices />} />
+          <Route path="invoices/new" element={<InvoiceForm />} />
+          <Route path="invoices/:id" element={<InvoicePreview />} />
           <Route path="projects" element={<Projects />} />
         </Route>
         <Route path="login" element={<Login />} />

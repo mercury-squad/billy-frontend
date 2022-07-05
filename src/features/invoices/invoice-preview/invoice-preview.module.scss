@@ -1,0 +1,46 @@
+@import 'styles/responsive.scss';
+
+.invoicePreview {
+  padding-top: 16px;
+  padding-bottom: 40px;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  :global {
+    .header {
+      margin-bottom: 17px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      h2 {
+        margin-right: auto;
+      }
+      svg {
+        cursor: pointer;
+      }
+    }
+    #invoice-preview-container {
+      @include phone {
+        min-width: 1000px;
+      }
+    }
+    .invoice-preview-img {
+      @include desktop {
+        display: none;
+      }
+    }
+    .preview-wrapper {
+      opacity: 0;
+      &.hide {
+        display: none;
+      }
+      @include desktop {
+        opacity: 1;
+        display: initial;
+        &.hide {
+          display: initial;
+        }
+      }
+    }
+  }
+}

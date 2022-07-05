@@ -13,8 +13,8 @@ const ResponsiveDrawer = ({ mobileOpen, handleDrawerToggle }) => {
       <ListItem>
         <Logo source={LogoSVG} />
       </ListItem>
-      {NAVIGATION_ITEMS.map(({ name, label, link, icon }) => (
-        <ListItem key={name} className={link === location.pathname ? 'active-item' : ''} disablePadding>
+      {NAVIGATION_ITEMS.map(({ name, label, link, icon, pathsInScope }) => (
+        <ListItem key={name} className={pathsInScope.includes(location.pathname) ? 'active-item' : ''} disablePadding>
           <NavLink className="w-100 disable-link-styles action" to={link}>
             <ListItemButton>
               <ListItemIcon>
@@ -29,7 +29,7 @@ const ResponsiveDrawer = ({ mobileOpen, handleDrawerToggle }) => {
   );
 
   return (
-    <Box component="nav" sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}>
+    <Box component="nav" sx={{ width: { md: DRAWER_WIDTH }, flexShrink: { md: 0 } }}>
       <Drawer
         className={styles.nav}
         variant="temporary"
@@ -39,7 +39,7 @@ const ResponsiveDrawer = ({ mobileOpen, handleDrawerToggle }) => {
           keepMounted: true,
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: DRAWER_WIDTH },
         }}>
         {drawer}
@@ -48,7 +48,7 @@ const ResponsiveDrawer = ({ mobileOpen, handleDrawerToggle }) => {
         className={styles.nav}
         variant="permanent"
         sx={{
-          display: { xs: 'none', sm: 'block' },
+          display: { xs: 'none', md: 'block' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: DRAWER_WIDTH },
         }}
         open>

@@ -50,7 +50,7 @@ const Projects = () => {
   return (
     <Container className={styles.projects}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable rows={projectsData.projects} columns={columns} />
+      <CustomTable rows={projectsData.results} columns={columns} />
     </Container>
   );
 };
