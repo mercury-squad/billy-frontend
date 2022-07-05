@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { updateValues } from 'common/utils';
 
 const initialState = {
   firstName: '',
   lastName: '',
   email: '',
+  verified: false,
+  paymentOptions: [],
 };
 
 export const userSlice = createSlice({
@@ -21,7 +24,7 @@ export const userSlice = createSlice({
       // of doing it mannually like this 👇
       // state.firstName = action.payload.firstName;
       // state.lalstName = action.payload.lastName;
-      Object.assign(state, action.payload);
+      updateValues(state, action.payload);
     },
   },
 });

@@ -81,6 +81,14 @@
     width: 100%;
   }
 
+  .bg-white {
+    background-color: #fff;
+  }
+
+  .bg-neutral {
+    background-color: #f5f5f5;
+  }
+
   // others
 
   .visually-hidden {
@@ -95,6 +103,10 @@
 
   .active-item {
     background-color: #22237780;
+  }
+
+  .margin-none {
+    margin: 0;
   }
 }
 
