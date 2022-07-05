@@ -101,6 +101,9 @@ const SignupPage = () => {
           </div>
         </Box>
       </Container>
+      <div className="footer">
+        <p className="footer-text">InvoiceBilly©2022</p>
+      </div>
     </Box>
   );
 };
