@@ -1,3 +1,50 @@
+@import '../../../styles/main.scss';
+
 .signup {
-  // Signup styles
+  background-color: $color-primary-light;
+  height: 100vh;
+  padding: auto 14px;
+
+  :global {
+
+    .logo {
+
+      img {
+        margin: 0 auto;
+        padding: 3rem 0 1rem 0;
+      }
+    }
+
+    .white-container {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0px 1px 10px 5px rgba(34,35,119,0.1);
+    }
+
+    h2 {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+
+    .small-link {
+      text-decoration: none;
+      display: block;
+      text-align: end;
+      margin-top: 0;
+    }
+
+    a {
+      color: $color-primary;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    p {
+      //font-size: 24px;
+    }
+
+  }
+
 }

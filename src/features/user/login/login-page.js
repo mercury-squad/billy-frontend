@@ -38,36 +38,41 @@ const LoginPage = () => {
   }, [auth.isLoggedIn]);
 
   return (
-    <Container component="main" maxWidth="xs" className={styles.signup}>
-      <Logo className="text-center" />
-      <Box>
-        <Typography component="h2" variant="h5">
-          Welcome back to Billy!
-        </Typography>
-        <Box component="form">
-          {signInInputs.map(({ name, label, type }) => (
-            <TextField
-              required
-              fullWidth
-              name={name}
-              autoComplete={name}
-              margin="normal"
-              key={`${name}Input`}
-              id={`${name}Input`}
-              label={label}
-              InputLabelProps={{ shrink: true }}
-              variant="standard"
-              type={type}
-              value={formValues[name]}
-              onChange={handleInputChange}
-            />
-          ))}
-          <Button variant="contained" onClick={() => auth.login(formValues)}>
-            LOGIN
-          </Button>
+    <Box className={styles.signup}>
+      <Container component="main" maxWidth="xs">
+        <Logo className="text-center logo" />
+        <Box className="white-container">
+          <Typography component="h2" variant="h5">
+            Welcome back to Billy!
+          </Typography>
+          <Box component="form">
+            {signInInputs.map(({ name, label, type }) => (
+              <TextField
+                required
+                fullWidth
+                name={name}
+                autoComplete={name}
+                margin="normal"
+                key={`${name}Input`}
+                id={`${name}Input`}
+                label={label}
+                InputLabelProps={{ shrink: true }}
+                variant="standard"
+                type={type}
+                value={formValues[name]}
+                onChange={handleInputChange}
+              />
+            ))}
+            <a href="" className="small-link">Forgot password?</a>
+            <Button variant="contained" onClick={() => auth.login(formValues)}>
+              LOGIN
+            </Button>
+          </Box>
+          <p>Don't have Billy account?</p>
+          <a onClick={() => navigate(ROUTES.signup)}>Create account</a>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 

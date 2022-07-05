@@ -60,8 +60,8 @@ const SignupPage = () => {
   return (
     <Box className={styles.signup}>
       <Container component="main" maxWidth="xs">
-        <Logo className="text-center" />
-        <Box>
+        <Logo className="text-center logo" />
+        <Box className="white-container">
           {pendingVerification ? (
             <Typography component="p" variant="p">
               Please check your email to verify your account
@@ -69,7 +69,7 @@ const SignupPage = () => {
           ) : (
             <>
               <Typography component="h2" variant="h5">
-                Let&apos;s create your account
+                Create your account
               </Typography>
               <Box component="form">
                 {signupInputs.map(({ name, label, type }) => (
@@ -96,6 +96,8 @@ const SignupPage = () => {
               </Box>
             </>
           )}
+          <p>Already had Billy account?</p>
+          <a onClick={() => navigate(ROUTES.login)}>Log in</a>
         </Box>
       </Container>
     </Box>
