@@ -60,7 +60,7 @@ const Invoices = () => {
   };
 
   return (
-    <Container className={styles.invoices} disableGutters>
+    <Container className={styles.invoices}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
       <CustomTable rows={getRows()} columns={columns} />
     </Container>
