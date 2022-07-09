@@ -36,7 +36,9 @@ const App = () => {
           sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${DRAWER_WIDTH}px)` }, mt: '72px' }}>
           <Outlet context={[setHeaderTitle]} />
         </Box>
-        {/* TODO: Footer */}
+        <footer className="app-footer">
+          <p className="footer-text">InvoiceBilly©2022</p>
+        </footer>
       </Box>
     </>
   );

@@ -16,3 +16,20 @@
     max-width: calc(100% - $drawer-size);
   }
 }
+
+.app-footer {
+  background-color: $color-tertiary;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  padding: 8px;
+
+  .footer-text {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #ffffff;
+  }
+}
