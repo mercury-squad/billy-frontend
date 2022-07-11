@@ -1,4 +1,6 @@
-import { MenuItem, Select } from '@mui/material';
+import { useState } from 'react';
+import { Menu, MenuItem, Select, IconButton } from '@mui/material';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import styles from './data-visualization.module.scss';
 
 export const TextWithTag = ({ text, tag, variant = 'primary' }) => {
@@ -22,5 +24,37 @@ export const Status = ({ value, options, onChange }) => {
         </MenuItem>
       ))}
     </Select>
+  );
+};
+
+export const ActionsMenu = ({ actions }) => {
+  const [menuTriggerEl, setMenuTriggerEl] = useState(null);
+  const isMenuOpen = !!menuTriggerEl;
+
+  const openMenu = (event) => {
+    setMenuTriggerEl(event.currentTarget);
+  };
+
+  const closeMenu = () => {
+    setMenuTriggerEl(null);
+  };
+
+  return (
+    <>
+      <IconButton component="span" color="primary" onClick={openMenu}>
+        <MoreHorizIcon />
+      </IconButton>
+      <Menu anchorEl={menuTriggerEl} open={isMenuOpen} onClose={closeMenu}>
+        {actions.map((action) => (
+          <MenuItem
+            key={action.value}
+            onClick={() => {
+              closeMenu();
+            }}>
+            {action.label}
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
   );
 };
