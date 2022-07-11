@@ -15,6 +15,14 @@ import summaryIllustration from '../../assets/img/billy-summary-welcome-illustra
 import feature1Illustration from '../../assets/img/billy-feature-1-illustration.png';
 import feature2Illustration from '../../assets/img/billy-feature-2-illustration.png';
 import feature3Illustration from '../../assets/img/billy-feature-3-illustration.png';
+import ashim from '../../assets/img/ashim.jpg';
+import dexter from '../../assets/img/dexter.jpg';
+import gabriel from '../../assets/img/gabriel.jpg';
+import karen from '../../assets/img/karen.jpg';
+import kaWing from '../../assets/img/ka-wing.jpg';
+import luisa from '../../assets/img/luisa.jpg';
+import milly from '../../assets/img/milly.jpg';
+import paramita from '../../assets/img/paramita.jpg';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -24,56 +32,56 @@ const LandingPage = () => {
   const teamMembers = [
     {
       Name: 'Gabriel Gimenes',
-      Image: 'https://picsum.photos/500?random=4',
+      Image: gabriel,
       ImageAlt: '',
       Position: 'Project Manager / Frontend Developer',
       Linkedin: 'https://www.linkedin.com/in/gabrielcgimenes/',
     },
     {
       Name: 'Ashim Karki',
-      Image: 'https://picsum.photos/500?random=5',
+      Image: ashim,
       ImageAlt: '',
       Position: 'Lead Developer / Backend Developer',
       Linkedin: 'https://www.linkedin.com/in/ashim-karki/',
     },
     {
       Name: 'Luisa Rueda',
-      Image: 'https://picsum.photos/500?random=6',
+      Image: luisa,
       ImageAlt: '',
       Position: 'Backend Developer',
       Linkedin: 'https://www.linkedin.com/in/luferueda/',
     },
     {
       Name: 'Karen Garcia',
-      Image: 'https://picsum.photos/500?random=7',
+      Image: karen,
       ImageAlt: '',
       Position: 'Frontend Developer',
       Linkedin: 'https://www.linkedin.com/in/karengarciam/',
     },
     {
       Name: 'Mita Trisnodjojo',
-      Image: 'https://picsum.photos/500?random=8',
+      Image: paramita,
       ImageAlt: '',
       Position: 'Lead Designer',
       Linkedin: 'https://www.linkedin.com/in/paramitatrisnodjojo/',
     },
     {
       Name: 'Karen Chiu',
-      Image: 'https://picsum.photos/500?random=9',
+      Image: kaWing,
       ImageAlt: '',
       Position: 'UX Designer',
       Linkedin: 'https://www.linkedin.com/in/karenkwchiu/',
     },
     {
       Name: 'Dexter Bolasoc',
-      Image: 'https://picsum.photos/500?random=10',
+      Image: dexter,
       ImageAlt: '',
       Position: 'UI/UX Designer',
       Linkedin: 'https://www.linkedin.com/in/dexterbolasoc/',
     },
     {
       Name: 'Milly Tsou',
-      Image: 'https://picsum.photos/500?random=11',
+      Image: milly,
       ImageAlt: '',
       Position: 'UI/UX Designer',
       Linkedin: 'https://www.linkedin.com/in/yi-tien-tsou-21aaaa240/',
