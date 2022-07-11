@@ -1,0 +1,40 @@
+@import 'styles/variables';
+@import 'styles/responsive';
+@import 'styles/typography';
+.textWithTag :global {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  white-space: nowrap;
+
+  @include desktop {
+    gap: 1rem;
+    flex-direction: row;
+    padding: 6.5px 8px;
+  }
+
+  .tag {
+    padding: 4px 8px;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    &.primary {
+      background-color: $color-primary-light;
+    }
+    &.secondary {
+      background-color: $color-light-variant-2;
+    }
+    &.tertiary {
+      background-color: $color-accent-light;
+    }
+  }
+}
+
+.status :global {
+  .MuiSelect-select {
+    padding: 4px 8px;
+    @include desktop {
+      padding: 6.5px 8px;
+    }
+  }
+}
