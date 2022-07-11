@@ -27,7 +27,7 @@ export const Status = ({ value, options, onChange }) => {
   );
 };
 
-export const ActionsMenu = ({ actions }) => {
+export const ActionsMenu = ({ actions, data }) => {
   const [menuTriggerEl, setMenuTriggerEl] = useState(null);
   const isMenuOpen = !!menuTriggerEl;
 
@@ -50,6 +50,7 @@ export const ActionsMenu = ({ actions }) => {
             key={action.value}
             onClick={() => {
               closeMenu();
+              action?.onClick(data);
             }}>
             {action.label}
           </MenuItem>
