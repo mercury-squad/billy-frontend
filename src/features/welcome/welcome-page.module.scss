@@ -5,7 +5,7 @@
     :global {
 
         .wrapper {
-            max-width: 1400px;
+            /* max-width: 1400px; */
             margin: 0 auto;
         }
 
@@ -114,6 +114,8 @@
             @media screen and (min-width: 680px) {
                 display: grid;
                 grid-template-columns: 1fr 2fr;
+                max-width: 1200px;
+                margin: 0 auto;
             }
         }
 
@@ -219,6 +221,9 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 1rem;
                 margin: 2rem 6rem 4rem 8rem;
+                max-width: 1200px;
+                margin: 2rem auto 5rem auto;
+                padding: 0 142px;
 
                 h1 {
                     max-width: 380px;
@@ -247,6 +252,9 @@
             }
 
             @media screen and (min-width: 680px) {
+                max-width: 1200px;
+                margin: 0 auto;
+
                 .feature {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -308,81 +316,88 @@
 
         .team {
             background-color: $color-light-variant-2;
-            padding: 2.4rem 1.25rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
 
-            div {
-                justify-self: center;
-                max-width: 200px;
-            }
-
-            .titleBlack {
-                grid-column: 1/-1;
-            }
-
-            img {
-                border-radius: 6px;
-                display: block;
-            }
-
-            .member-name {
-                color: $color-primary-alt;
-                font-weight: 600;
-                font-size: 18px;
-            }
-
-            p {
-                margin: 0 0 0 ;
-                line-height: 27px;
-            }
-
-            .image-container {
+            .our-team-wrapper {
+                padding: 2.4rem 1.25rem;
                 display: grid;
-                grid-template: "container";
-                place-items: center;
-                place-content: center;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+
+                div {
+                    justify-self: center;
+                    max-width: 200px;
+                }
+
+                .titleBlack {
+                    grid-column: 1/-1;
+                }
 
                 img {
-                    grid-area: container;
+                    border-radius: 6px;
+                    display: block;
                 }
-
-                a {
-                    grid-area: container;
-                    place-self: end right;
-
-                }
-            }
-
-            .fa-icon {
-                background-color: white;
-                color:$color-primary;
-                padding: 0.25rem;
-                border-radius: 2px;
-                margin: 0 0.4rem 0.25rem 0;
-            }
-
-            @media screen and (min-width: 680px) {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-                padding: 2.4rem 4rem;
-                justify-content: center;
-                margin: 0;
 
                 .member-name {
                     color: $color-primary-alt;
                     font-weight: 600;
-                    font-size: 20px;
-                }
-
-                .smaller-text {
                     font-size: 18px;
                 }
 
-                div {
-                    max-width: 250px;
+                p {
+                    margin: 0 0 0 ;
+                    line-height: 27px;
                 }
 
+                .image-container {
+                    display: grid;
+                    grid-template: "container";
+                    place-items: center;
+                    place-content: center;
+
+                    img {
+                        grid-area: container;
+                    }
+
+                    a {
+                        grid-area: container;
+                        place-self: end right;
+
+                    }
+                }
+
+                .fa-icon {
+                    background-color: white;
+                    color:$color-primary;
+                    padding: 0.25rem;
+                    border-radius: 2px;
+                    margin: 0 0.4rem 0.25rem 0;
+                }
+            }
+            
+
+            @media screen and (min-width: 680px) {
+
+                .our-team-wrapper {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    padding: 2.4rem 4rem;
+                    justify-content: center;
+
+                    .member-name {
+                        color: $color-primary-alt;
+                        font-weight: 600;
+                        font-size: 20px;
+                    }
+    
+                    .smaller-text {
+                        font-size: 18px;
+                    }
+    
+                    div {
+                        max-width: 250px;
+                    }
+                }
             }
         }
 

@@ -201,17 +201,19 @@ const LandingPage = () => {
             </Button>
           </section>
           <section className="team" id="ourTeam">
-            <h2 className="titleBlack">Our Team</h2>
-            {teamMembers.map((member) => (
-              <TeamMember
-                key={member.Name}
-                memberName={member.Name}
-                memberImage={member.Image}
-                memberImageAlt={member.ImageAlt}
-                memberPosition={member.Position}
-                memberLinkedin={member.Linkedin}
-              />
-            ))}
+            <div className="our-team-wrapper">
+              <h2 className="titleBlack">Our Team</h2>
+              {teamMembers.map((member) => (
+                <TeamMember
+                  key={member.Name}
+                  memberName={member.Name}
+                  memberImage={member.Image}
+                  memberImageAlt={member.ImageAlt}
+                  memberPosition={member.Position}
+                  memberLinkedin={member.Linkedin}
+                />
+              ))}
+            </div>
           </section>
           <section className="contactUs" id="contact">
             <div>
