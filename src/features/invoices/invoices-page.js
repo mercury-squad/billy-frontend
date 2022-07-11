@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@mui/material';
@@ -17,12 +17,21 @@ const Invoices = () => {
   const navigate = useNavigate();
   const [setHeaderTitle] = useOutletContext();
   const invoicesData = useSelector((state) => state.invoices);
+  const [sortBy, setSortBy] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
 
   useEffect(() => {
-    dispatch(getInvoices());
-  }, [dispatch]);
+    let query = '';
+    if (sortBy) {
+      query += `sortBy=${sortBy}`;
+    }
+    if (searchKeyword) {
+      query += `keyword=${searchKeyword}`;
+    }
+    dispatch(getInvoices(query));
+  }, [dispatch, sortBy, searchKeyword]);
 
   const tagColorByStatus = {
     draft: 'primary',
@@ -40,8 +49,8 @@ const Invoices = () => {
     { value: 'duplicate', label: 'Duplicate', onClick: (entry) => console.info('Duplicate', entry) },
     { value: 'edit', label: 'Edit', onClick: (entry) => console.info('Edit', entry) },
     { value: 'delete', label: 'Delete', onClick: (entry) => console.info('Delete', entry) },
-    { value: 'download', label: 'Download', onClick: (entry) => console.info('Download', entry) },
-    { value: 'view', label: 'View', onClick: (entry) => console.info('View', entry) },
+    // { value: 'download', label: 'Download', onClick: (entry) => console.info('Download', entry) },
+    { value: 'view', label: 'View', onClick: (entry) => navigate(`${ROUTES.invoices}/${entry._id}`) },
   ];
 
   const onStatusChange = (status, data) => dispatch(updateInvoice({ _id: data._id, paymentStatus: status }));
@@ -65,10 +74,13 @@ const Invoices = () => {
     { id: 'totalAmount', display: (data) => `$${data.totalAmount}`, displayName: 'Amount', width: 15 },
     {
       id: 'paymentStatus',
-      display: (data) => {
-        const value = moment(data.paymentDueDate).isBefore() ? 'overdue' : data.paymentStatus;
-        return <Status value={value} options={statusOptions} onChange={(status) => onStatusChange(status, data)} />;
-      },
+      display: (data) => (
+        <Status
+          value={data.paymentStatus}
+          options={statusOptions}
+          onChange={(status) => onStatusChange(status, data)}
+        />
+      ),
       displayName: 'Payment Status',
       width: 15,
       align: 'right',
@@ -81,23 +93,19 @@ const Invoices = () => {
   };
 
   const filtersConfig = {
-    sortValue: '',
-    searchValue: '',
+    sortValue: sortBy,
+    searchValue: searchKeyword,
     sortOptions: [
-      { value: 'projectName', label: 'Project Name' },
-      { value: 'dueDate', label: 'Due Date' },
-      { value: 'amount', label: 'Amount' },
+      { value: 'status', label: 'Status' },
       { value: 'paymentStatus', label: 'Payment Status' },
     ],
-    onSortOptionChange: () => {},
-    onSearchChange: () => {},
+    onSortOptionChange: setSortBy,
+    onSearchChange: setSearchKeyword,
   };
 
   const getRows = () => {
     return invoicesData.results?.map((invoice) => {
-      const { _id: id } = invoice;
       const paymentDueDate = moment(invoice.paymentDueDate).format(DATE_FORMAT);
-      // return { ...invoice, paymentDueDate, actions: <Link to={`${ROUTES.invoices}/${id}`}>Preview</Link> };
       return { ...invoice, paymentDueDate };
     });
   };

@@ -78,7 +78,7 @@ const CustomTable = ({ mobileCaption, columns, rows, enableSelection = true, act
               ))}
               {actions.length > 0 && (
                 <TableCell key="header-actions" className="action-button" align="right">
-                  <ActionsMenu actions={actions} />
+                  <ActionsMenu actions={actions} data={row} />
                 </TableCell>
               )}
             </TableRow>

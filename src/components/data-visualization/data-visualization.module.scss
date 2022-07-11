@@ -33,6 +33,7 @@
 .status :global {
   .MuiSelect-select {
     padding: 4px 8px;
+    text-align: left;
     @include desktop {
       padding: 6.5px 8px;
     }
