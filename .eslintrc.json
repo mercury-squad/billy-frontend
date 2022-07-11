@@ -17,6 +17,8 @@
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
+    "no-underscore-dangle": "off",
+    "react/no-unstable-nested-components": "off",
     "react/jsx-props-no-spreading": "off",
     "arrow-body-style": "off",
     "no-param-reassign": "off",
