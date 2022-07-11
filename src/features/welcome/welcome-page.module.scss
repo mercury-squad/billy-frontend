@@ -78,13 +78,84 @@
         }
 
         header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .hamburger-menu {
+                text-align: right;
+                padding: 2rem 2rem 0 0;
+
+                svg {
+                    color: $color-primary;
+                    font-size: 2rem;
+                }
+            }
+
             @media screen and (min-width: 680px) {
                 display: grid;
                 grid-template-columns: 1fr 2fr;
             }
         }
 
-        .welcomePageNavigationMenu {
+        .hamburger-menu {
+            @media screen and (min-width: 680px) {
+                display: none;
+            }
+        }
+
+        .mobile-nav-menu {
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color:  #fff;
+            overflow: hidden;
+            position: fixed;
+
+            .xMark {
+                position: relative;
+                left: 94%;
+                top: 0;
+                padding-top: 1rem;
+                padding-right: 1rem;
+                font-size: 1.5rem;
+            }
+            
+            ul {
+                margin: 0 auto;
+                width: 85%;
+                padding: 0;
+                padding-top: 1rem;
+
+                li {
+                    list-style-type: none;
+                    padding-top: 1.5rem;
+                    display: block;
+                    text-align: center;
+                    
+                    a {
+                        
+                        color: #000;
+                        text-decoration: none;
+                        font-size: 1rem;
+                        font-family: $main-font-family;
+                        font-weight: 600;                        
+                    }
+                }
+            }
+
+            @media screen and (min-width: 680px) {
+                display: none;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .welcome-page-navigation-menu {
             display: none;
             color: $color-tertiary;
             

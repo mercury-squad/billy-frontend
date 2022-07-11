@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { ROUTES } from 'common/constants';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import MenuIcon from '@mui/icons-material/Menu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './welcome-page.module.scss';
 import LogoSVG from '../../assets/img/logo.svg';
 import Logo from '../../components/logo/logo';
@@ -14,6 +18,8 @@ import feature3Illustration from '../../assets/img/billy-feature-3-illustration.
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
+  const [toggle, setToggle] = useState('mobile-nav-menu hidden');
 
   const teamMembers = [
     {
@@ -78,14 +84,71 @@ const LandingPage = () => {
     <div className={styles.welcome}>
       <div className="wrapper">
         <div className="gray-bg" />
-        <header>
+        <header id="home">
           <Logo className="welcomeLogo" source={LogoSVG} />
-          <nav className="welcomePageNavigationMenu">
+          <div className="hamburger-menu">
+            <MenuIcon onClick={() => setToggle('mobile-nav-menu')} />
+          </div>
+          {toggle ? (
+            <nav className={toggle}>
+              <FontAwesomeIcon
+                icon={faXmark}
+                className="fa-icon xMark"
+                onClick={() => setToggle('mobile-nav-menu hidden')}
+              />
+              <ul>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#home">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#features">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#ourTeam">
+                    Our Team
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#contact">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <Button variant="contained" fullWidth size="large" onClick={() => navigate(ROUTES.login)}>
+                    Login
+                  </Button>
+                </li>
+              </ul>
+            </nav>
+          ) : (
+            <div />
+          )}
+          <nav className="welcome-page-navigation-menu">
             <ul>
-              <li><a href="">Home</a></li>
-              <li><a href="">Features</a></li>
-              <li><a href="">Our Team</a></li>
-              <li><a href="">Contact</a></li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#home">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#features">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#ourTeam">
+                  Our Team
+                </a>
+              </li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#contact">
+                  Contact
+                </a>
+              </li>
               <li>
                 <Button variant="contained" onClick={() => navigate(ROUTES.login)}>
                   Login
@@ -108,7 +171,7 @@ const LandingPage = () => {
               </Button>
             </div>
           </section>
-          <section className="features">
+          <section className="features" id="features">
             <Feature
               className="feature"
               title="Generate and schedule invoice  quickly"
@@ -137,7 +200,7 @@ const LandingPage = () => {
               Try now for FREE
             </Button>
           </section>
-          <section className="team">
+          <section className="team" id="ourTeam">
             <h2 className="titleBlack">Our Team</h2>
             {teamMembers.map((member) => (
               <TeamMember
@@ -150,7 +213,7 @@ const LandingPage = () => {
               />
             ))}
           </section>
-          <section className="contactUs">
+          <section className="contactUs" id="contact">
             <div>
               <h2 className="titleBlack">Contact us</h2>
               <p>
