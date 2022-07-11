@@ -30,4 +30,13 @@ export const getInvoices = () => async (dispatch) => {
   }
 };
 
+export const updateInvoice = (data) => async (dispatch) => {
+  const { _id: id, ...rest } = data;
+  if (!id) return;
+  const res = await server.put(`${API.invoices}/${id}`, rest);
+  if (res.status === 200) {
+    dispatch(getInvoices());
+  }
+};
+
 export default invoicesSlice.reducer;
