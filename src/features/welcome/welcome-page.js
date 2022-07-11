@@ -103,7 +103,7 @@ const LandingPage = () => {
                 Save time on creating professional invoices, tracking invoice payment status, and managing business
                 finances
               </p>
-              <Button variant="contained" size="large">
+              <Button variant="contained" size="large" onClick={() => navigate(ROUTES.login)}>
                 Try now for free
               </Button>
             </div>
