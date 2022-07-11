@@ -7,8 +7,9 @@ import moment from 'moment';
 
 import CustomTable from 'components/table/table';
 import { ROUTES, DATE_FORMAT } from 'common/constants';
+import { Status, TextWithTag } from 'components/data-visualization/data-visualization';
 import ApplicationFilters from 'features/filters/application-filters';
-import { getInvoices } from './invoices-slice';
+import { getInvoices, updateInvoice } from './invoices-slice';
 import styles from './invoices-page.module.scss';
 
 const PAGE_TITLE = 'Invoices';
@@ -24,20 +25,54 @@ const Invoices = () => {
     dispatch(getInvoices());
   }, [dispatch]);
 
+  const tagColorByStatus = {
+    draft: 'primary',
+    sent: 'secondary',
+    scheduled: 'tertiary',
+  };
+
+  const statusOptions = [
+    { value: 'paid', label: 'Paid' },
+    { value: 'pending', label: 'Pending' },
+    { value: 'overdue', label: 'Overdue' },
+  ];
+
+  const onStatusChange = (status, data) => dispatch(updateInvoice({ _id: data._id, paymentStatus: status }));
+
   const columns = [
-    { field: 'select', displayName: '', width: 10 },
-    { field: 'invoiceNumber', displayName: 'Invoice #', width: 10 },
-    { field: 'projectName', displayName: 'Project Name', width: 30 },
-    { field: 'paymentDueDate', displayName: 'Due Date', width: 15 },
-    { field: 'totalAmount', displayName: 'Amount', width: 15 },
-    { field: 'paymentStatus', displayName: 'Payment Status', width: 15 },
-    { field: 'actions', displayName: 'Action', width: 15 },
+    { id: 'invoiceNumber', display: (data) => data.invoiceNumber, displayName: 'Invoice #', width: 10 },
+    {
+      id: 'projectName',
+      display: (data) => (
+        <TextWithTag text={data.projectName} tag={data.status} variant={tagColorByStatus[data.status]} />
+      ),
+      displayName: 'Project Name',
+      width: 30,
+    },
+    {
+      id: 'paymentDueDate',
+      display: (data) => <span className="no-wrap">{data.paymentDueDate}</span>,
+      displayName: 'Due Date',
+      width: 15,
+    },
+    { id: 'totalAmount', display: (data) => `$${data.totalAmount}`, displayName: 'Amount', width: 15 },
+    {
+      id: 'paymentStatus',
+      display: (data) => {
+        const value = moment(data.paymentDueDate).isBefore() ? 'overdue' : data.paymentStatus;
+        return <Status value={value} options={statusOptions} onChange={(status) => onStatusChange(status, data)} />;
+      },
+      displayName: 'Payment Status',
+      width: 15,
+    },
+    { id: 'actions', display: (data) => data.actions, displayName: 'Action', width: 15 },
   ];
 
   const actionButtonConfig = {
     label: 'New Invoice',
     onClick: () => navigate(ROUTES.newInvoice),
   };
+
   const filtersConfig = {
     sortValue: '',
     searchValue: '',
@@ -62,7 +97,7 @@ const Invoices = () => {
   return (
     <Container className={styles.invoices}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable rows={getRows()} columns={columns} />
+      <CustomTable mobileCaption="Invoices" rows={getRows()} columns={columns} />
     </Container>
   );
 };

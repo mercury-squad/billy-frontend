@@ -39,12 +39,12 @@ const Projects = () => {
   };
 
   const columns = [
-    { field: 'select', displayName: '', width: 10 },
-    { field: 'name', displayName: 'Project Name', width: 30 },
-    { field: 'status', displayName: 'Project Status', width: 15 },
-    { field: 'endDate', displayName: 'End Date', width: 15 },
-    { field: 'clientName', displayName: 'Client Name', width: 15 },
-    { field: 'actions', displayName: 'Action', width: 15 },
+    { id: 'select', display: (data) => data.select, displayName: '', width: 10 },
+    { id: 'name', display: (data) => data.name, displayName: 'Project Name', width: 30 },
+    { id: 'status', display: (data) => data.status, displayName: 'Project Status', width: 15 },
+    { id: 'endDate', display: (data) => data.endDate, displayName: 'End Date', width: 15 },
+    { id: 'clientName', display: (data) => data.clientName, displayName: 'Client Name', width: 15 },
+    { id: 'actions', display: (data) => data.actions, displayName: 'Action', width: 15 },
   ];
 
   return (

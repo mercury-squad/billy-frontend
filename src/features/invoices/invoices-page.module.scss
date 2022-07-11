@@ -3,5 +3,17 @@
     .application-filters {
       margin-bottom: 2rem;
     }
+
+    .entry-card {
+      .invoiceNumber,
+      .projectName .title {
+        display: none;
+      }
+
+      .paymentStatus {
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
   }
 }
