@@ -1,19 +1,35 @@
+@import 'styles/variables';
+@import 'styles/responsive';
+@import 'styles/typography';
+
 .invoices {
   :global {
     .application-filters {
       margin-bottom: 2rem;
+      @include mobile {
+        padding: 0 22px;
+        justify-content: space-between;
+      }
     }
 
     .entry-card {
-      .invoiceNumber,
-      .projectName .title {
-        display: none;
+      @include mobile {
+        .invoiceNumber,
+        .projectName .title {
+          display: none;
+        }
+        .paymentStatus {
+          display: flex;
+          flex-direction: column;
+          padding-top: 0.5rem;
+          gap: 0.4rem;
+        }
       }
-
-      .paymentStatus {
-        font-size: 14px;
-        line-height: 21px;
-      }
+    }
+    .paymentStatus {
+      white-space: nowrap;
+      font-size: 14px;
+      line-height: 21px;
     }
   }
 }

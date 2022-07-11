@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@mui/material';
 import moment from 'moment';
@@ -12,7 +11,7 @@ import ApplicationFilters from 'features/filters/application-filters';
 import { getInvoices, updateInvoice } from './invoices-slice';
 import styles from './invoices-page.module.scss';
 
-const PAGE_TITLE = 'Invoices';
+const PAGE_TITLE = 'All Invoices';
 const Invoices = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,6 +34,14 @@ const Invoices = () => {
     { value: 'paid', label: 'Paid' },
     { value: 'pending', label: 'Pending' },
     { value: 'overdue', label: 'Overdue' },
+  ];
+
+  const invoiceActions = [
+    { value: 'duplicate', label: 'Duplicate', onClick: (entry) => console.info('Duplicate', entry) },
+    { value: 'edit', label: 'Edit', onClick: (entry) => console.info('Edit', entry) },
+    { value: 'delete', label: 'Delete', onClick: (entry) => console.info('Delete', entry) },
+    { value: 'download', label: 'Download', onClick: (entry) => console.info('Download', entry) },
+    { value: 'view', label: 'View', onClick: (entry) => console.info('View', entry) },
   ];
 
   const onStatusChange = (status, data) => dispatch(updateInvoice({ _id: data._id, paymentStatus: status }));
@@ -64,8 +71,8 @@ const Invoices = () => {
       },
       displayName: 'Payment Status',
       width: 15,
+      align: 'right',
     },
-    { id: 'actions', display: (data) => data.actions, displayName: 'Action', width: 15 },
   ];
 
   const actionButtonConfig = {
@@ -90,14 +97,15 @@ const Invoices = () => {
     return invoicesData.results?.map((invoice) => {
       const { _id: id } = invoice;
       const paymentDueDate = moment(invoice.paymentDueDate).format(DATE_FORMAT);
-      return { ...invoice, paymentDueDate, actions: <Link to={`${ROUTES.invoices}/${id}`}>Preview</Link> };
+      // return { ...invoice, paymentDueDate, actions: <Link to={`${ROUTES.invoices}/${id}`}>Preview</Link> };
+      return { ...invoice, paymentDueDate };
     });
   };
 
   return (
     <Container className={styles.invoices}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable mobileCaption="Invoices" rows={getRows()} columns={columns} />
+      <CustomTable mobileCaption="Invoices" rows={getRows()} columns={columns} actions={invoiceActions} />
     </Container>
   );
 };
