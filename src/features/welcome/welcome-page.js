@@ -217,7 +217,7 @@ const LandingPage = () => {
             <div>
               <h2 className="titleBlack">Contact us</h2>
               <p>
-                We`&apos`re here to help and answer any questions you might have. We look forward to hearing from you.
+                We&apos;re here to help and answer any questions you might have. We look forward to hearing from you.
               </p>
             </div>
             <form action="">
