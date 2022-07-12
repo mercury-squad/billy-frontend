@@ -107,8 +107,8 @@ const Dashboard = () => {
         />
       </section>
       <section className="tables">
-        <CustomTable className="summary-table" rows={projectsData} columns={projectColumns} />
-        <CustomTable className="summary-table" rows={invoicesData} columns={invoicesColumns} />
+        {/*<CustomTable className="summary-table" rows={projectsData} columns={projectColumns} />
+        //<CustomTable className="summary-table" rows={invoicesData} columns={invoicesColumns} />*/}
       </section>
       <section className="buttons">
         <Button size="large" className="button" variant="contained" onClick={onclickProject}>

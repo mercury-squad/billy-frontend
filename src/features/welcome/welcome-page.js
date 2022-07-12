@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { ROUTES } from 'common/constants';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import MenuIcon from '@mui/icons-material/Menu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './welcome-page.module.scss';
 import LogoSVG from '../../assets/img/logo.svg';
 import Logo from '../../components/logo/logo';
@@ -11,63 +15,73 @@ import summaryIllustration from '../../assets/img/billy-summary-welcome-illustra
 import feature1Illustration from '../../assets/img/billy-feature-1-illustration.png';
 import feature2Illustration from '../../assets/img/billy-feature-2-illustration.png';
 import feature3Illustration from '../../assets/img/billy-feature-3-illustration.png';
+import ashim from '../../assets/img/ashim.jpg';
+import dexter from '../../assets/img/dexter.jpg';
+import gabriel from '../../assets/img/gabriel.jpg';
+import karen from '../../assets/img/karen.jpg';
+import kaWing from '../../assets/img/ka-wing.jpg';
+import luisa from '../../assets/img/luisa.jpg';
+import milly from '../../assets/img/milly.jpg';
+import paramita from '../../assets/img/paramita.jpg';
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
+  const [toggle, setToggle] = useState('mobile-nav-menu hidden');
+
   const teamMembers = [
     {
       Name: 'Gabriel Gimenes',
-      Image: 'https://picsum.photos/500?random=4',
+      Image: gabriel,
       ImageAlt: '',
       Position: 'Project Manager / Frontend Developer',
       Linkedin: 'https://www.linkedin.com/in/gabrielcgimenes/',
     },
     {
       Name: 'Ashim Karki',
-      Image: 'https://picsum.photos/500?random=5',
+      Image: ashim,
       ImageAlt: '',
       Position: 'Lead Developer / Backend Developer',
       Linkedin: 'https://www.linkedin.com/in/ashim-karki/',
     },
     {
       Name: 'Luisa Rueda',
-      Image: 'https://picsum.photos/500?random=6',
+      Image: luisa,
       ImageAlt: '',
       Position: 'Backend Developer',
       Linkedin: 'https://www.linkedin.com/in/luferueda/',
     },
     {
       Name: 'Karen Garcia',
-      Image: 'https://picsum.photos/500?random=7',
+      Image: karen,
       ImageAlt: '',
       Position: 'Frontend Developer',
       Linkedin: 'https://www.linkedin.com/in/karengarciam/',
     },
     {
       Name: 'Mita Trisnodjojo',
-      Image: 'https://picsum.photos/500?random=8',
+      Image: paramita,
       ImageAlt: '',
       Position: 'Lead Designer',
       Linkedin: 'https://www.linkedin.com/in/paramitatrisnodjojo/',
     },
     {
       Name: 'Karen Chiu',
-      Image: 'https://picsum.photos/500?random=9',
+      Image: kaWing,
       ImageAlt: '',
       Position: 'UX Designer',
       Linkedin: 'https://www.linkedin.com/in/karenkwchiu/',
     },
     {
       Name: 'Dexter Bolasoc',
-      Image: 'https://picsum.photos/500?random=10',
+      Image: dexter,
       ImageAlt: '',
       Position: 'UI/UX Designer',
       Linkedin: 'https://www.linkedin.com/in/dexterbolasoc/',
     },
     {
       Name: 'Milly Tsou',
-      Image: 'https://picsum.photos/500?random=11',
+      Image: milly,
       ImageAlt: '',
       Position: 'UI/UX Designer',
       Linkedin: 'https://www.linkedin.com/in/yi-tien-tsou-21aaaa240/',
@@ -78,14 +92,71 @@ const LandingPage = () => {
     <div className={styles.welcome}>
       <div className="wrapper">
         <div className="gray-bg" />
-        <header>
+        <header id="home">
           <Logo className="welcomeLogo" source={LogoSVG} />
-          <nav className="welcomePageNavigationMenu">
+          <div className="hamburger-menu">
+            <MenuIcon onClick={() => setToggle('mobile-nav-menu')} />
+          </div>
+          {toggle ? (
+            <nav className={toggle}>
+              <FontAwesomeIcon
+                icon={faXmark}
+                className="fa-icon xMark"
+                onClick={() => setToggle('mobile-nav-menu hidden')}
+              />
+              <ul>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#home">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#features">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#ourTeam">
+                    Our Team
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#contact">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <Button variant="contained" fullWidth size="large" onClick={() => navigate(ROUTES.login)}>
+                    Login
+                  </Button>
+                </li>
+              </ul>
+            </nav>
+          ) : (
+            <div />
+          )}
+          <nav className="welcome-page-navigation-menu">
             <ul>
-              <li><a href="">Home</a></li>
-              <li><a href="">Features</a></li>
-              <li><a href="">Our Team</a></li>
-              <li><a href="">Contact</a></li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#home">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#features">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#ourTeam">
+                  Our Team
+                </a>
+              </li>
+              <li>
+                <a onClick={() => setToggle('mobile-nav-menu hidden')} href="#contact">
+                  Contact
+                </a>
+              </li>
               <li>
                 <Button variant="contained" onClick={() => navigate(ROUTES.login)}>
                   Login
@@ -103,12 +174,12 @@ const LandingPage = () => {
                 Save time on creating professional invoices, tracking invoice payment status, and managing business
                 finances
               </p>
-              <Button variant="contained" size="large">
+              <Button variant="contained" size="large" onClick={() => navigate(ROUTES.login)}>
                 Try now for free
               </Button>
             </div>
           </section>
-          <section className="features">
+          <section className="features" id="features">
             <Feature
               className="feature"
               title="Generate and schedule invoice  quickly"
@@ -137,24 +208,26 @@ const LandingPage = () => {
               Try now for FREE
             </Button>
           </section>
-          <section className="team">
-            <h2 className="titleBlack">Our Team</h2>
-            {teamMembers.map((member) => (
-              <TeamMember
-                key={member.Name}
-                memberName={member.Name}
-                memberImage={member.Image}
-                memberImageAlt={member.ImageAlt}
-                memberPosition={member.Position}
-                memberLinkedin={member.Linkedin}
-              />
-            ))}
+          <section className="team" id="ourTeam">
+            <div className="our-team-wrapper">
+              <h2 className="titleBlack">Our Team</h2>
+              {teamMembers.map((member) => (
+                <TeamMember
+                  key={member.Name}
+                  memberName={member.Name}
+                  memberImage={member.Image}
+                  memberImageAlt={member.ImageAlt}
+                  memberPosition={member.Position}
+                  memberLinkedin={member.Linkedin}
+                />
+              ))}
+            </div>
           </section>
-          <section className="contactUs">
+          <section className="contactUs" id="contact">
             <div>
               <h2 className="titleBlack">Contact us</h2>
               <p>
-                We`&apos`re here to help and answer any questions you might have. We look forward to hearing from you.
+                We&apos;re here to help and answer any questions you might have. We look forward to hearing from you.
               </p>
             </div>
             <form action="">
