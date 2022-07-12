@@ -23,7 +23,11 @@ const CustomTable = ({ columns, rows }) => {
             <TableRow key={row._id || row.id}>
               {columns.map((column) => (
                 <TableCell key={`${row.id}-${column.field}`} width={column.width}>
-                  {row[column.field]}
+                  {typeof row[column.field]== 'string' && row[column.field].includes('\n')? 
+                  row[column.field].split('\n').map((item, i) => <p key={i}>{item}</p>)
+                  : row[column.field]
+                  //jsx new line reference: https://www.jsdiaries.com/how-to-create-a-new-line-in-jsx-and-reactjs/
+                  }
                 </TableCell>
               ))}
             </TableRow>
@@ -33,5 +37,27 @@ const CustomTable = ({ columns, rows }) => {
     </TableContainer>
   );
 };
+
+/*
+<TableBody>
+          {rows.map((row) => (
+            // eslint-disable-next-line no-underscore-dangle
+            <TableRow key={row._id || row.id}>
+              {columns.map((column) => ( typeof column == 'string'?
+                <TableCell key={`${row.id}-${column.field}`} width={column.width}>
+                  {row[column.field]}
+                </TableCell>
+              : Object.keys(column).map( function(key, value) { 
+                <TableCell key={`${row.id}-${key}`} >
+                  {column[key]}
+                </TableCell>
+                })
+              
+              ))
+              }
+            </TableRow>
+          ))}
+        </TableBody>
+*/
 
 export default CustomTable;
