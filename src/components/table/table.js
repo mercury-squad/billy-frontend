@@ -12,7 +12,7 @@ import { Box, Checkbox } from '@mui/material';
 import styles from './table.module.scss';
 import { ActionsMenu } from '../data-visualization/data-visualization';
 
-const CustomTable = ({ mobileCaption, columns, rows, enableSelection = true, actions = [] }) => {
+const CustomTable = ({ mobileCaption, columns, rows, enableSelection = false, actions = [] }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1023px)' });
 
   if (isTabletOrMobile) {

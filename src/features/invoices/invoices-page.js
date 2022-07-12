@@ -113,7 +113,13 @@ const Invoices = () => {
   return (
     <Container className={styles.invoices}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable mobileCaption="Invoices" rows={getRows()} columns={columns} actions={invoiceActions} />
+      <CustomTable
+        mobileCaption="Invoices"
+        rows={getRows()}
+        columns={columns}
+        actions={invoiceActions}
+        enableSelection
+      />
     </Container>
   );
 };
