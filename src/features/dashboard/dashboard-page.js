@@ -40,49 +40,45 @@ const Dashboard = () => {
 
   let cardsText = [
     {
+      id: 'ongoing_projects',
       cardValue: summaryData !== undefined ? summaryData.onGoingProjects : 0,
       cardLabel: 'Ongoing Projects',
     },
     {
+      id: 'total_invoices',
       cardValue: summaryData !== undefined ? `$ ${summaryData.totalInvoice}` : 0,
       cardLabel: 'Total Invoices',
     },
     {
+      id: 'pending_invoices',
       cardValue: summaryData !== undefined ? `$ ${summaryData.pendingInvoice}` : 0,
       cardLabel: 'Pending Invoices',
     },
     {
+      id: 'total_overdue',
       cardValue: summaryData !== undefined ? `$ ${summaryData.totalOverdue}` : 0,
       cardLabel: 'Total Overdue',
     },
   ];
 
+  const commonDisplay = (data) => (
+    <>
+      {data.split('\n').map((item, i) => (
+        <p key={i}>{item}</p>
+      ))}
+    </>
+  );
+
   const projectColumns = [
     {
       id: 'projectNames',
-      display: (data) => {
-        return (
-          <>
-            {data.projectNames.split('\n').map((item, i) => (
-              <p key={i}>{item}</p>
-            ))}
-          </>
-        );
-      },
+      display: ({ projectNames }) => commonDisplay(projectNames),
       displayName: 'Projects',
       width: 30,
     },
     {
       id: 'view',
-      display: (data) => {
-        return (
-          <>
-            {data.view.split('\n').map((item, i) => (
-              <p key={i}>{item}</p>
-            ))}
-          </>
-        );
-      },
+      display: ({ view }) => commonDisplay(view),
       displayName: 'View all',
       width: 15,
     },
@@ -91,29 +87,13 @@ const Dashboard = () => {
   const invoicesColumns = [
     {
       id: 'invoice',
-      display: (data) => {
-        return (
-          <>
-            {data.invoice.split('\n').map((item, i) => (
-              <p key={i}>{item}</p>
-            ))}
-          </>
-        );
-      },
+      display: ({ invoice }) => commonDisplay(invoice),
       displayName: 'Latest Invoices',
       width: 30,
     },
     {
       id: 'view',
-      display: (data) => {
-        return (
-          <>
-            {data.view.split('\n').map((item, i) => (
-              <p key={i}>{item}</p>
-            ))}
-          </>
-        );
-      },
+      display: ({ view }) => commonDisplay(view),
       displayName: 'View all',
       width: 15,
     },
@@ -137,20 +117,12 @@ const Dashboard = () => {
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
   const onclickProject = () => {};
 
-  /*const getRows = () => {
-    return summaryData.results?.map((item) => {
-      //const { _id: id } = invoice;
-      const paymentDueDate = moment(invoice.paymentDueDate).format(DATE_FORMAT);
-      return { ...invoice, paymentDueDate, actions: <Link to={`${ROUTES.invoices}/${id}`}>Preview</Link> };
-    });
-  };*/
-
   return (
     <Container className={styles.dashboard}>
       <DateRangeFilter filtersConfig={filtersConfig} />
       <section className="cards">
         {cardsText.map((card) => (
-          <DashboardCard className="card" key={card.cardValue} cardLabel={card.cardLabel} cardValue={card.cardValue} />
+          <DashboardCard className="card" key={card.id} cardLabel={card.cardLabel} cardValue={card.cardValue} />
         ))}
       </section>
       <section className="graphs-cards">
