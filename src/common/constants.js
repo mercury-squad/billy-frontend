@@ -19,6 +19,7 @@ export const API = {
   confirmEmail: `${BASE_URL}/api/v1/confirmEmail`,
   invoices: `${BASE_URL}/api/v1/invoice`,
   projects: `${BASE_URL}/api/v1/project`,
+  dashboard: `${BASE_URL}/api/v1/dashboard`,
 };
 
 export const ROUTES = {
