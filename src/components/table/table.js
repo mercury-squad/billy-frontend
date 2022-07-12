@@ -72,13 +72,8 @@ const CustomTable = ({ mobileCaption, columns, rows, enableSelection = true, act
                 </TableCell>
               )}
               {columns.map((column) => (
-
                 <TableCell key={`${row.id}-${column.id}`} width={column.width} align={column.align || 'left'}>
-                  {typeof row[column.field]== 'string' && row[column.field].includes('\n')? 
-                  row[column.field].split('\n').map((item, i) => <p key={i}>{item}</p>)
-                  : column.display(row)//I need to replace this by row[column.field] to make dashboard works
-                  //jsx new line reference: https://www.jsdiaries.com/how-to-create-a-new-line-in-jsx-and-reactjs/
-                  }
+                  {column.display(row)}
                 </TableCell>
               ))}
               {actions.length > 0 && (
