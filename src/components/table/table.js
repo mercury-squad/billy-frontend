@@ -94,26 +94,4 @@ const CustomTable = ({ mobileCaption, columns, rows, enableSelection = true, act
   );
 };
 
-/*
-<TableBody>
-          {rows.map((row) => (
-            // eslint-disable-next-line no-underscore-dangle
-            <TableRow key={row._id || row.id}>
-              {columns.map((column) => ( typeof column == 'string'?
-                <TableCell key={`${row.id}-${column.field}`} width={column.width}>
-                  {row[column.field]}
-                </TableCell>
-              : Object.keys(column).map( function(key, value) { 
-                <TableCell key={`${row.id}-${key}`} >
-                  {column[key]}
-                </TableCell>
-                })
-              
-              ))
-              }
-            </TableRow>
-          ))}
-        </TableBody>
-*/
-
 export default CustomTable;
