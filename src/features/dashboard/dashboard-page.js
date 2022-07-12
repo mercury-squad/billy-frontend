@@ -40,61 +40,89 @@ const Dashboard = () => {
 
   let cardsText = [
     {
+      id: 'ongoing_projects',
       cardValue: summaryData !== undefined ? summaryData.onGoingProjects : 0,
       cardLabel: 'Ongoing Projects',
     },
     {
+      id: 'total_invoices',
       cardValue: summaryData !== undefined ? `$ ${summaryData.totalInvoice}` : 0,
       cardLabel: 'Total Invoices',
     },
     {
+      id: 'pending_invoices',
       cardValue: summaryData !== undefined ? `$ ${summaryData.pendingInvoice}` : 0,
       cardLabel: 'Pending Invoices',
     },
     {
+      id: 'total_overdue',
       cardValue: summaryData !== undefined ? `$ ${summaryData.totalOverdue}` : 0,
       cardLabel: 'Total Overdue',
     },
   ];
 
+  const commonDisplay = (data) => (
+    <>
+      {data.split('\n').map((item, i) => (
+        <p key={i}>{item}</p>
+      ))}
+    </>
+  );
+
   const projectColumns = [
-    { field: 'projectNames', displayName: 'Projects', width: 30 },
-    { field: 'view', displayName: 'View all', width: 15 },
+    {
+      id: 'projectNames',
+      display: ({ projectNames }) => commonDisplay(projectNames),
+      displayName: 'Projects',
+      width: 30,
+    },
+    {
+      id: 'view',
+      display: ({ view }) => commonDisplay(view),
+      displayName: 'View all',
+      width: 15,
+    },
   ];
 
   const invoicesColumns = [
-    { field: 'invoice', displayName: 'Latest Invoices', width: 30 },
-    { field: 'view', displayName: 'View all', width: 15 },
+    {
+      id: 'invoice',
+      display: ({ invoice }) => commonDisplay(invoice),
+      displayName: 'Latest Invoices',
+      width: 30,
+    },
+    {
+      id: 'view',
+      display: ({ view }) => commonDisplay(view),
+      displayName: 'View all',
+      width: 15,
+    },
   ];
 
   //const projectsData = useSelector((state) => state.projects);
-  const projectsData = [{ projectNames: 'Web Page creation\nClient Name 1', view: 'END DATE\n2022-07-21' },
-                        { projectNames: 'Company Logo design\nClient Name 2', view: 'END DATE\n2022-08-11' }];
-  const invoicesData = [{ invoice: 'INV 001\nWeb Page creation', view: 'DRAFT' },
-                        { invoice: 'INV 002\nCompany Logo design', view: 'SCHEDULE' }];
+  const projectsData = [
+    { projectNames: 'Web Page creation\nClient Name 1', view: 'END DATE\n2022-07-21' },
+    { projectNames: 'Company Logo design\nClient Name 2', view: 'END DATE\n2022-08-11' },
+  ];
+  const invoicesData = [
+    { invoice: 'INV 001\nWeb Page creation', view: 'DRAFT' },
+    { invoice: 'INV 002\nCompany Logo design', view: 'SCHEDULE' },
+  ];
 
-  let totalIncome = "$ 23456,78";
-  let totalInvoiced = "$ 23456,78";
-  let paymentsReceived = "$ 22100,10";
-  let totalOverdue = "$ 909,30";
+  let totalIncome = '$ 23456,78';
+  let totalInvoiced = '$ 23456,78';
+  let paymentsReceived = '$ 22100,10';
+  let totalOverdue = '$ 909,30';
 
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
   const onclickProject = () => {};
-
-  /*const getRows = () => {
-    return summaryData.results?.map((item) => {
-      //const { _id: id } = invoice;
-      const paymentDueDate = moment(invoice.paymentDueDate).format(DATE_FORMAT);
-      return { ...invoice, paymentDueDate, actions: <Link to={`${ROUTES.invoices}/${id}`}>Preview</Link> };
-    });
-  };*/
 
   return (
     <Container className={styles.dashboard}>
       <DateRangeFilter filtersConfig={filtersConfig} />
       <section className="cards">
         {cardsText.map((card) => (
-          <DashboardCard className="card" key={card.cardValue} cardLabel={card.cardLabel} cardValue={card.cardValue} />
+          <DashboardCard className="card" key={card.id} cardLabel={card.cardLabel} cardValue={card.cardValue} />
         ))}
       </section>
       <section className="graphs-cards">
@@ -107,8 +135,8 @@ const Dashboard = () => {
         />
       </section>
       <section className="tables">
-        {/*<CustomTable className="summary-table" rows={projectsData} columns={projectColumns} />
-        //<CustomTable className="summary-table" rows={invoicesData} columns={invoicesColumns} />*/}
+        <CustomTable className="summary-table" rows={projectsData} columns={projectColumns} />
+        <CustomTable className="summary-table" rows={invoicesData} columns={invoicesColumns} />
       </section>
       <section className="buttons">
         <Button size="large" className="button" variant="contained" onClick={onclickProject}>
