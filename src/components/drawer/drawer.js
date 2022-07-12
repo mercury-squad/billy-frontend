@@ -7,14 +7,17 @@ import Logo from 'components/logo/logo';
 import styles from './drawer.module.scss';
 
 const ResponsiveDrawer = ({ mobileOpen, handleDrawerToggle }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const drawer = (
     <List className={styles.menu}>
       <ListItem>
         <Logo source={LogoSVG} />
       </ListItem>
       {NAVIGATION_ITEMS.map(({ name, label, link, icon, pathsInScope }) => (
-        <ListItem key={name} className={pathsInScope.includes(location.pathname) ? 'active-item' : ''} disablePadding>
+        <ListItem
+          key={name}
+          className={pathsInScope.some((path) => new RegExp(path).test(pathname)) ? 'active-item' : ''}
+          disablePadding>
           <NavLink className="w-100 disable-link-styles action" to={link}>
             <ListItemButton>
               <ListItemIcon>

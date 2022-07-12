@@ -15,7 +15,7 @@ const ApplicationFilters = ({ actionButtonConfig, filtersConfig, className = '' 
       </Button>
       <Input
         value={searchValue}
-        onChange={onSearchChange}
+        onChange={(e) => onSearchChange(e.target.value)}
         placeholder="Search by project name"
         className="bodyM"
         endAdornment={
@@ -25,7 +25,11 @@ const ApplicationFilters = ({ actionButtonConfig, filtersConfig, className = '' 
         }
       />
       <FormControl size="small">
-        <Select className="select bodyM" value={sortValue} onChange={onSortOptionChange} displayEmpty>
+        <Select
+          className="select bodyM"
+          value={sortValue}
+          onChange={(e) => onSortOptionChange(e.target.value)}
+          displayEmpty>
           <MenuItem className="bodyM" value="">
             Sort By
           </MenuItem>
