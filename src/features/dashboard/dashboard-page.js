@@ -11,7 +11,7 @@ import DashboardCard from 'components/DashboardCard';
 import IncomesGraphCard from 'components/IncomesGraphCard';
 import InvoiceSummaryGraphCard from 'components/InvoiceSummaryGraphCard';
 import { ROUTES } from 'common/constants';
-import { getSummary } from './dashboard-slice';
+import { getSummary, getProjects, getInvoices } from './dashboard-slice';
 import styles from './dashboard-page.module.scss';
 
 const PAGE_TITLE = 'Dashboard';
@@ -36,7 +36,9 @@ const Dashboard = () => {
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
   useEffect(() => {
     dispatch(getSummary(filtersConfig.rangeValue));
-  }, [dispatch]);
+    dispatch(getProjects());//here or within its own effect?
+    dispatch(getInvoices());//here or within its own effect?
+  }, [dispatch, filtersConfig.rangeValue]);
 
   let cardsText = [
     {
@@ -99,15 +101,21 @@ const Dashboard = () => {
     },
   ];
 
-  //const projectsData = useSelector((state) => state.projects);
-  const projectsData = [
-    { projectNames: 'Web Page creation\nClient Name 1', view: 'END DATE\n2022-07-21' },
-    { projectNames: 'Company Logo design\nClient Name 2', view: 'END DATE\n2022-08-11' },
-  ];
-  const invoicesData = [
-    { invoice: 'INV 001\nWeb Page creation', view: 'DRAFT' },
-    { invoice: 'INV 002\nCompany Logo design', view: 'SCHEDULE' },
-  ];
+  let projectsData =
+    summaryData.projects !== undefined && summaryData.projects.length > 0
+      ? [...summaryData.projects].map((project) => ({
+          projectNames: project !== undefined ? `${project.name}\n${project.client.name}` : '-',
+          view: project !== undefined ? `END DATE\n${project.endDate.substring(0, 10)}` : '-',
+        }))
+      : [];
+
+  let invoicesData =
+    summaryData.results !== undefined && summaryData.results.length > 0
+      ? [...summaryData.results].map((invoice) => ({
+          invoice: invoice !== undefined ? `${invoice.invoiceNumber}\n${invoice.project.name}` : '-',
+          view: invoice !== undefined ? invoice.status : '-',
+        }))
+      : [];
 
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
   const onclickProject = () => {};
