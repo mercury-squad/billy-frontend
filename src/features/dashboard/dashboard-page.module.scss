@@ -108,6 +108,10 @@
                 td p:first-child{
                     font-weight: bold;
                 }
+
+                .tag{
+                    justify-self: flex-start;
+                }
             }
         }
 

@@ -1,16 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOutletContext, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import { Container, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 import CustomTable from 'components/table/table';
 import DateRangeFilter from 'features/filters/date-range-filter';
+import { TextWithTag } from 'components/data-visualization/data-visualization';
 import DashboardCard from 'components/DashboardCard';
 import IncomesGraphCard from 'components/IncomesGraphCard';
 import InvoiceSummaryGraphCard from 'components/InvoiceSummaryGraphCard';
-import { ROUTES } from 'common/constants';
+import { ROUTES, DATE_FORMAT } from 'common/constants';
 import { getSummary, getProjects, getInvoices } from './dashboard-slice';
 import styles from './dashboard-page.module.scss';
 
@@ -71,6 +74,12 @@ const Dashboard = () => {
     </>
   );
 
+  const tagColorByStatus = {
+    draft: 'primary',
+    sent: 'secondary',
+    scheduled: 'tertiary',
+  };
+
   const projectColumns = [
     {
       id: 'projectNames',
@@ -81,7 +90,7 @@ const Dashboard = () => {
     {
       id: 'view',
       display: ({ view }) => commonDisplay(view),
-      displayName: 'View all',
+      displayName: <Link to="/projects">View all</Link>,
       width: 15,
     },
   ];
@@ -95,8 +104,8 @@ const Dashboard = () => {
     },
     {
       id: 'view',
-      display: ({ view }) => commonDisplay(view),
-      displayName: 'View all',
+      display: ({ view }) => <TextWithTag tag={view} variant={tagColorByStatus[view]} />,
+      displayName: <Link to="/invoices">View all</Link>,
       width: 15,
     },
   ];
@@ -105,7 +114,7 @@ const Dashboard = () => {
     summaryData.projects !== undefined && summaryData.projects.length > 0
       ? [...summaryData.projects].map((project) => ({
           projectNames: project !== undefined ? `${project.name}\n${project.client.name}` : '-',
-          view: project !== undefined ? `END DATE\n${project.endDate.substring(0, 10)}` : '-',
+          view: project !== undefined ? `END DATE\n${moment(project.endDate).format(DATE_FORMAT)}` : '-',
         }))
       : [];
 
@@ -113,7 +122,7 @@ const Dashboard = () => {
     summaryData.results !== undefined && summaryData.results.length > 0
       ? [...summaryData.results].map((invoice) => ({
           invoice: invoice !== undefined ? `${invoice.invoiceNumber}\n${invoice.project.name}` : '-',
-          view: invoice !== undefined ? invoice.status : '-',
+          view: invoice !== undefined ? invoice.status.toUpperCase() : '-',
         }))
       : [];
 
