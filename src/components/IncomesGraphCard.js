@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
 import { Card, CardContent, Typography, Container } from '@mui/material';
@@ -16,7 +17,7 @@ import { Bar } from 'react-chartjs-2';
 
 const IncomesGraphCard = (props) => {
 
-  //Char code based on https://react-chartjs-2.js.org/examples/vertical-bar-chart
+  //Chart code based on https://react-chartjs-2.js.org/examples/vertical-bar-chart
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
   const options = {
@@ -36,7 +37,7 @@ const IncomesGraphCard = (props) => {
     {
       //label: 'Total Income',
       data: [65, 59, 80, 81, 56, 55, 40, 65, 20, 66, 71, 80],
-      backgroundColor: 'rgb(75, 77, 237)',
+      backgroundColor: 'rgb(112, 219, 210)',
     }
   ],
 };
@@ -52,7 +53,7 @@ const IncomesGraphCard = (props) => {
           <SquareIcon className="incomeIcon" />
           Total Income
         </Typography>
-        <Typography className="total-value">{props.totalIncome}</Typography>
+        <Typography className="total-value">$ {props.totalIncome}</Typography>
       </CardContent>
     </Card>
   );

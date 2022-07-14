@@ -109,11 +109,6 @@ const Dashboard = () => {
     { invoice: 'INV 002\nCompany Logo design', view: 'SCHEDULE' },
   ];
 
-  let totalIncome = '$ 23456,78';
-  let totalInvoiced = '$ 23456,78';
-  let paymentsReceived = '$ 22100,10';
-  let totalOverdue = '$ 909,30';
-
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
   const onclickProject = () => {};
 
@@ -126,12 +121,12 @@ const Dashboard = () => {
         ))}
       </section>
       <section className="graphs-cards">
-        <IncomesGraphCard className="card" totalIncome={totalIncome} />
+        <IncomesGraphCard className="card" totalIncome={summaryData.totalInvoice} />
         <InvoiceSummaryGraphCard
           className="card"
-          totalInvoiced={totalInvoiced}
-          paymentsReceived={paymentsReceived}
-          totalOverdue={totalOverdue}
+          totalInvoiced={summaryData.totalInvoice}
+          paymentsReceived={summaryData.totalPaymentsReceived}
+          totalOverdue={summaryData.totalOverdue}
         />
       </section>
       <section className="tables">
