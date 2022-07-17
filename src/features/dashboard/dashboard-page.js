@@ -40,8 +40,8 @@ const Dashboard = () => {
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
   useEffect(() => {
     dispatch(getSummary(filterBy));
-    dispatch(getProjects());//here or within its own effect?
-    dispatch(getInvoices());//here or within its own effect?
+    dispatch(getProjects());
+    dispatch(getInvoices());
   }, [dispatch, filterBy]);
 
   const cardsText = [
