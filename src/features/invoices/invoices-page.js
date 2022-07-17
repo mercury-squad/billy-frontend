@@ -47,7 +47,12 @@ const Invoices = () => {
 
   const invoiceActions = [
     { value: 'duplicate', label: 'Duplicate', onClick: (entry) => console.info('Duplicate', entry) },
-    { value: 'edit', label: 'Edit', onClick: (entry) => console.info('Edit', entry) },
+    {
+      value: 'edit',
+      label: 'Edit',
+      onClick: (entry) => console.info('Edit', entry),
+      shouldDisplay: (row) => row.status === 'draft',
+    },
     { value: 'delete', label: 'Delete', onClick: (entry) => console.info('Delete', entry) },
     // { value: 'download', label: 'Download', onClick: (entry) => console.info('Download', entry) },
     { value: 'view', label: 'View', onClick: (entry) => navigate(`${ROUTES.invoices}/${entry._id}`) },

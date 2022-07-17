@@ -45,16 +45,21 @@ export const ActionsMenu = ({ actions, data }) => {
         <MoreHorizIcon />
       </IconButton>
       <Menu anchorEl={menuTriggerEl} open={isMenuOpen} onClose={closeMenu}>
-        {actions.map((action) => (
-          <MenuItem
-            key={action.value}
-            onClick={() => {
-              closeMenu();
-              action?.onClick(data);
-            }}>
-            {action.label}
-          </MenuItem>
-        ))}
+        {actions.map((action) => {
+          if (action.shouldDisplay && !action.shouldDisplay(data)) {
+            return null;
+          }
+          return (
+            <MenuItem
+              key={action.value}
+              onClick={() => {
+                closeMenu();
+                action?.onClick(data);
+              }}>
+              {action.label}
+            </MenuItem>
+          );
+        })}
       </Menu>
     </>
   );
