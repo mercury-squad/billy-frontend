@@ -138,7 +138,11 @@ const Dashboard = () => {
         ))}
       </section>
       <section className="graphs-cards">
-        <IncomesGraphCard className="card" totalIncome={summaryData.totalInvoice} />
+        <IncomesGraphCard
+          className="card"
+          totalIncome={summaryData.totalPaymentsReceived}
+          monthlyIncome={summaryData.monthlyIncome}
+        />
         <InvoiceSummaryGraphCard
           className="card"
           totalInvoiced={summaryData.totalInvoice}

@@ -9,6 +9,7 @@ const initialState = {
   pendingInvoice: 0,
   totalPaymentsReceived: 0,
   totalOverdue: 0,
+  monthlyIncome: [],
   projects: [],
   results: [],
 };
