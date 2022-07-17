@@ -42,4 +42,23 @@
     min-width: 74px;
     width: 74px;
   }
+
+  th {
+    height: 56px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  background: $color-light-variant-2;
+  padding: 0 20px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  border: 1px solid #d9d9d9;
+  border-width: 1px 0px;
 }
