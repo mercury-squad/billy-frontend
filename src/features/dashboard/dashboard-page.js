@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOutletContext, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -21,29 +21,30 @@ const PAGE_TITLE = 'Dashboard';
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
   let summaryData = useSelector((state) => state.summary);
+  const [filterBy, serFilterBy] = useState('12');
   const [setHeaderTitle] = useOutletContext();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const filtersConfig = {
-    rangeValue: '12',
+    rangeValue: filterBy,
     rangeOptions: [
       { value: '12', label: 'Last 12 months' },
       { value: '6', label: 'Last 6 months' },
       { value: '3', label: 'Last 3 months' },
       { value: '1', label: 'Last month' },
     ],
-    onRangeOptionChange: () => {},
+    onRangeOptionChange: (e) => serFilterBy(e.target.value),
   };
 
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
   useEffect(() => {
-    dispatch(getSummary(filtersConfig.rangeValue));
+    dispatch(getSummary(filterBy));
     dispatch(getProjects());//here or within its own effect?
     dispatch(getInvoices());//here or within its own effect?
-  }, [dispatch, filtersConfig.rangeValue]);
+  }, [dispatch, filterBy]);
 
-  let cardsText = [
+  const cardsText = [
     {
       id: 'ongoing_projects',
       cardValue: summaryData !== undefined ? summaryData.onGoingProjects : 0,
@@ -75,9 +76,9 @@ const Dashboard = () => {
   );
 
   const tagColorByStatus = {
-    draft: 'primary',
-    sent: 'secondary',
-    scheduled: 'tertiary',
+    DRAFT: 'primary',
+    SENT: 'secondary',
+    SCHEDULED: 'tertiary',
   };
 
   const projectColumns = [
@@ -110,7 +111,7 @@ const Dashboard = () => {
     },
   ];
 
-  let projectsData =
+  const projectsData =
     summaryData.projects !== undefined && summaryData.projects.length > 0
       ? [...summaryData.projects].map((project) => ({
           projectNames: project !== undefined ? `${project.name}\n${project.client.name}` : '-',
@@ -118,7 +119,7 @@ const Dashboard = () => {
         }))
       : [];
 
-  let invoicesData =
+  const invoicesData =
     summaryData.results !== undefined && summaryData.results.length > 0
       ? [...summaryData.results].map((invoice) => ({
           invoice: invoice !== undefined ? `${invoice.invoiceNumber}\n${invoice.project.name}` : '-',
