@@ -42,4 +42,12 @@ export const updateInvoice = (data) => async (dispatch) => {
   }
 };
 
+export const removeInvoices = (ids) => async (dispatch) => {
+  if (!ids.length) return;
+  const res = await server.delete(API.invoices, { ids });
+  if (res.status === 200) {
+    dispatch(getInvoices());
+  }
+};
+
 export default invoicesSlice.reducer;

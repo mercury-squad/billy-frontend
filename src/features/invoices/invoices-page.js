@@ -8,7 +8,7 @@ import CustomTable from 'components/table/table';
 import { ROUTES, DATE_FORMAT } from 'common/constants';
 import { Status, TextWithTag } from 'components/data-visualization/data-visualization';
 import ApplicationFilters from 'features/filters/application-filters';
-import { getInvoices, updateInvoice } from './invoices-slice';
+import { getInvoices, updateInvoice, removeInvoices } from './invoices-slice';
 import styles from './invoices-page.module.scss';
 
 const PAGE_TITLE = 'All Invoices';
@@ -118,7 +118,7 @@ const Invoices = () => {
         rows={getRows()}
         columns={columns}
         actions={invoiceActions}
-        enableSelection
+        onRemoveItems={(ids) => dispatch(removeInvoices(ids))}
       />
     </Container>
   );
