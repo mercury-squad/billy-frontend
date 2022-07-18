@@ -24,6 +24,8 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.isLoggedIn]);
 
+  if (!auth.isLoggedIn) return null;
+
   return (
     <>
       <CssBaseline />
