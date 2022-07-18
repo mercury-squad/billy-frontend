@@ -16,13 +16,13 @@ import feature1Illustration from '../../assets/img/billy-feature-1-illustration.
 import feature2Illustration from '../../assets/img/billy-feature-2-illustration.png';
 import feature3Illustration from '../../assets/img/billy-feature-3-illustration.png';
 import ashim from '../../assets/img/ashim.jpg';
-import dexter from '../../assets/img/dexter.jpg';
-import gabriel from '../../assets/img/gabriel.jpg';
+import dexter from '../../assets/img/dex.jpg';
+import gabriel from '../../assets/img/gab.jpg';
+import kari from '../../assets/img/kari.jpg';
 import karen from '../../assets/img/karen.jpg';
-import kaWing from '../../assets/img/ka-wing.jpg';
 import luisa from '../../assets/img/luisa.jpg';
 import milly from '../../assets/img/milly.jpg';
-import paramita from '../../assets/img/paramita.jpg';
+import mita from '../../assets/img/mita.jpg';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -53,21 +53,21 @@ const LandingPage = () => {
     },
     {
       Name: 'Karen Garcia',
-      Image: karen,
+      Image: kari,
       ImageAlt: '',
       Position: 'Frontend Developer',
       Linkedin: 'https://www.linkedin.com/in/karengarciam/',
     },
     {
       Name: 'Mita Trisnodjojo',
-      Image: paramita,
+      Image: mita,
       ImageAlt: '',
       Position: 'Lead Designer',
       Linkedin: 'https://www.linkedin.com/in/paramitatrisnodjojo/',
     },
     {
       Name: 'Karen Chiu',
-      Image: kaWing,
+      Image: karen,
       ImageAlt: '',
       Position: 'UX Designer',
       Linkedin: 'https://www.linkedin.com/in/karenkwchiu/',
