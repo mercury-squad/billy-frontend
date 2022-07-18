@@ -31,6 +31,8 @@ export const ROUTES = {
   welcome: '/welcome',
   invoices: '/invoices',
   newInvoice: '/invoices/new',
+  editInvoice: '/invoices/edit',
+  sentInvoice: '/invoices/sent',
   projects: '/projects',
   clients: '/clients',
   newClients: '/clients/new',
