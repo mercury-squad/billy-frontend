@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container } from '@mui/material';
+import { Container, CircularProgress } from '@mui/material';
 import moment from 'moment';
 
 import CustomTable from 'components/table/table';
@@ -16,7 +16,7 @@ const Invoices = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [setHeaderTitle] = useOutletContext();
-  const invoicesData = useSelector((state) => state.invoices);
+  const { loading, ...invoicesData } = useSelector((state) => state.invoices);
   const [sortBy, setSortBy] = useState('');
   const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -124,6 +124,13 @@ const Invoices = () => {
       return { ...invoice, paymentDueDate };
     });
   };
+
+  if (loading)
+    return (
+      <div className="flex justify-center align-center h-100">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <Container className={styles.invoices}>

@@ -3,7 +3,7 @@ import moment from 'moment';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import { useOutletContext, useNavigate, useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, MenuItem, Button, InputLabel, Box, CircularProgress } from '@mui/material';
+import { TextField, MenuItem, Button, InputLabel, CircularProgress } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Input from 'components/input';
 
@@ -122,9 +122,9 @@ const InvoiceForm = () => {
 
   if (!projectsList.length || !paymentMethods.length) {
     return (
-      <Box sx={{ display: 'flex' }}>
+      <div className="flex justify-center align-center h-100">
         <CircularProgress />
-      </Box>
+      </div>
     );
   }
 

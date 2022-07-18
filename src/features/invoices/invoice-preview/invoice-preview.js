@@ -8,7 +8,7 @@ import server from 'common/server';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as EditIcon } from 'assets/img/edit-icon.svg';
 import { ReactComponent as DownloadIcon } from 'assets/img/download-icon.svg';
-import { InputLabel, Button } from '@mui/material';
+import { InputLabel, Button, CircularProgress } from '@mui/material';
 import Section from 'components/section/section';
 import Input from 'components/input';
 import styles from './invoice-preview.module.scss';
@@ -89,6 +89,14 @@ const InvoicePreview = () => {
       pdf.save(filename);
     });
   };
+
+  if (!invoiceData) {
+    return (
+      <div className="flex justify-center align-center h-100">
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.invoicePreview}>
