@@ -22,12 +22,17 @@ export const projectsSlice = createSlice({
 
 export const { loadProjects } = projectsSlice.actions;
 
-export const getProjects = () => async (dispatch) => {
-  const res = await server.get(API.projects);
-  if (res.status === 200) {
-    const { projects, ...data } = res.data;
-    dispatch(loadProjects({ ...data, results: projects }));
-  }
-};
+export const getProjects =
+  (query = '') =>
+  async (dispatch) => {
+    const url = query ? `${API.projects}?${query}` : API.projects;
+
+    const res = await server.get(url);
+
+    if (res.status === 200) {
+      const { projects, ...data } = res.data;
+      dispatch(loadProjects({ ...data, results: projects }));
+    }
+  };
 
 export default projectsSlice.reducer;
