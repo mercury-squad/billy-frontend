@@ -47,9 +47,21 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, actions = []
     setAllSelected(false);
   }, [rows]);
 
+  const generalActions = enableSelection && !!Object.keys(selectedEntries).length && (
+    <div className={styles.actions}>
+      <span className="bodyM bold">{Object.keys(selectedEntries).length} selected</span>
+      <span>
+        <IconButton component="span" color="primary" onClick={() => onRemoveItems(Object.keys(selectedEntries))}>
+          <DeleteIcon />
+        </IconButton>
+      </span>
+    </div>
+  );
+
   if (isTabletOrMobile) {
     return (
       <Box className={styles.mobile}>
+        {generalActions}
         <p className="mobile-caption bodyM bold">{mobileCaption}</p>
         {rows.map((row) => (
           <Box key={row._id || row.id} className="entry-card">
@@ -79,16 +91,7 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, actions = []
 
   return (
     <>
-      {enableSelection && !!Object.keys(selectedEntries).length && (
-        <div className={styles.actions}>
-          <span className="bodyM bold">{Object.keys(selectedEntries).length} selected</span>
-          <span>
-            <IconButton component="span" color="primary" onClick={() => onRemoveItems(Object.keys(selectedEntries))}>
-              <DeleteIcon />
-            </IconButton>
-          </span>
-        </div>
-      )}
+      {generalActions}
       <TableContainer className={`table ${styles.desktop}`} component={Paper}>
         <Table aria-label="customized table">
           <TableHead>
