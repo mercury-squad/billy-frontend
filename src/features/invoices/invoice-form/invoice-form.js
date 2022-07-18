@@ -263,7 +263,7 @@ const InvoiceForm = () => {
               saveInvoice(
                 'sent',
                 (data) =>
-                  navigate(ROUTES.invoices, {
+                  navigate(ROUTES.sentInvoice, {
                     state: { email: selectedProject?.client?.email, invoiceNumber: data?.invoiceNumber },
                   }),
                 e,
