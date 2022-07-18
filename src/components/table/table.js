@@ -62,7 +62,12 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, actions = []
     return (
       <Box className={styles.mobile}>
         {generalActions}
-        <p className="mobile-caption bodyM bold">{mobileCaption}</p>
+        <p className="mobile-caption bodyM bold">
+          {enableSelection && (
+            <Checkbox className="selectable" type="checkbox" checked={allSelected} onClick={selectAllEntries} />
+          )}
+          <span>{mobileCaption}</span>
+        </p>
         {rows.map((row) => (
           <Box key={row._id || row.id} className="entry-card">
             <div>

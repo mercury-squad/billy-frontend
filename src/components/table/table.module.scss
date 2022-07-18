@@ -11,6 +11,13 @@
   .mobile-caption {
     background-color: $color-primary-light;
     padding: 12px 21px;
+
+    .selectable {
+      padding-left: 0;
+      width: 42px;
+      display: inline-flex;
+      justify-content: flex-start;
+    }
   }
 
   .entry-card {
