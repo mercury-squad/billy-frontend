@@ -360,7 +360,7 @@
 
                     a {
                         grid-area: container;
-                        place-self: end right;
+                        place-self: start right;
 
                     }
                 }
@@ -368,9 +368,10 @@
                 .fa-icon {
                     background-color: white;
                     color:$color-primary;
-                    padding: 0.25rem;
-                    border-radius: 2px;
-                    margin: 0 0.4rem 0.25rem 0;
+                    font-size: 1rem;
+                    padding: 0.6rem;
+                    border-radius: 8px;
+                    margin: 0.6rem 0.6rem 0 0;
                 }
             }
             
