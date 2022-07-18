@@ -402,39 +402,42 @@
         }
 
         .contactUs {
-            margin: 2rem 1.25rem 3rem 1.25rem;
+            background-color: $color-neutral-light;
 
-            p {
-                line-height: 24px;
-            }
-
-            form {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-
-                .email, .message {
-                    grid-column: 1/-1;
-                }
-
-                Button {
-                    grid-column: 1/-1;
-                }
-            }
-
-            @media screen and (min-width: 680px) {
-                max-width: 1200px;
-                margin: 6.25rem auto 4rem auto;
-                padding: 0 4rem;
-
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+            .contact-us-wrapper {
+                padding: 2rem 1.25rem 3rem 1.25rem;
 
                 p {
-                    max-width: 415px;
+                    line-height: 24px;
+                }
+
+                form {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 0.5rem;
+
+                    .email, .message {
+                        grid-column: 1/-1;
+                    }
+
+                    Button {
+                        grid-column: 1/-1;
+                    }
+                }
+
+                @media screen and (min-width: 680px) {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 6.25rem 4rem 4rem 4rem;
+
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+
+                    p {
+                        max-width: 415px;
+                    }
                 }
             }
-
         }
 
         .footer-welcome-page {

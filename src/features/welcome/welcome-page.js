@@ -167,7 +167,7 @@ const LandingPage = () => {
         </header>
         <div>
           <section className="intro">
-            <h1>Smart & easy invoice manager</h1>
+            <h1>Smart &amp; easy invoice manager</h1>
             <img src={summaryIllustration} alt="" />
             <div>
               <p className="body-regular">
@@ -224,53 +224,55 @@ const LandingPage = () => {
             </div>
           </section>
           <section className="contactUs" id="contact">
-            <div>
-              <h2 className="titleBlack">Contact us</h2>
-              <p>
-                We&apos;re here to help and answer any questions you might have. We look forward to hearing from you.
-              </p>
+            <div className="contact-us-wrapper">
+              <div>
+                <h2 className="titleBlack">Contact us</h2>
+                <p>
+                  We&apos;re here to help and answer any questions you might have. We look forward to hearing from you.
+                </p>
+              </div>
+              <form action="">
+                <TextField
+                  className="firstName"
+                  id="outlined-password-input"
+                  label="First Name"
+                  type="text"
+                  placeholder="First Name"
+                  margin="normal"
+                />
+                <TextField
+                  className="lastName"
+                  id="outlined-password-input"
+                  label="Last Name"
+                  type="text"
+                  placeholder="Last Name"
+                  margin="normal"
+                />
+                <TextField
+                  className="email"
+                  id="outlined-password-input"
+                  label="Email"
+                  type="email"
+                  placeholder="Email"
+                  fullWidth
+                  margin="normal"
+                />
+                <TextField
+                  className="message"
+                  id="outlined-textarea"
+                  label="Message"
+                  type="text"
+                  placeholder="Message"
+                  fullWidth
+                  margin="normal"
+                  multiline
+                  minRows="4"
+                />
+                <Button variant="contained" type="submit" size="large">
+                  Submit
+                </Button>
+              </form>
             </div>
-            <form action="">
-              <TextField
-                className="firstName"
-                id="outlined-password-input"
-                label="First Name"
-                type="text"
-                placeholder="First Name"
-                margin="normal"
-              />
-              <TextField
-                className="lastName"
-                id="outlined-password-input"
-                label="Last Name"
-                type="text"
-                placeholder="Last Name"
-                margin="normal"
-              />
-              <TextField
-                className="email"
-                id="outlined-password-input"
-                label="Email"
-                type="email"
-                placeholder="Email"
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                className="message"
-                id="outlined-textarea"
-                label="Message"
-                type="text"
-                placeholder="Message"
-                fullWidth
-                margin="normal"
-                multiline
-                minRows="4"
-              />
-              <Button variant="contained" type="submit" size="large">
-                Submit
-              </Button>
-            </form>
           </section>
         </div>
         <div className="footer-welcome-page">
