@@ -46,19 +46,29 @@ const Invoices = () => {
   ];
 
   const invoiceActions = [
-    { value: 'duplicate', label: 'Duplicate', onClick: (entry) => console.info('Duplicate', entry) },
+    {
+      value: 'duplicate',
+      label: 'Duplicate',
+      onClick: ({ _id, ...entry }) => navigate(ROUTES.newInvoice, { state: entry }),
+    },
     {
       value: 'edit',
       label: 'Edit',
-      onClick: (entry) => console.info('Edit', entry),
-      shouldDisplay: (row) => row.status === 'draft',
+      onClick: (entry) => navigate(ROUTES.editInvoice, { state: entry }),
+      shouldDisplay: (row) => row.status !== 'sent',
     },
-    { value: 'delete', label: 'Delete', onClick: (entry) => console.info('Delete', entry) },
-    // { value: 'download', label: 'Download', onClick: (entry) => console.info('Download', entry) },
+    { value: 'delete', label: 'Delete', onClick: (entry) => dispatch(removeInvoices([entry._id])) },
     { value: 'view', label: 'View', onClick: (entry) => navigate(`${ROUTES.invoices}/${entry._id}`) },
   ];
 
-  const onStatusChange = (status, data) => dispatch(updateInvoice({ _id: data._id, paymentStatus: status }));
+  const onStatusChange = (status, data) =>
+    dispatch(
+      updateInvoice({
+        _id: data._id,
+        paymentStatus: status,
+        ...(status === 'paid' ? { paymentDate: moment().format(DATE_FORMAT) } : {}),
+      }),
+    );
 
   const columns = [
     { id: 'invoiceNumber', display: (data) => data.invoiceNumber, displayName: 'Invoice #', width: 10 },
