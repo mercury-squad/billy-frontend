@@ -7,19 +7,18 @@ import { Doughnut } from 'react-chartjs-2';
 const InvoiceSummaryGraphCard = (props) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
+  const { totalInvoiced, paymentsReceived, totalOverdue } = props;
+
   const data = {
     labels: [],
     datasets: [
       {
         label: null,
-        data: [12, 19],
+        data: [totalInvoiced, paymentsReceived, totalOverdue],
         backgroundColor: [
-          'rgb(240, 131, 87)',
+          'rgb(75, 77, 237)',
           'rgb(37, 167, 156)',
-        ],
-        borderColor: [
           'rgb(240, 131, 87)',
-          'rgb(37, 167, 156)',
         ],
         borderWidth: 1,
       },
@@ -37,17 +36,17 @@ const InvoiceSummaryGraphCard = (props) => {
           <Container className="final-values">
             <Container className="final-invoiced">
               <Typography>Total Invoiced</Typography>
-              <Typography className="final-value">{props.totalInvoiced}</Typography>
+              <Typography className="final-value">$ {totalInvoiced}</Typography>
             </Container>
 
             <Container className="final-payments">
               <Typography>Payments Received</Typography>
-              <Typography className="final-value">{props.paymentsReceived}</Typography>
+              <Typography className="final-value">$ {paymentsReceived}</Typography>
             </Container>
 
             <Container className="final-overdue">
               <Typography>Total Overdue</Typography>
-              <Typography className="final-value">{props.totalOverdue}</Typography>
+              <Typography className="final-value">$ {totalOverdue}</Typography>
             </Container>
           </Container>
         </Container>
