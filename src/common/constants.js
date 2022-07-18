@@ -1,6 +1,7 @@
 import { ReactComponent as DashboardIcon } from 'assets/img/dashboard-icon.svg';
 import { ReactComponent as InvoiceIcon } from 'assets/img/invoice-icon.svg';
 import { ReactComponent as ProjectIcon } from 'assets/img/project-icon.svg';
+import { ReactComponent as ClientIcon } from 'assets/img/client-icon.svg';
 
 export const DRAWER_WIDTH = 217;
 
@@ -19,6 +20,7 @@ export const API = {
   confirmEmail: `${BASE_URL}/api/v1/confirmEmail`,
   invoices: `${BASE_URL}/api/v1/invoice`,
   projects: `${BASE_URL}/api/v1/project`,
+  clients: `${BASE_URL}/api/v1/client`,
   dashboard: `${BASE_URL}/api/v1/dashboard`,
 };
 
@@ -30,6 +32,8 @@ export const ROUTES = {
   invoices: '/invoices',
   newInvoice: '/invoices/new',
   projects: '/projects',
+  clients: '/clients',
+  newClients: '/clients/new',
 };
 
 export const NAVIGATION_ITEMS = [
@@ -47,5 +51,18 @@ export const NAVIGATION_ITEMS = [
     pathsInScope: [`${ROUTES.invoices}/?.*`],
     icon: InvoiceIcon,
   },
-  { name: 'projects', label: 'Projects', link: ROUTES.projects, pathsInScope: [ROUTES.projects], icon: ProjectIcon },
+  {
+    name: 'projects',
+    label: 'Projects',
+    link: ROUTES.projects,
+    pathsInScope: [`${ROUTES.projects}/?.*`],
+    icon: ProjectIcon,
+  },
+  {
+    name: 'clients',
+    label: 'Clients',
+    link: ROUTES.clients,
+    pathsInScope: [`${ROUTES.clients}/?.*`],
+    icon: ClientIcon,
+  },
 ];

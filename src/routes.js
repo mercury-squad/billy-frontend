@@ -8,6 +8,7 @@ import Welcome from 'features/welcome';
 import Dashboard from 'features/dashboard';
 import Invoices, { InvoiceForm, InvoicePreview } from 'features/invoices';
 import Projects from 'features/projects';
+import Clients, { ClientForm } from 'features/clients';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,8 @@ const AppRoutes = () => {
           <Route path="invoices/new" element={<InvoiceForm />} />
           <Route path="invoices/:id" element={<InvoicePreview />} />
           <Route path="projects" element={<Projects />} />
+          <Route path="clients" element={<Clients />} />
+          <Route path="clients/new" element={<ClientForm />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
