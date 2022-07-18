@@ -34,6 +34,7 @@ export const ROUTES = {
   editInvoice: '/invoices/edit',
   sentInvoice: '/invoices/sent',
   projects: '/projects',
+  newProjects: '/projects/new',
   clients: '/clients',
   newClients: '/clients/new',
 };
