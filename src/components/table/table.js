@@ -13,8 +13,8 @@ import { ReactComponent as DeleteIcon } from 'assets/img/delete-icon.svg';
 import styles from './table.module.scss';
 import { ActionsMenu } from '../data-visualization/data-visualization';
 
-const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, actions = [] }) => {
-  const enableSelection = !!onRemoveItems;
+const CustomTable = ({ mobileCaption, columns, rows, enableSelection = false, asDesktop = false, actions = [] }) => {
+
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1023px)' });
   const [selectedEntries, setSelectedEntries] = useState({});
   const [allSelected, setAllSelected] = useState(false);
@@ -58,7 +58,7 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, actions = []
     </div>
   );
 
-  if (isTabletOrMobile) {
+  if (isTabletOrMobile && !asDesktop) {
     return (
       <Box className={styles.mobile}>
         {generalActions}

@@ -128,10 +128,10 @@ const Dashboard = () => {
       : [];
 
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
-  const onclickProject = () => {};
+  const onclickProject = () => navigate(ROUTES.newProjects);
 
   return (
-    <Container className={styles.dashboard}>
+    <Container className={styles.dashboard} style={{ padding: '1rem' }}>
       <DateRangeFilter filtersConfig={filtersConfig} />
       <section className="cards">
         {cardsText.map((card) => (
@@ -139,11 +139,7 @@ const Dashboard = () => {
         ))}
       </section>
       <section className="graphs-cards">
-        <IncomesGraphCard
-          className="card"
-          totalIncome={summaryData.totalPaymentsReceived}
-          monthlyIncome={summaryData.monthlyIncome}
-        />
+        <IncomesGraphCard className="card" monthlyIncome={summaryData.monthlyIncome} />
         <InvoiceSummaryGraphCard
           className="card"
           totalInvoiced={summaryData.totalInvoice}
@@ -152,10 +148,8 @@ const Dashboard = () => {
         />
       </section>
       <section className="tables">
-        <CustomTable className="summary-table" rows={projectsData} columns={projectColumns} />
-        <CustomTable className="summary-table" rows={invoicesData} columns={invoicesColumns} />
-      </section>
-      <section className="buttons">
+        <CustomTable className="summary-table" asDesktop rows={projectsData} columns={projectColumns} />
+        <CustomTable className="summary-table" asDesktop rows={invoicesData} columns={invoicesColumns} />
         <Button size="large" className="button" variant="contained" onClick={onclickProject}>
           <AddIcon />
           New Project
