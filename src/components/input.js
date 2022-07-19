@@ -17,6 +17,9 @@ const Input = ({ name, control, rules = {}, onChange: providedOnChange, defaultV
   if (otherProps.type === 'email') {
     rules.validate = (value) =>
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) || 'Please enter a valid email address';
+  } else if (otherProps.type === 'tel') {
+    rules.validate = (value) =>
+      /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(value) || 'Please enter a valid phone';
   }
   return (
     <Controller
