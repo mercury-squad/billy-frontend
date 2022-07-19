@@ -5,7 +5,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   email: '',
-  verified: false,
+  verified: null,
   paymentOptions: [],
 };
 
@@ -26,10 +26,13 @@ export const userSlice = createSlice({
       // state.lalstName = action.payload.lastName;
       updateValues(state, action.payload);
     },
+    resetUser: (state) => {
+      updateValues(state, initialState);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loadUser } = userSlice.actions;
+export const { loadUser, resetUser } = userSlice.actions;
 
 export default userSlice.reducer;

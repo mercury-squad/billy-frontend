@@ -5,6 +5,8 @@ import { Typography, Container, Box, TextField, Button } from '@mui/material';
 import Logo from 'components/logo/logo';
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES } from 'common/constants';
+import Input from 'components/input';
+import { useForm } from 'react-hook-form';
 
 import backgroundPatternImage from '../../../assets/img/sign-in-pattern.png';
 
@@ -16,21 +18,16 @@ const defaultValues = {
 };
 
 const signInInputs = [
-  { name: 'email', label: 'Email', type: 'text' },
-  { name: 'password', label: 'Password', type: 'password' },
+  { name: 'email', label: 'Email', type: 'text', rules: { required: true } },
+  { name: 'password', label: 'Password', type: 'password', rules: { required: true } },
 ];
 
 const LoginPage = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-  const [formValues, setFormValues] = useState(defaultValues);
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
+  const { handleSubmit, control } = useForm({
+    defaultValues,
+  });
 
   useEffect(() => {
     if (auth.isLoggedIn) {
@@ -53,8 +50,8 @@ const LoginPage = () => {
             Welcome back to Billy!
           </Typography>
           <Box component="form">
-            {signInInputs.map(({ name, label, type }) => (
-              <TextField
+            {signInInputs.map(({ name, label, type, rules }) => (
+              <Input
                 required
                 fullWidth
                 name={name}
@@ -63,15 +60,15 @@ const LoginPage = () => {
                 key={`${name}Input`}
                 id={`${name}Input`}
                 label={label}
-                /* InputLabelProps={{ shrink: true }} */
-                /* variant="standard" */
                 type={type}
-                value={formValues[name]}
-                onChange={handleInputChange}
+                control={control}
+                rules={rules}
               />
             ))}
-            <a href="" className="small-link">Forgot password?</a>
-            <Button variant="contained" onClick={() => auth.login(formValues)} fullWidth size="large">
+            <a href="" className="small-link">
+              Forgot password?
+            </a>
+            <Button variant="contained" onClick={() => handleSubmit(auth.login)()} fullWidth size="large">
               LOG IN
             </Button>
           </Box>

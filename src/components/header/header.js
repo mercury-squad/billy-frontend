@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { AppBar, Avatar, IconButton, Toolbar, Menu, MenuItem } from '@mui/material';
+import { AppBar, IconButton, Toolbar, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { DRAWER_WIDTH } from 'common/constants';
+import { useSelector } from 'react-redux';
 
 const Header = ({ title, handleDrawerToggle, logout }) => {
+  const { email } = useSelector((state) => state.user);
   const [menuTriggerEl, setMenuTriggerEl] = useState(null);
 
   const openMenu = (event) => {
@@ -39,7 +41,7 @@ const Header = ({ title, handleDrawerToggle, logout }) => {
           <h1 className="h2">{title}</h1>
         </div>
         <div className="flex align-center">
-          <Avatar />
+          <img className="round" src={`https://i.pravatar.cc/40?u=${email}`} alt="profile" />
           <IconButton onClick={openMenu}>{isMenuOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
           <Menu anchorEl={menuTriggerEl} open={isMenuOpen} onClose={closeMenu}>
             <MenuItem

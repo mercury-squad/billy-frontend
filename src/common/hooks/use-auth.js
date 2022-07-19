@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loadUser } from 'features/user/user-slice';
+import { loadUser, resetUser } from 'features/user/user-slice';
 
 import server from 'common/server';
 import { API, ROUTES } from 'common/constants';
@@ -51,7 +51,8 @@ const useAuth = () => {
   const logout = async () => {
     const accessToken = getAccessToken();
     if (accessToken) {
-      server.post(API.logout);
+      const res = await server.post(API.logout);
+      if (res.status === 200) dispatch(resetUser());
     }
     removeAccessToken();
     setIsLoggedIn(false);

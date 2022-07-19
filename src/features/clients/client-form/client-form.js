@@ -1,36 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router';
-import { TextField, Button, InputLabel } from '@mui/material';
+import { Button, InputLabel } from '@mui/material';
+import { useForm } from 'react-hook-form';
 
+import Input from 'components/input';
 import { API, ROUTES } from 'common/constants';
 import styles from './client-form.module.scss';
 import server from '../../../common/server';
 
 const PAGE_TITLE = 'New Client';
+const defaultValues = { name: '', contactPerson: '', address: '', phoneNumber: '', email: '' };
 
 const ClientForm = () => {
   const navigate = useNavigate();
+  const { handleSubmit, control } = useForm({ defaultValues });
 
   const [setHeaderTitle] = useOutletContext();
 
-  const [formData, setFormData] = useState({
-    name: '',
-    contactPerson: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-  });
-
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
 
-  const handleOnChange = (e) => {
-    const { name, value } = e?.target ?? {};
-
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
   const saveClient = (callback) => {
-    const createClient = async () => {
+    const createClient = async (formData) => {
       const res = await server.post(`${API.clients}`, formData);
 
       if (res.status === 200) {
@@ -39,29 +29,29 @@ const ClientForm = () => {
       }
     };
 
-    createClient();
+    handleSubmit(createClient)();
   };
 
   return (
     <div className={styles.clientForm}>
       <div className="form-item">
         <InputLabel>Client Name*</InputLabel>
-        <TextField required fullWidth name="name" value={formData.name} onChange={handleOnChange} />
+        <Input required fullWidth name="name" rules={{ required: true, minLength: 2 }} control={control} />
       </div>
 
       <div className="form-item">
         <InputLabel>Contact Person*</InputLabel>
-        <TextField required fullWidth name="contactPerson" value={formData.contactPerson} onChange={handleOnChange} />
+        <Input required fullWidth name="contactPerson" rules={{ required: true, minLength: 5 }} control={control} />
       </div>
 
       <div className="form-item">
         <InputLabel>Address*</InputLabel>
-        <TextField
+        <Input
           required
           fullWidth
           name="address"
-          value={formData.address}
-          onChange={handleOnChange}
+          rules={{ required: true, minLength: 5 }}
+          control={control}
           multiline
           rows={4}
         />
@@ -69,12 +59,12 @@ const ClientForm = () => {
 
       <div className="form-item">
         <InputLabel>Phone Number*</InputLabel>
-        <TextField required fullWidth name="phoneNumber" value={formData.phoneNumber} onChange={handleOnChange} />
+        <Input required fullWidth name="phoneNumber" type="tel" rules={{ required: true }} control={control} />
       </div>
 
       <div className="form-item">
         <InputLabel>Email*</InputLabel>
-        <TextField required fullWidth name="email" value={formData.email} onChange={handleOnChange} />
+        <Input required fullWidth name="email" type="email" rules={{ required: true }} control={control} />
       </div>
 
       <div className="section-finale">

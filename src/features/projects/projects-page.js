@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import { Container } from '@mui/material';
 import CustomTable from 'components/table/table';
 import ApplicationFilters from 'features/filters/application-filters';
-import { ROUTES } from 'common/constants';
+import { ROUTES, DATE_FORMAT } from 'common/constants';
 import { getProjects } from './projects-slice';
 
 import styles from './projects-page.module.scss';
@@ -63,7 +64,7 @@ const Projects = () => {
     // { id: 'select', display: (data) => data.select, displayName: '', width: 10 },
     { id: 'name', display: (data) => data.name, displayName: 'Project Name', width: 30 },
     { id: 'status', display: (data) => data.status, displayName: 'Project Status', width: 15 },
-    { id: 'endDate', display: (data) => data.endDate, displayName: 'End Date', width: 15 },
+    { id: 'endDate', display: (data) => moment(data.endDate).format(DATE_FORMAT), displayName: 'End Date', width: 15 },
     { id: 'clientName', display: (data) => data.clientName, displayName: 'Client Name', width: 15 },
   ];
 
