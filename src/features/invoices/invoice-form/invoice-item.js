@@ -1,55 +1,65 @@
-import { InputLabel, TextField, InputAdornment } from '@mui/material';
+import { InputLabel, InputAdornment } from '@mui/material';
+import Input from 'components/input';
+import { useFormContext } from 'react-hook-form';
 
-const InvoiceItem = ({ data = { description: '', quantity: '', price: '', amount: '' }, onChange }) => {
-  const handleOnChange = (e) => {
-    const { name, value } = e?.target ?? {};
-    const newData = {
-      ...data,
-      [name]: name !== 'description' ? Number(value) : value,
-    };
-    onChange(newData);
+const InvoiceItem = ({ idx }) => {
+  const { control, setValue, getValues } = useFormContext();
+  const handleOnChange = () => {
+    const { price = 0, quantity = 0 } = getValues(`items.${idx}`);
+    setValue(`items.${idx}.amount`, price * quantity);
   };
   return (
     <div className="item">
       <div>
         <InputLabel>Description</InputLabel>
-        <TextField fullWidth name="description" value={data.description} onChange={handleOnChange} />
+        <Input control={control} fullWidth rules={{ required: true }} name={`items.${idx}.description`} />
       </div>
       <div>
         <InputLabel>Quantity</InputLabel>
-        <TextField
+        <Input
           fullWidth
           type="number"
-          name="quantity"
+          control={control}
+          rules={{ required: true, min: 0 }}
+          name={`items.${idx}.quantity`}
           placeholder="Hour or pcs"
-          value={data.quantity}
           onChange={handleOnChange}
         />
       </div>
       <div>
         <InputLabel>Price</InputLabel>
-        <TextField
+        <Input
           fullWidth
           type="number"
-          name="price"
+          control={control}
+          rules={{ required: true, min: 0 }}
+          name={`items.${idx}.price`}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
-          value={data.price}
           onChange={handleOnChange}
         />
       </div>
       <div>
         <InputLabel>Amount</InputLabel>
-        <TextField
+        <Input
           fullWidth
+          type="number"
+          control={control}
+          name={`items.${idx}.amount`}
           InputProps={{
             readOnly: true,
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
-          value={data.price * data.quantity}
         />
       </div>
+      {/* {idx > 0 && (
+        <div className="delete-icon">
+          <IconButton>
+            <DeleteIcon />
+          </IconButton>
+        </div>
+      )} */}
     </div>
   );
 };

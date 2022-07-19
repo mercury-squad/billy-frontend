@@ -10,29 +10,29 @@ const initialState = {
   perPage: null,
 };
 
-export const projectsSlice = createSlice({
-  name: 'projects',
+export const clientsSlice = createSlice({
+  name: 'clients',
   initialState,
   reducers: {
-    loadProjects: (state, action) => {
+    loadClients: (state, action) => {
       updateValues(state, action.payload);
     },
   },
 });
 
-export const { loadProjects } = projectsSlice.actions;
+export const { loadClients } = clientsSlice.actions;
 
-export const getProjects =
+export const getClients =
   (query = '') =>
   async (dispatch) => {
-    const url = query ? `${API.projects}?${query}` : API.projects;
+    const url = query ? `${API.clients}?${query}` : API.clients;
 
     const res = await server.get(url);
 
     if (res.status === 200) {
-      const { projects, ...data } = res.data;
-      dispatch(loadProjects({ ...data, results: projects }));
+      const { clients, ...data } = res.data;
+      dispatch(loadClients({ ...data, results: clients }));
     }
   };
 
-export default projectsSlice.reducer;
+export default clientsSlice.reducer;

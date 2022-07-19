@@ -7,7 +7,7 @@
   margin-right: auto;
   margin-left: auto;
   :global {
-    .header {
+    .preview-header {
       margin-bottom: 17px;
       display: flex;
       justify-content: flex-end;
@@ -39,6 +39,39 @@
         display: initial;
         &.hide {
           display: initial;
+        }
+      }
+    }
+    .MuiButton-root {
+      text-transform: initial;
+      height: 48px;
+      &:not(:last-child) {
+        width: 157px;
+      }
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+    .section-finale {
+      display: flex;
+      margin: 2rem 0;
+      justify-content: flex-end;
+      margin-bottom: 34px;
+    }
+
+    .section-schedule {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      & > div:first-child {
+        height: 150px;
+      }
+      & > div:last-child {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        .MuiButton-root {
+          text-transform: initial;
+          height: 48px;
         }
       }
     }
