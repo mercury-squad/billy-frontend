@@ -1,41 +1,62 @@
-import { useEffect } from 'react';
-import { useOutletContext } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@mui/material';
 import CustomTable from 'components/table/table';
 import ApplicationFilters from 'features/filters/application-filters';
+import { ROUTES } from 'common/constants';
 import { getProjects } from './projects-slice';
 
 import styles from './projects-page.module.scss';
 
 const PAGE_TITLE = 'All Projects';
+
 const Projects = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [setHeaderTitle] = useOutletContext();
+  const [sortBy, setSortBy] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
+
   const projectsData = useSelector((state) => state.projects);
 
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
 
   useEffect(() => {
-    dispatch(getProjects());
-  }, [dispatch]);
+    let query = '';
+
+    if (sortBy) {
+      query += `sortBy=${sortBy}`;
+    }
+
+    if (searchKeyword) {
+      if (sortBy) {
+        query += `&keyword=${searchKeyword}`;
+      } else {
+        query += `keyword=${searchKeyword}`;
+      }
+    }
+
+    dispatch(getProjects(query));
+  }, [dispatch, sortBy, searchKeyword]);
 
   const actionButtonConfig = {
     label: 'New Project',
-    onClick: () => {},
+    onClick: () => navigate(ROUTES.newProjects),
   };
 
   const filtersConfig = {
-    sortValue: '',
-    searchValue: '',
+    sortValue: sortBy,
+    searchValue: searchKeyword,
     sortOptions: [
-      { value: 'projectName', label: 'Project Name' },
+      { value: 'name', label: 'Project Name' },
       { value: 'endDate', label: 'End Date' },
       { value: 'status', label: 'Status' },
       { value: 'clientName', label: 'Client Name' },
     ],
-    onSortOptionChange: () => {},
-    onSearchChange: () => {},
+    onSortOptionChange: setSortBy,
+    onSearchChange: setSearchKeyword,
   };
 
   const columns = [
