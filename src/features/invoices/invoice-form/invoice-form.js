@@ -160,7 +160,7 @@ const InvoiceForm = () => {
               placeholder="Due Date"
               type="date"
               control={control}
-              rules={{ min: currentDate }}
+              rules={{ required: true, min: currentDate }}
             />
           </div>
         </Section>
