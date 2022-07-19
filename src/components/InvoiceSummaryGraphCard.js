@@ -26,7 +26,7 @@ const InvoiceSummaryGraphCard = (props) => {
   };
 
   return (
-    <Card sx={{ minWidth: 550 }}>
+    <Card className="graph-card">
       <CardContent>
         <Typography className="card-title">Invoice Summary</Typography>
         <Container className="graph-container">

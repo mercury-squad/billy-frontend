@@ -12,10 +12,10 @@ import { Box, Checkbox } from '@mui/material';
 import styles from './table.module.scss';
 import { ActionsMenu } from '../data-visualization/data-visualization';
 
-const CustomTable = ({ mobileCaption, columns, rows, enableSelection = false, actions = [] }) => {
+const CustomTable = ({ mobileCaption, columns, rows, enableSelection = false, asDesktop = false, actions = [] }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1023px)' });
 
-  if (isTabletOrMobile) {
+  if (isTabletOrMobile && !asDesktop) {
     return (
       <Box className={styles.mobile}>
         <p className="mobile-caption bodyM bold">{mobileCaption}</p>

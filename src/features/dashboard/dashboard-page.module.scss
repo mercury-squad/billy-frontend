@@ -1,22 +1,48 @@
 @import '../../styles/variables';
+@import 'styles/responsive';
 
 .dashboard {
+    
     :global {
+
+        .application-filters{
+            @include phone {
+                justify-content: flex-end;
+            }
+        }
+
         .cards {
             margin: 2rem 0;
             display: flex;
             flex-flow: row wrap;
             justify-content: space-between;
-            gap: 1rem;
-    
-            .card {
+            gap: 2rem;
+
+            @include phone {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+
+            .dashboard-card {
                 flex: 1 1 22%;
+                @include phone {
+                    min-width: 45%;
+                }
             }
 
             .card-value {
                 color: $color-primary;
                 font-size: 2rem;
                 font-weight: bold;
+                @include phone {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .card-label{
+                @include phone {
+                    font-size: 0.9rem;
+                }
             }
 
         }
@@ -27,18 +53,30 @@
             justify-content: space-between;
             gap: 2rem;
 
-            .card {
-                flex: 1 1 42%;
+            @include phone {
+                flex-flow: row wrap;
+                gap: 1rem;
+            }
+
+            .graph-card {
+                flex: 1 1 45%;
+
+                @include phone {
+                    flex: 1 1 100%;
+                }
             }
 
             .card-title{
                 font-size: 1.5rem;
                 font-weight: bold;
+                padding-bottom: 1rem;
+                @include phone {
+                    font-size: 1.2rem;
+                }
             }
 
             .horizontal-graph{
                 width: 100%;
-                //height: 200px;
             }
 
             .incomeIcon path{
@@ -59,16 +97,27 @@
                 display: flex;
                 flex-flow: row nowrap;
                 padding-top: 1rem;
+
+                @include phone {
+                    flex-flow: row wrap;
+                    padding-top: 0;
+                }
             }
 
             .vertical-graph{
-                width: 55%;
-                height: 55%;
+                width: 100%;
                 padding: 0;
+
+                @include phone {
+                    width: 75%;
+                }
             }
 
             .final-invoiced{
                 color: $color-primary;
+                @include phone {
+                    font-size: 0.6rem;
+                }
             }
 
             .final-payments{
@@ -85,10 +134,23 @@
             }
 
             .final-values{
-                padding: 0;
+                padding: 0 0 0 2rem;
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: space-evenly;
+
+                @include phone {
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    padding: 2rem 0 0 0;
+                    font-size: 1rem;
+                }
+
+                div{
+                    @include phone {
+                        text-align: center;
+                    }
+                }
             }
             
             
@@ -101,9 +163,19 @@
             gap: 2rem;
             padding-top: 2rem;
 
+            @include phone {
+                justify-content: flex-end;
+                padding-top: 1rem;
+                gap: 1rem;
+            }
+
             .table {
                 flex: 1 1 42%;
                 width: 50%;
+
+                @include phone {
+                    flex: 1 1 100%;
+                }
 
                 td p:first-child{
                     font-weight: bold;
@@ -112,7 +184,35 @@
                 .tag{
                     justify-self: flex-start;
                 }
+
+                &:nth-of-type(2){
+                    @include phone {
+                        order: 2;
+                    }
+                }
+
             }
+
+            .button{
+                 justify-self: flex-end;
+                 margin-left: 26%;
+
+                @include phone {
+                    margin-bottom: 1rem;
+                }
+
+                &:first-of-type{
+                    @include phone {
+                        order: 1;
+                    }
+                }
+
+                &:nth-of-type(2){
+                    @include phone {
+                        order: 3;
+                    }
+                }
+             }
         }
 
         .buttons{

@@ -8,7 +8,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 const IncomesGraphCard = (props) => {
-  const { totalIncome, monthlyIncome } = props;
+  const { monthlyIncome } = props;
   // Chart code based on https://react-chartjs-2.js.org/examples/vertical-bar-chart
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -23,17 +23,20 @@ const IncomesGraphCard = (props) => {
 
   const labels = [];
   const data = [];
+  let totalIncome = 0;
 
   if (monthlyIncome !== undefined && monthlyIncome.length > 0) {
     const currentMonth = new Date().getMonth();
     for (let pos = currentMonth + 1; pos < monthlyIncome.length; pos++) {
       labels.push(monthlyIncome[pos].month);
       data.push(monthlyIncome[pos].income);
+      totalIncome += monthlyIncome[pos].income;
     }
 
     for (let pos = 0; pos <= currentMonth; pos++) {
       labels.push(monthlyIncome[pos].month);
       data.push(monthlyIncome[pos].income);
+      totalIncome += monthlyIncome[pos].income;
     }
   }
 
@@ -49,9 +52,9 @@ const IncomesGraphCard = (props) => {
   };
 
   return (
-    <Card sx={{ minWidth: 550 }}>
+    <Card className="graph-card">
       <CardContent>
-        <Typography className="card-title">Incomes History</Typography>
+        <Typography className="card-title">Incomes History (last year)</Typography>
         <Container className="horizontal-graph">
           <Bar options={options} data={graphData} />
         </Container>
