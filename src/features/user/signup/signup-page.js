@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Typography, Container, Box, TextField, Button, Alert } from '@mui/material';
+import { Typography, Container, Box, Button, Alert } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import Input from 'components/input';
 
 import Logo from 'components/logo/logo';
 import useAuth from 'common/hooks/use-auth';
@@ -19,10 +21,28 @@ const defaultValues = {
 };
 
 const signupInputs = [
-  { name: 'firstName', fullWidth: false, label: 'First Name', type: 'text' },
-  { name: 'lastName', fullWidth: false, label: 'Last Name', type: 'text' },
-  { name: 'email', fullWidth: true, label: 'Email', type: 'text' },
-  { name: 'password', fullWidth: true, label: 'Password', type: 'password' },
+  {
+    name: 'firstName',
+    fullWidth: false,
+    label: 'First Name',
+    type: 'text',
+    rules: { required: true, minLength: 2, maxLength: 25 },
+  },
+  {
+    name: 'lastName',
+    fullWidth: false,
+    label: 'Last Name',
+    type: 'text',
+    rules: { required: true, minLength: 2, maxLength: 25 },
+  },
+  { name: 'email', fullWidth: true, label: 'Email', type: 'email' },
+  {
+    name: 'password',
+    fullWidth: true,
+    label: 'Password',
+    type: 'password',
+    rules: { required: true, minLength: 5, maxLength: 15 },
+  },
 ];
 
 const SignupPage = () => {
@@ -30,14 +50,9 @@ const SignupPage = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState();
-  const [formValues, setFormValues] = useState(defaultValues);
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
+  const { handleSubmit, control } = useForm({
+    defaultValues,
+  });
 
   useEffect(() => {
     if (auth.isLoggedIn) {
@@ -46,8 +61,8 @@ const SignupPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSignup = async () => {
-    const response = await auth.signup(formValues);
+  const handleSignup = async (data) => {
+    const response = await auth.signup(data);
     if (response.message) {
       setError(response.message);
     } else {
@@ -77,8 +92,8 @@ const SignupPage = () => {
                 Create your account
               </Typography>
               <Box component="form" className="signup-form">
-                {signupInputs.map(({ name, fullWidth, label, type }) => (
-                  <TextField
+                {signupInputs.map(({ name, fullWidth, label, type, rules }) => (
+                  <Input
                     required
                     fullWidth={fullWidth}
                     name={name}
@@ -87,14 +102,12 @@ const SignupPage = () => {
                     key={`${name}Input`}
                     id={`${name}Input`}
                     label={label}
-                    /* InputLabelProps={{ shrink: true }} */
-                    /* variant="standard" */
                     type={type}
-                    value={formValues[name]}
-                    onChange={handleInputChange}
+                    control={control}
+                    rules={rules}
                   />
                 ))}
-                <Button variant="contained" onClick={handleSignup} fullWidth size="large">
+                <Button variant="contained" onClick={handleSubmit(handleSignup)} fullWidth size="large">
                   SIGN UP
                 </Button>
                 {error && <Alert severity="error">{error}</Alert>}
