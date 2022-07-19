@@ -88,16 +88,17 @@ const InvoiceForm = () => {
 
   const saveInvoice = (type, callback, event) => {
     event.preventDefault();
-    const createInvoice = async ({ generatedDate, ...data }) => {
+    const createInvoice = async ({ generatedDate: oldGeneratedData, ...data }) => {
       const issueDate = {
         sent: currentDate,
         draft: null,
         preview: null,
-        schedule: generatedDate,
+        schedule: oldGeneratedData,
       };
+      const { _id, ...paymentTypeObj } = paymentMethods.find((method) => method.name === data.paymentType) || {};
       const body = {
         ...data,
-        paymentType: paymentMethods.find((method) => method.name === data.paymentType),
+        paymentType: paymentTypeObj,
         ...(issueDate[type] ? { generatedDate: issueDate[type] } : {}),
         status: type === 'preview' ? 'draft' : type,
       };
@@ -153,7 +154,14 @@ const InvoiceForm = () => {
           </div>
           <div>
             <InputLabel>Due Date</InputLabel>
-            <Input fullWidth name="paymentDueDate" placeholder="Due Date" type="date" control={control} />
+            <Input
+              fullWidth
+              name="paymentDueDate"
+              placeholder="Due Date"
+              type="date"
+              control={control}
+              rules={{ required: true, min: currentDate }}
+            />
           </div>
         </Section>
 
@@ -263,7 +271,7 @@ const InvoiceForm = () => {
               saveInvoice(
                 'sent',
                 (data) =>
-                  navigate(ROUTES.invoices, {
+                  navigate(ROUTES.sentInvoice, {
                     state: { email: selectedProject?.client?.email, invoiceNumber: data?.invoiceNumber },
                   }),
                 e,

@@ -6,12 +6,21 @@ const errorMessage = ({ type }, rules) => {
     required: 'This field is required',
     min: `Value must be greater or equal to ${rules?.min}`,
     max: `Value must be greater or equal to ${rules?.max}`,
+    minLength: `Value must at least ${rules?.minLength} characters`,
+    maxLength: `Value must at most ${rules?.maxLength} characters`,
   };
 
   return messages[type];
 };
 
-const Input = ({ name, control, rules, onChange: providedOnChange, defaultValue = '', ...otherProps }) => {
+const Input = ({ name, control, rules = {}, onChange: providedOnChange, defaultValue = '', ...otherProps }) => {
+  if (otherProps.type === 'email') {
+    rules.validate = (value) =>
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) || 'Please enter a valid email address';
+  } else if (otherProps.type === 'tel') {
+    rules.validate = (value) =>
+      /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(value) || 'Please enter a valid phone';
+  }
   return (
     <Controller
       control={control}

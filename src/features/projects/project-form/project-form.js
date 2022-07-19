@@ -1,28 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { TextField, Button, InputLabel, Select, MenuItem } from '@mui/material';
+import { Button, InputLabel, Select, MenuItem } from '@mui/material';
+import moment from 'moment';
+import Input from 'components/input';
+import { useForm } from 'react-hook-form';
 
 import { getClients } from 'features/clients/clients-slice';
-import { API, ROUTES } from 'common/constants';
+import { API, ROUTES, DATE_FORMAT } from 'common/constants';
 import styles from './project-form.module.scss';
 import server from '../../../common/server';
 
 const PAGE_TITLE = 'New Project';
+const defaultValues = {
+  name: '',
+  description: '',
+  client: '',
+  startDate: '',
+  endDate: '',
+};
 
 const ProjectForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { handleSubmit, control } = useForm({ defaultValues });
 
   const [setHeaderTitle] = useOutletContext();
-
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    client: '',
-    startDate: '',
-    endDate: '',
-  });
 
   const clientsList = useSelector((state) => state.clients.results);
 
@@ -32,14 +35,8 @@ const ProjectForm = () => {
     dispatch(getClients());
   }, [dispatch]);
 
-  const handleOnChange = (e) => {
-    const { name, value } = e?.target ?? {};
-
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
   const saveProject = (callback) => {
-    const createProject = async () => {
+    const createProject = async (formData) => {
       const res = await server.post(`${API.projects}`, formData);
 
       if (res.status === 200) {
@@ -48,41 +45,39 @@ const ProjectForm = () => {
       }
     };
 
-    createProject();
+    handleSubmit(createProject)();
   };
 
   return (
     <div className={styles.projectForm}>
       <div className="form-item">
         <InputLabel>Project Name*</InputLabel>
-        <TextField required fullWidth name="name" value={formData.name} onChange={handleOnChange} />
+        <Input rules={{ required: true, minLength: 2, maxLength: 50 }} fullWidth name="name" control={control} />
       </div>
 
       <div className="form-item">
         <InputLabel>Start Date*</InputLabel>
-        <TextField
-          required
-          fullWidth
-          name="startDate"
-          value={formData.startDate}
-          onChange={handleOnChange}
-          type="date"
-        />
+        <Input fullWidth name="startDate" control={control} type="date" rules={{ required: true }} />
       </div>
 
       <div className="form-item">
         <InputLabel>End Date*</InputLabel>
-        <TextField required fullWidth name="endDate" value={formData.endDate} onChange={handleOnChange} type="date" />
+        <Input
+          fullWidth
+          name="endDate"
+          control={control}
+          type="date"
+          rules={{ required: true, min: moment().format(DATE_FORMAT) }}
+        />
       </div>
 
       <div className="form-item">
         <InputLabel>Description*</InputLabel>
-        <TextField
-          required
+        <Input
+          rules={{ required: true, minLength: 5 }}
           fullWidth
           name="description"
-          value={formData.description}
-          onChange={handleOnChange}
+          control={control}
           multiline
           rows={4}
         />
@@ -90,13 +85,13 @@ const ProjectForm = () => {
 
       <div className="form-item">
         <InputLabel>Client</InputLabel>
-        <Select fullWidth label="Client" name="client" value={formData.client} onChange={handleOnChange}>
+        <Input select fullWidth name="client" control={control} rules={{ required: true }}>
           {clientsList.map(({ _id: id, name }) => (
             <MenuItem key={id} value={id}>
               {name}
             </MenuItem>
           ))}
-        </Select>
+        </Input>
       </div>
 
       <div className="section-finale">
