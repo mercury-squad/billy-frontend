@@ -66,7 +66,7 @@ const Invoices = () => {
       updateInvoice({
         _id: data._id,
         paymentStatus: status,
-        ...(status === 'paid' ? { paymentDate: moment().format(DATE_FORMAT) } : {}),
+        ...(status === 'paid' ? { paymentDate: moment().format(DATE_FORMAT) } : { paymentDate: null }),
       }),
     );
 
