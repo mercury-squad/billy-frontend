@@ -37,9 +37,9 @@ const VerifyAccount = () => {
   }, []);
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Logo className="text-center" />
-      <Box>
+    <Container className="flex flex-column justify-center" component="main" maxWidth="xs" sx={{ mt: 10 }}>
+      <Logo className="flex justify-center" />
+      <Box sx={{ mt: '2rem' }}>
         {!verified && !error && (
           <>
             <p>We are validating your account, please wait a moment</p>
@@ -48,13 +48,13 @@ const VerifyAccount = () => {
         )}
 
         {verified && (
-          <div>
+          <div className="flex flex-column justify-center text-center">
             Your account has been verified successfully.
             <Button onClick={() => navigate(ROUTES.login)}>Go to Login</Button>
           </div>
         )}
 
-        {error && <p>{error}</p>}
+        {error && <p className="text-center">{error}</p>}
       </Box>
     </Container>
   );
