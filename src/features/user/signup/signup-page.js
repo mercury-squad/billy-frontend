@@ -16,7 +16,6 @@ const defaultValues = {
   lastName: '',
   email: '',
   password: '',
-  confirmPassword: '',
 };
 
 const signupInputs = [
@@ -56,7 +55,7 @@ const SignupPage = () => {
     }
   };
 
-  const pendingVerification = user?.verified === false;
+  const pendingVerification = user && user.email && user.verified === false;
 
   return (
     <Box className={styles.signup}>
