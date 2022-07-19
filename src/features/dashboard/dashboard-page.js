@@ -1,44 +1,50 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOutletContext, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import { Container, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 import CustomTable from 'components/table/table';
 import DateRangeFilter from 'features/filters/date-range-filter';
+import { TextWithTag } from 'components/data-visualization/data-visualization';
 import DashboardCard from 'components/DashboardCard';
 import IncomesGraphCard from 'components/IncomesGraphCard';
 import InvoiceSummaryGraphCard from 'components/InvoiceSummaryGraphCard';
-import { ROUTES } from 'common/constants';
-import { getSummary } from './dashboard-slice';
+import { ROUTES, DATE_FORMAT } from 'common/constants';
+import { getSummary, getProjects, getInvoices } from './dashboard-slice';
 import styles from './dashboard-page.module.scss';
 
 const PAGE_TITLE = 'Dashboard';
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
   let summaryData = useSelector((state) => state.summary);
+  const [filterBy, serFilterBy] = useState('12');
   const [setHeaderTitle] = useOutletContext();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const filtersConfig = {
-    rangeValue: '12',
+    rangeValue: filterBy,
     rangeOptions: [
       { value: '12', label: 'Last 12 months' },
       { value: '6', label: 'Last 6 months' },
       { value: '3', label: 'Last 3 months' },
       { value: '1', label: 'Last month' },
     ],
-    onRangeOptionChange: () => {},
+    onRangeOptionChange: (e) => serFilterBy(e.target.value),
   };
 
   useEffect(() => setHeaderTitle(PAGE_TITLE), [setHeaderTitle]);
   useEffect(() => {
-    dispatch(getSummary(filtersConfig.rangeValue));
-  }, [dispatch]);
+    dispatch(getSummary(filterBy));
+    dispatch(getProjects());
+    dispatch(getInvoices());
+  }, [dispatch, filterBy]);
 
-  let cardsText = [
+  const cardsText = [
     {
       id: 'ongoing_projects',
       cardValue: summaryData !== undefined ? summaryData.onGoingProjects : 0,
@@ -69,6 +75,12 @@ const Dashboard = () => {
     </>
   );
 
+  const tagColorByStatus = {
+    DRAFT: 'primary',
+    SENT: 'secondary',
+    SCHEDULED: 'tertiary',
+  };
+
   const projectColumns = [
     {
       id: 'projectNames',
@@ -79,7 +91,7 @@ const Dashboard = () => {
     {
       id: 'view',
       display: ({ view }) => commonDisplay(view),
-      displayName: 'View all',
+      displayName: <Link to="/projects">View all</Link>,
       width: 15,
     },
   ];
@@ -93,26 +105,27 @@ const Dashboard = () => {
     },
     {
       id: 'view',
-      display: ({ view }) => commonDisplay(view),
-      displayName: 'View all',
+      display: ({ view }) => <TextWithTag tag={view} variant={tagColorByStatus[view]} />,
+      displayName: <Link to="/invoices">View all</Link>,
       width: 15,
     },
   ];
 
-  //const projectsData = useSelector((state) => state.projects);
-  const projectsData = [
-    { projectNames: 'Web Page creation\nClient Name 1', view: 'END DATE\n2022-07-21' },
-    { projectNames: 'Company Logo design\nClient Name 2', view: 'END DATE\n2022-08-11' },
-  ];
-  const invoicesData = [
-    { invoice: 'INV 001\nWeb Page creation', view: 'DRAFT' },
-    { invoice: 'INV 002\nCompany Logo design', view: 'SCHEDULE' },
-  ];
+  const projectsData =
+    summaryData.projects !== undefined && summaryData.projects.length > 0
+      ? [...summaryData.projects].map((project) => ({
+          projectNames: project !== undefined ? `${project.name}\n${project.client.name}` : '-',
+          view: project !== undefined ? `END DATE\n${moment(project.endDate).format(DATE_FORMAT)}` : '-',
+        }))
+      : [];
 
-  let totalIncome = '$ 23456,78';
-  let totalInvoiced = '$ 23456,78';
-  let paymentsReceived = '$ 22100,10';
-  let totalOverdue = '$ 909,30';
+  const invoicesData =
+    summaryData.results !== undefined && summaryData.results.length > 0
+      ? [...summaryData.results].map((invoice) => ({
+          invoice: invoice !== undefined ? `${invoice.invoiceNumber}\n${invoice.project.name}` : '-',
+          view: invoice !== undefined ? invoice.status.toUpperCase() : '-',
+        }))
+      : [];
 
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
   const onclickProject = () => {};
@@ -126,12 +139,16 @@ const Dashboard = () => {
         ))}
       </section>
       <section className="graphs-cards">
-        <IncomesGraphCard className="card" totalIncome={totalIncome} />
+        <IncomesGraphCard
+          className="card"
+          totalIncome={summaryData.totalPaymentsReceived}
+          monthlyIncome={summaryData.monthlyIncome}
+        />
         <InvoiceSummaryGraphCard
           className="card"
-          totalInvoiced={totalInvoiced}
-          paymentsReceived={paymentsReceived}
-          totalOverdue={totalOverdue}
+          totalInvoiced={summaryData.totalInvoice}
+          paymentsReceived={summaryData.totalPaymentsReceived}
+          totalOverdue={summaryData.totalOverdue}
         />
       </section>
       <section className="tables">

@@ -1,42 +1,38 @@
-import { InputLabel, TextField, InputAdornment } from '@mui/material';
+import { InputLabel, InputAdornment } from '@mui/material';
+import Input from 'components/input';
+import { useFormContext } from 'react-hook-form';
 
-const InvoiceExpense = ({ data = { description: '', quantity: '', amount: '' }, onChange }) => {
-  const handleOnChange = (e) => {
-    const { name, value } = e?.target ?? {};
-    const newData = {
-      ...data,
-      [name]: name !== 'description' ? Number(value) : value,
-    };
-    onChange(newData);
-  };
+const InvoiceExpense = ({ idx }) => {
+  const { control } = useFormContext();
+
   return (
     <div className="expense">
       <div>
         <InputLabel>Description</InputLabel>
-        <TextField fullWidth name="description" value={data.description || ''} onChange={handleOnChange} />
+        <Input fullWidth rules={{ required: true }} control={control} name={`expenses.${idx}.description`} />
       </div>
       <div>
         <InputLabel>Quantity</InputLabel>
-        <TextField
+        <Input
           fullWidth
           type="number"
-          name="quantity"
+          control={control}
+          rules={{ required: true, min: 0 }}
+          name={`expenses.${idx}.quantity`}
           placeholder="Hour or pcs"
-          value={data.quantity || 0}
-          onChange={handleOnChange}
         />
       </div>
       <div>
         <InputLabel>Amount</InputLabel>
-        <TextField
+        <Input
           fullWidth
           type="number"
-          name="amount"
+          control={control}
+          rules={{ required: true, min: 0 }}
+          name={`expenses.${idx}.amount`}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
-          value={data.amount || 0}
-          onChange={handleOnChange}
         />
       </div>
     </div>

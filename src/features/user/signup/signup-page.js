@@ -7,6 +7,8 @@ import Logo from 'components/logo/logo';
 import useAuth from 'common/hooks/use-auth';
 import { ROUTES } from 'common/constants';
 
+import backgroundPatternImage from '../../../assets/img/sign-in-pattern.png';
+
 import styles from './signup-page.module.scss';
 
 const defaultValues = {
@@ -14,7 +16,6 @@ const defaultValues = {
   lastName: '',
   email: '',
   password: '',
-  confirmPassword: '',
 };
 
 const signupInputs = [
@@ -54,11 +55,16 @@ const SignupPage = () => {
     }
   };
 
-  const pendingVerification = user?.verified === false;
+  const pendingVerification = user && user.email && user.verified === false;
 
   return (
     <Box className={styles.signup}>
-      <Container component="main" maxWidth="sm">
+      <div
+        className="background-image"
+        alt="background-image"
+        style={{ backgroundImage: `url(${backgroundPatternImage})` }}
+      />
+      <Container component="main" maxWidth="sm" className="over">
         <Logo className="text-center logo" />
         <Box className="white-container">
           {pendingVerification ? (

@@ -42,7 +42,7 @@
             }
 
             .incomeIcon path{
-                color: $color-primary;
+                color: $color-secondary;
                 transform: translateY(7px);
             }
 
@@ -58,11 +58,12 @@
             .graph-container{
                 display: flex;
                 flex-flow: row nowrap;
+                padding-top: 1rem;
             }
 
             .vertical-graph{
-                width: 80%;
-                height: 80%;
+                width: 55%;
+                height: 55%;
                 padding: 0;
             }
 
@@ -85,6 +86,9 @@
 
             .final-values{
                 padding: 0;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-evenly;
             }
             
             
@@ -103,6 +107,10 @@
 
                 td p:first-child{
                     font-weight: bold;
+                }
+
+                .tag{
+                    justify-self: flex-start;
                 }
             }
         }
