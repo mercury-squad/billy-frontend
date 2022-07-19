@@ -315,7 +315,7 @@
         }
 
         .team {
-            background-color: $color-light-variant-2;
+            background-color: $color-neutral-light;
 
             .our-team-wrapper {
                 padding: 2.4rem 1.25rem;
@@ -360,7 +360,7 @@
 
                     a {
                         grid-area: container;
-                        place-self: end right;
+                        place-self: start right;
 
                     }
                 }
@@ -368,9 +368,10 @@
                 .fa-icon {
                     background-color: white;
                     color:$color-primary;
-                    padding: 0.25rem;
-                    border-radius: 2px;
-                    margin: 0 0.4rem 0.25rem 0;
+                    font-size: 1rem;
+                    padding: 0.6rem;
+                    border-radius: 8px;
+                    margin: 0.6rem 0.6rem 0 0;
                 }
             }
             
@@ -402,39 +403,42 @@
         }
 
         .contactUs {
-            margin: 2rem 1.25rem 3rem 1.25rem;
+            background-color: #fff;
 
-            p {
-                line-height: 24px;
-            }
-
-            form {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-
-                .email, .message {
-                    grid-column: 1/-1;
-                }
-
-                Button {
-                    grid-column: 1/-1;
-                }
-            }
-
-            @media screen and (min-width: 680px) {
-                max-width: 1200px;
-                margin: 6.25rem auto 4rem auto;
-                padding: 0 4rem;
-
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+            .contact-us-wrapper {
+                padding: 2rem 1.25rem 3rem 1.25rem;
 
                 p {
-                    max-width: 415px;
+                    line-height: 24px;
+                }
+
+                form {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 0.5rem;
+
+                    .email, .message {
+                        grid-column: 1/-1;
+                    }
+
+                    Button {
+                        grid-column: 1/-1;
+                    }
+                }
+
+                @media screen and (min-width: 680px) {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 6.25rem 4rem 4rem 4rem;
+
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+
+                    p {
+                        max-width: 415px;
+                    }
                 }
             }
-
         }
 
         .footer-welcome-page {
