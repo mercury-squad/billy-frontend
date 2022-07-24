@@ -3,7 +3,7 @@ import moment from 'moment';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import { useOutletContext, useNavigate, useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, MenuItem, Button, InputLabel, CircularProgress } from '@mui/material';
+import { TextField, MenuItem, Button, InputLabel, CircularProgress, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Input from 'components/input';
 
@@ -122,9 +122,20 @@ const InvoiceForm = () => {
   const clientSectionProps = { fullWidth: true, InputProps: { readOnly: true } };
 
   if (!projectsList.length || !paymentMethods.length) {
+    const classes = `${styles.no_data} flex justify-center align-center h-100`;
     return (
-      <div className="flex justify-center align-center h-100">
-        <CircularProgress />
+      <div className={classes}>
+        <Box className="subtitle">No Projects have been created yet</Box>
+        <Box sx={{ p: '.5rem 0 2rem' }}>
+          You need to create a project attached to a client before creating an invoice
+        </Box>
+        <Button
+          sx={{ textTransform: 'initial' }}
+          type="submit"
+          variant="contained"
+          onClick={() => navigate(ROUTES.newProjects)}>
+          Create a Project
+        </Button>
       </div>
     );
   }

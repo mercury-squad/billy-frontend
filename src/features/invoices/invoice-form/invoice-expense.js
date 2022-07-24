@@ -23,6 +23,7 @@ const InvoiceExpense = ({ idx }) => {
           type="number"
           control={control}
           rules={idx > 0 ? { required: true, min: 0 } : {}}
+          InputProps={{ inputProps: { min: 0 } }}
           name={`expenses.${idx}.quantity`}
           placeholder="Hour or pcs"
         />
@@ -37,6 +38,7 @@ const InvoiceExpense = ({ idx }) => {
           name={`expenses.${idx}.amount`}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            inputProps: { min: 0 },
           }}
         />
       </div>

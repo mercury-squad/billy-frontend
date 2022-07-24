@@ -69,7 +69,7 @@ const ClientForm = () => {
 
       <div className="section-finale">
         <Button variant="contained" onClick={() => saveClient(() => navigate(ROUTES.clients))}>
-          Send
+          Save
         </Button>
       </div>
     </div>
