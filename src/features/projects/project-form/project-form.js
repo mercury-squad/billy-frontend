@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, InputLabel, Select, MenuItem } from '@mui/material';
+import { Button, InputLabel, Select, MenuItem, Box } from '@mui/material';
 import moment from 'moment';
 import Input from 'components/input';
 import { useForm } from 'react-hook-form';
@@ -47,6 +47,23 @@ const ProjectForm = () => {
 
     handleSubmit(createProject)();
   };
+
+  if (clientsList && clientsList.length <= 0) {
+    const classes = `${styles.no_data} flex justify-center align-center h-100`;
+    return (
+      <div className={classes}>
+        <Box className="subtitle">No Clients have been created yet</Box>
+        <Box sx={{ p: '.5rem 0 2rem' }}>You need to create a client to attach to the project that is being created</Box>
+        <Button
+          sx={{ textTransform: 'initial' }}
+          type="submit"
+          variant="contained"
+          onClick={() => navigate(ROUTES.newClients)}>
+          Create a Client
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.projectForm}>
