@@ -113,7 +113,7 @@ const ProjectForm = () => {
 
       <div className="section-finale">
         <Button variant="contained" onClick={() => saveProject(() => navigate(ROUTES.projects))}>
-          Send
+          Save
         </Button>
       </div>
     </div>
