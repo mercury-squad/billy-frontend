@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import backgroundPatternImage from '../../../assets/img/sign-in-pattern.png';
 
 import styles from '../signup/signup-page.module.scss';
+import stylesP from './login-page.module.scss';
 
 const defaultValues = {
   email: '',
@@ -76,6 +77,10 @@ const LoginPage = () => {
             <p>Don't have Billy account?</p>
             <a onClick={() => navigate(ROUTES.signup)}>Create account</a>
           </div>
+          {auth.failedLogin?
+            <p className= {stylesP.error}>Email or password is wrong. Please check your input.</p>
+            : <></>
+          }
         </Box>
       </Container>
       <div className="footer">
