@@ -3,13 +3,14 @@ import moment from 'moment';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import { useOutletContext, useNavigate, useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField, MenuItem, Button, InputLabel, CircularProgress, Box } from '@mui/material';
+import { TextField, MenuItem, Button, InputLabel, Box, CircularProgress } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Input from 'components/input';
 
 import Section from 'components/section/section';
 import { DATE_FORMAT, API, ROUTES } from 'common/constants';
 import { getProjects } from 'features/projects/projects-slice';
+import { cleanupExpenses } from 'common/utils';
 import styles from './invoice-form.module.scss';
 import InvoiceItem from './invoice-item';
 import InvoiceExpense from './invoice-expense';
@@ -23,19 +24,22 @@ const InvoiceForm = () => {
     state: { ...invoice },
   } = useLocation();
   const [setHeaderTitle] = useOutletContext();
-  const currentDate = moment().format(DATE_FORMAT);
-  const projectsList = useSelector((state) => state.projects.results);
+  const currentDate = moment().utc().format(DATE_FORMAT);
+  const { results: projectsList, perPage: projectsPerPage } = useSelector((state) => state.projects);
   const paymentMethods = useSelector((state) => state.user.paymentOptions);
+  const email = useSelector((state) => state.user.email);
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
       status: invoice.status || 'draft',
       notes: invoice.notes || '',
       items: invoice.items?.map(({ _id, ...data }) => data) || [{}],
-      expenses: invoice.expenses?.map(({ _id, ...data }) => data) || [{}],
+      expenses: invoice.expenses?.length ? invoice.expenses?.map(({ _id, ...data }) => data) : [{}],
       totalAmount: invoice.totalAmount || 0,
-      paymentDueDate: moment(invoice.paymentDueDate).format(DATE_FORMAT) || moment().add(1, 'week').format(DATE_FORMAT),
-      generatedDate: moment(invoice.generatedDate).format(DATE_FORMAT) || currentDate,
+      paymentDueDate: invoice.paymentDueDat
+        ? moment(invoice.paymentDueDate).utc().format(DATE_FORMAT)
+        : moment().utc().add(1, 'week').format(DATE_FORMAT),
+      generatedDate: invoice.generatedDate ? moment(invoice.generatedDate).utc().format(DATE_FORMAT) : '',
       paymentType: invoice.paymentType?.name || 'default',
       project: invoice.project?._id || 'default',
     },
@@ -88,19 +92,20 @@ const InvoiceForm = () => {
 
   const saveInvoice = (type, callback, event) => {
     event.preventDefault();
-    const createInvoice = async ({ generatedDate: oldGeneratedData, ...data }) => {
+    const createInvoice = async ({ generatedDate: scheduleDate, ...data }) => {
       const issueDate = {
         sent: currentDate,
         draft: null,
-        preview: null,
-        schedule: oldGeneratedData,
+        preview: invoice?.status ? scheduleDate : null,
+        scheduled: scheduleDate,
       };
       const { _id, ...paymentTypeObj } = paymentMethods.find((method) => method.name === data.paymentType) || {};
       const body = {
         ...data,
+        expenses: cleanupExpenses(data.expenses),
         paymentType: paymentTypeObj,
         ...(issueDate[type] ? { generatedDate: issueDate[type] } : {}),
-        status: type === 'preview' ? 'draft' : type,
+        status: type === 'preview' ? invoice.status || 'draft' : type,
       };
       let res;
       if (invoice._id) {
@@ -109,7 +114,8 @@ const InvoiceForm = () => {
         res = await server.post(`${API.invoices}?type=${type === 'scheduled' ? 'draft' : type}`, body);
       }
       if (res.status === 200) {
-        callback(res.data?.document);
+        const invoiceDocument = res.data?.document ? res.data.document : res.data;
+        callback(invoiceDocument);
       }
     };
     if (type === 'sent') {
@@ -121,7 +127,16 @@ const InvoiceForm = () => {
   const selectedProject = projectsList.find(({ _id: id }) => id === project);
   const clientSectionProps = { fullWidth: true, InputProps: { readOnly: true } };
 
-  if (!projectsList.length || !paymentMethods.length) {
+  // Still waiting for the API response
+  if (!email || projectsPerPage === null) {
+    return (
+      <div className="flex justify-center align-center h-100">
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  if (projectsList.length === 0) {
     const classes = `${styles.no_data} flex justify-center align-center h-100`;
     return (
       <div className={classes}>
@@ -272,7 +287,7 @@ const InvoiceForm = () => {
           <Button
             type="submit"
             variant="outlined"
-            onClick={(e) => saveInvoice('preview', ({ _id }) => navigate(`${ROUTES.invoices}/${_id}`), e)}>
+            onClick={(e) => saveInvoice('preview', (data) => navigate(`${ROUTES.invoices}/${data._id}`), e)}>
             Preview
           </Button>
           <Button
