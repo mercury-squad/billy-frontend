@@ -16,5 +16,17 @@
       justify-content: flex-end;
       margin-top: 16px;
     }
+
+    .MuiInputBase-input {
+      max-height: 56px;
+      background-color: #fff;
+      input::placeholder {
+        color: #000;
+      }
+    }
+    .MuiInputAdornment-root,
+    .MuiInputBase-root {
+      background-color: #fff;
+    }
   }
 }
