@@ -35,12 +35,12 @@ const ClientForm = () => {
   return (
     <div className={styles.clientForm}>
       <div className="form-item">
-        <InputLabel>Client Name*</InputLabel>
+        <InputLabel>Company Name*</InputLabel>
         <Input required fullWidth name="name" rules={{ required: true, minLength: 2 }} control={control} />
       </div>
 
       <div className="form-item">
-        <InputLabel>Contact Person*</InputLabel>
+        <InputLabel>Contact Name*</InputLabel>
         <Input required fullWidth name="contactPerson" rules={{ required: true, minLength: 5 }} control={control} />
       </div>
 
