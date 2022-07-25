@@ -1,20 +1,27 @@
 .projectForm {
-  padding-top: 16px;
-  padding-bottom: 40px;
+  padding: 16px 40px 40px 40px;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   :global {
     .form-item {
-      width: 400px;
+      width: 100%;
       margin: 16px 0;
+
+      @media screen and (min-width: 900px) {
+        width: 450px;
+      }
     }
 
     .section-finale {
-      width: 400px;
+      width: 100%;
       display: flex;
       justify-content: flex-end;
       margin-top: 16px;
+
+      @media screen and (min-width: 900px) {
+        width: 450px;
+      }
     }
 
     .MuiInputBase-input {
