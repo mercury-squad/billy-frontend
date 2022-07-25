@@ -21,6 +21,7 @@ const InvoiceItem = ({ idx }) => {
           type="number"
           control={control}
           rules={{ required: true, min: 0 }}
+          InputProps={{ inputProps: { min: 0 } }}
           name={`items.${idx}.quantity`}
           placeholder="Hour or pcs"
           onChange={handleOnChange}
@@ -36,6 +37,7 @@ const InvoiceItem = ({ idx }) => {
           name={`items.${idx}.price`}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            inputProps: { min: 0 },
           }}
           onChange={handleOnChange}
         />

@@ -10,6 +10,7 @@ import { getAccessToken, setAccessToken, removeAccessToken } from 'common/utils'
 const useAuth = () => {
   const dispatch = useDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState(!!getAccessToken());
+  const [failedLogin, setFailedLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,6 +45,10 @@ const useAuth = () => {
       const { user, accessToken } = response?.data || {};
       updateUserState(user);
       saveCredentials(accessToken);
+      setFailedLogin(false);
+    }
+    if (response.status === 404 || response.status === 403) {
+      setFailedLogin(true);
     }
     return response;
   };
@@ -80,6 +85,7 @@ const useAuth = () => {
     logout,
     signup,
     verifyAccount,
+    failedLogin,
   };
 };
 
