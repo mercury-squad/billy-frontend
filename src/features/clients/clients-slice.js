@@ -37,7 +37,7 @@ export const getClients =
 
 export const removeClients = (ids) => async (dispatch) => {
   if (!ids.length) return;
-  const res = await server.delete(API.projects, { ids });
+  const res = await server.delete(API.clients, { ids });
   if (res.status === 200) {
     dispatch(getClients());
   }
