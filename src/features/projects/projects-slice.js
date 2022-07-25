@@ -35,4 +35,12 @@ export const getProjects =
     }
   };
 
+export const removeProjects = (ids) => async (dispatch) => {
+  if (!ids.length) return;
+  const res = await server.delete(API.projects, { ids });
+  if (res.status === 200) {
+    dispatch(getProjects());
+  }
+};
+
 export default projectsSlice.reducer;
