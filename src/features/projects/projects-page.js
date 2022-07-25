@@ -6,7 +6,7 @@ import { Container } from '@mui/material';
 import CustomTable from 'components/table/table';
 import ApplicationFilters from 'features/filters/application-filters';
 import { ROUTES, DATE_FORMAT } from 'common/constants';
-import { getProjects, removeProjects } from './projects-slice';
+import { getProjects } from './projects-slice';
 
 import styles from './projects-page.module.scss';
 
@@ -88,12 +88,7 @@ const Projects = () => {
   return (
     <Container className={styles.projects}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable
-        rows={projectsData.results}
-        columns={columns}
-        actions={projectActions}
-        onRemoveItems={(ids) => dispatch(removeProjects(ids))}
-      />
+      <CustomTable mobileCaption="Projects" rows={projectsData.results} columns={columns} />
     </Container>
   );
 };
