@@ -21,7 +21,7 @@ const InvoicePreview = () => {
   const [image, setpImage] = useState('');
   const previewRef = useRef(null);
   const [setHeaderTitle] = useOutletContext();
-  const currentDate = moment().format(DATE_FORMAT);
+  const currentDate = moment().utc().format(DATE_FORMAT);
   const {
     handleSubmit,
     watch,
@@ -47,7 +47,7 @@ const InvoicePreview = () => {
         const invoice = data.data?.document;
         setPreview(data.data?.HTMLContent);
         setInvoiceData(invoice);
-        setValue('generatedDate', moment(invoice.generatedDate).format(DATE_FORMAT) || '');
+        setValue('generatedDate', moment(invoice.generatedDate).utc().format(DATE_FORMAT) || '');
         setHeaderTitle(invoice?.invoiceNumber);
       }
     };

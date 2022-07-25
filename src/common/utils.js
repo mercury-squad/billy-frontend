@@ -1,3 +1,5 @@
+const expenseFields = ['price', 'amount'];
+
 export const getAccessToken = () => {
   return window.localStorage.getItem('accessToken');
 };
@@ -23,3 +25,8 @@ export const updateValues = (target, source, keys) => {
 export const formatDate = () => {
   return '';
 };
+
+export const cleanupExpenses = (expenses) =>
+  expenses.filter((expense) =>
+    expenseFields.every((field) => expense?.[field] !== '' && expense?.[field] !== undefined),
+  );
