@@ -76,7 +76,12 @@ const Projects = () => {
     // { id: 'select', display: (data) => data.select, displayName: '', width: 10 },
     { id: 'name', display: (data) => data.name, displayName: 'Project Name', width: 30 },
     { id: 'status', display: (data) => data.status, displayName: 'Project Status', width: 15 },
-    { id: 'endDate', display: (data) => moment(data.endDate).format(DATE_FORMAT), displayName: 'End Date', width: 15 },
+    {
+      id: 'endDate',
+      display: (data) => moment(data.endDate).utc().format(DATE_FORMAT),
+      displayName: 'End Date',
+      width: 15,
+    },
     { id: 'clientName', display: (data) => data.clientName, displayName: 'Client Name', width: 15 },
   ];
 
