@@ -6,7 +6,7 @@ import { Container } from '@mui/material';
 import CustomTable from 'components/table/table';
 import ApplicationFilters from 'features/filters/application-filters';
 import { ROUTES, DATE_FORMAT } from 'common/constants';
-import { getProjects } from './projects-slice';
+import { getProjects, removeProjects } from './projects-slice';
 
 import styles from './projects-page.module.scss';
 
@@ -60,6 +60,18 @@ const Projects = () => {
     onSearchChange: setSearchKeyword,
   };
 
+  const projectActions = [
+    {
+      value: 'edit',
+      label: 'Edit',
+    },
+    {
+      value: 'delete',
+      label: 'Delete',
+      onClick: (entry) => dispatch(removeProjects([entry._id])),
+    },
+  ];
+
   const columns = [
     // { id: 'select', display: (data) => data.select, displayName: '', width: 10 },
     { id: 'name', display: (data) => data.name, displayName: 'Project Name', width: 30 },
@@ -71,7 +83,12 @@ const Projects = () => {
   return (
     <Container className={styles.projects}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable rows={projectsData.results} columns={columns} />
+      <CustomTable
+        rows={projectsData.results}
+        columns={columns}
+        actions={projectActions}
+        onRemoveItems={(ids) => dispatch(removeProjects(ids))}
+      />
     </Container>
   );
 };
