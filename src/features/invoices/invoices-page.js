@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, CircularProgress } from '@mui/material';
+import { Container } from '@mui/material';
 import moment from 'moment';
 
 import CustomTable from 'components/table/table';
@@ -25,7 +25,7 @@ const Invoices = () => {
   useEffect(() => {
     let query = '';
     if (sortBy) {
-      query += `sortBy=${sortBy}`;
+      query += `sortBy=${sortBy}&`;
     }
     if (searchKeyword) {
       query += `keyword=${searchKeyword}`;
@@ -66,7 +66,7 @@ const Invoices = () => {
       updateInvoice({
         _id: data._id,
         paymentStatus: status,
-        ...(status === 'paid' ? { paymentDate: moment().format(DATE_FORMAT) } : { paymentDate: null }),
+        ...(status === 'paid' ? { paymentDate: moment().utc().format(DATE_FORMAT) } : { paymentDate: null }),
       }),
     );
 
@@ -120,17 +120,10 @@ const Invoices = () => {
 
   const getRows = () => {
     return invoicesData.results?.map((invoice) => {
-      const paymentDueDate = moment(invoice.paymentDueDate).format(DATE_FORMAT);
+      const paymentDueDate = moment(invoice.paymentDueDate).utc().format(DATE_FORMAT);
       return { ...invoice, paymentDueDate };
     });
   };
-
-  if (loading)
-    return (
-      <div className="flex justify-center align-center h-100">
-        <CircularProgress />
-      </div>
-    );
 
   return (
     <Container className={styles.invoices}>
@@ -141,6 +134,7 @@ const Invoices = () => {
         columns={columns}
         actions={invoiceActions}
         onRemoveItems={(ids) => dispatch(removeInvoices(ids))}
+        loading={loading}
       />
     </Container>
   );

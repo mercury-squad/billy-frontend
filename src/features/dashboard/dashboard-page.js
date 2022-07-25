@@ -115,7 +115,7 @@ const Dashboard = () => {
     summaryData.projects !== undefined && summaryData.projects.length > 0
       ? [...summaryData.projects].map((project) => ({
           projectNames: project !== undefined ? `${project.name}\n${project.client.name}` : '-',
-          view: project !== undefined ? `END DATE\n${moment(project.endDate).format(DATE_FORMAT)}` : '-',
+          view: project !== undefined ? `END DATE\n${moment(project.endDate).utc().format(DATE_FORMAT)}` : '-',
         }))
       : [];
 

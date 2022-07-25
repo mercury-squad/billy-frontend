@@ -84,7 +84,7 @@ const ProjectForm = () => {
           name="endDate"
           control={control}
           type="date"
-          rules={{ required: true, min: moment().format(DATE_FORMAT) }}
+          rules={{ required: true, min: moment().utc().format(DATE_FORMAT) }}
         />
       </div>
 
