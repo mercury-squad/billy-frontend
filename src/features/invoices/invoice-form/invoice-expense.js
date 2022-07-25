@@ -9,12 +9,7 @@ const InvoiceExpense = ({ idx }) => {
     <div className="expense">
       <div>
         <InputLabel>Description</InputLabel>
-        <Input
-          fullWidth
-          rules={idx > 0 ? { required: true } : {}}
-          control={control}
-          name={`expenses.${idx}.description`}
-        />
+        <Input fullWidth control={control} rules={{ required: true }} name={`expenses.${idx}.description`} />
       </div>
       <div>
         <InputLabel>Quantity</InputLabel>
@@ -22,7 +17,7 @@ const InvoiceExpense = ({ idx }) => {
           fullWidth
           type="number"
           control={control}
-          rules={idx > 0 ? { required: true, min: 0 } : {}}
+          rules={{ min: 0 }}
           InputProps={{ inputProps: { min: 0 } }}
           name={`expenses.${idx}.quantity`}
           placeholder="Hour or pcs"
@@ -34,7 +29,7 @@ const InvoiceExpense = ({ idx }) => {
           fullWidth
           type="number"
           control={control}
-          rules={idx > 0 ? { required: true, min: 0 } : {}}
+          rules={{ min: 0 }}
           name={`expenses.${idx}.amount`}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
