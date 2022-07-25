@@ -3,8 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useOutletContext, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { ReactComponent as ProjectIcon } from 'assets/img/project-icon.svg';
+import { ReactComponent as ClientIcon } from 'assets/img/client-icon.svg';
+import { ReactComponent as InvoiceIcon } from 'assets/img/invoice-icon.svg';
 
-import { Container, Button } from '@mui/material';
+import {
+  Container,
+  Button,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 import CustomTable from 'components/table/table';
@@ -114,6 +126,7 @@ const Dashboard = () => {
   const projectsData =
     summaryData.projects !== undefined && summaryData.projects.length > 0
       ? [...summaryData.projects].map((project) => ({
+          id: project !== undefined ? project._id : '-',
           projectNames: project !== undefined ? `${project.name}\n${project.client.name}` : '-',
           view: project !== undefined ? `END DATE\n${moment(project.endDate).format(DATE_FORMAT)}` : '-',
         }))
@@ -122,6 +135,7 @@ const Dashboard = () => {
   const invoicesData =
     summaryData.results !== undefined && summaryData.results.length > 0
       ? [...summaryData.results].map((invoice) => ({
+          id: invoice !== undefined ? invoice.invoiceNumber : '-',
           invoice: invoice !== undefined ? `${invoice.invoiceNumber}\n${invoice.project.name}` : '-',
           view: invoice !== undefined ? invoice.status.toUpperCase() : '-',
         }))
@@ -129,6 +143,42 @@ const Dashboard = () => {
 
   const onclickInvoice = () => navigate(ROUTES.newInvoice);
   const onclickProject = () => navigate(ROUTES.newProjects);
+
+  if (summaryData.projects === undefined || summaryData.projects.length <= 0) {
+    return (
+      <Container className={styles.empty_dashboard}>
+        <Typography className="empty-title">New to Billy? Let&apos;s start from</Typography>
+        <nav aria-label="main projects invoices">
+          <List>
+            <ListItem className="newclient-option" onClick={() => navigate(ROUTES.newClients)} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ClientIcon sx={{ fontSize: 16 }} />
+                </ListItemIcon>
+                <ListItemText primary="Add client" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem className="newclient-option" onClick={() => navigate(ROUTES.newProjects)} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ProjectIcon />
+                </ListItemIcon>
+                <ListItemText primary="New project" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem className="newclient-option" onClick={() => navigate(ROUTES.newInvoice)} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InvoiceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Create an invoice" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </nav>
+      </Container>
+    );
+  }
 
   return (
     <Container className={styles.dashboard} style={{ padding: '1rem' }}>
