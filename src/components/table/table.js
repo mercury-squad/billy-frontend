@@ -69,7 +69,7 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, asDesktop = 
           <span>{mobileCaption}</span>
         </p>
         {rows.map((row) => (
-          <Box key={row._id || row.id} className="entry-card">
+          <Box key={row._id || row.id} className={`entry-card ${enableSelection ? 'allow-selection' : ''}`}>
             <div>
               {enableSelection && (
                 <Checkbox

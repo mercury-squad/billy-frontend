@@ -7,6 +7,10 @@
   margin-right: auto;
   margin-left: auto;
   :global {
+    @include mobile {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
     .preview-header {
       margin-bottom: 17px;
       display: flex;
@@ -57,6 +61,11 @@
       margin: 2rem 0;
       justify-content: flex-end;
       margin-bottom: 34px;
+      @include mobile {
+        .MuiButton-root {
+          width: 100%;
+        }
+      }
     }
 
     .section-schedule {
@@ -72,6 +81,16 @@
         .MuiButton-root {
           text-transform: initial;
           height: 48px;
+        }
+      }
+      @include mobile {
+        grid-template-columns: 1fr;
+        & > div:first-child {
+          height: 100px;
+        }
+
+        .MuiButton-root {
+          width: 100%;
         }
       }
     }
