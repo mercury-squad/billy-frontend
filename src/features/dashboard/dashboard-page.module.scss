@@ -224,7 +224,29 @@
         }
     }
     
-
-    
 }
 
+.empty_dashboard{
+    :global {
+        .empty-title{
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 1rem 1rem 1.5rem 3rem;
+        }
+
+        .MuiListItem-root, .MuiListItemButton-root{
+            max-height: 70px;
+            padding: 0;
+        }
+
+        svg{
+            transform: scale(0.4, 0.4);
+            background-color: $color-secondary-light;
+            border-radius: 70px;
+        }
+    }
+
+    @include phone {
+        padding: 0;
+    }
+}
