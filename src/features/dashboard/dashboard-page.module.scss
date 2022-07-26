@@ -157,24 +157,25 @@
         }
 
         .tables{
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
             padding-top: 2rem;
 
             @include phone {
+                display: flex;
+                flex-flow: row wrap;
                 justify-content: flex-end;
                 padding-top: 1rem;
                 gap: 1rem;
             }
 
             .table {
-                flex: 1 1 42%;
-                width: 50%;
+                width: 100%;
 
                 @include phone {
                     flex: 1 1 100%;
+                    width: 50%;
                 }
 
                 td p:first-child{

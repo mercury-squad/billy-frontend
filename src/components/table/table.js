@@ -71,11 +71,13 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, asDesktop = 
         {rows.map((row) => (
           <Box key={row._id || row.id} className="entry-card">
             <div>
-              <Checkbox
-                type="checkbox"
-                checked={!!selectedEntries[row._id]}
-                onClick={(e) => updateSelectedEntries(e.target.checked, row._id)}
-              />
+              {enableSelection && (
+                <Checkbox
+                  type="checkbox"
+                  checked={!!selectedEntries[row._id]}
+                  onClick={(e) => updateSelectedEntries(e.target.checked, row._id)}
+                />
+              )}
             </div>
             <div className="details">
               {columns.map((column) => (
@@ -85,9 +87,7 @@ const CustomTable = ({ mobileCaption, columns, rows, onRemoveItems, asDesktop = 
                 </span>
               ))}
             </div>
-            <div>
-              <ActionsMenu actions={actions} data={row} />
-            </div>
+            <div>{actions.length > 0 && <ActionsMenu actions={actions} data={row} />}</div>
           </Box>
         ))}
       </Box>
