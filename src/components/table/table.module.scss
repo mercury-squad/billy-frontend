@@ -26,6 +26,11 @@
     grid-template-columns: 42px auto 42px;
     padding: 16px 21px;
     border-bottom: 1px solid $color-light-variant-2;
+    @include mobile {
+      &:not(.allow-selection) {
+        grid-template-columns: 1fr;
+      }
+    }
     .details {
       display: flex;
       flex-direction: column;
