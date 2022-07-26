@@ -60,7 +60,7 @@ const Projects = () => {
     onSearchChange: setSearchKeyword,
   };
 
-  const projectActions = [
+  /*   const projectActions = [
     {
       value: 'edit',
       label: 'Edit',
@@ -70,7 +70,7 @@ const Projects = () => {
       label: 'Delete',
       onClick: (entry) => dispatch(removeProjects([entry._id])),
     },
-  ];
+  ]; */
 
   const columns = [
     // { id: 'select', display: (data) => data.select, displayName: '', width: 10 },
