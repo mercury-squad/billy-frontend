@@ -5,12 +5,12 @@ import { useOutletContext, useNavigate, useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { TextField, MenuItem, Button, InputLabel, Box, CircularProgress } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useMediaQuery } from 'react-responsive';
 import Input from 'components/input';
 
 import Section from 'components/section/section';
 import { DATE_FORMAT, API, ROUTES } from 'common/constants';
 import { getProjects } from 'features/projects/projects-slice';
-import { cleanupExpenses } from 'common/utils';
 import styles from './invoice-form.module.scss';
 import InvoiceItem from './invoice-item';
 import InvoiceExpense from './invoice-expense';
@@ -25,6 +25,7 @@ const InvoiceForm = () => {
   } = useLocation();
   const [setHeaderTitle] = useOutletContext();
   const currentDate = moment().utc().format(DATE_FORMAT);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1023px)' });
   const { results: projectsList, perPage: projectsPerPage } = useSelector((state) => state.projects);
   const paymentMethods = useSelector((state) => state.user.paymentOptions);
   const email = useSelector((state) => state.user.email);
@@ -34,7 +35,7 @@ const InvoiceForm = () => {
       status: invoice.status || 'draft',
       notes: invoice.notes || '',
       items: invoice.items?.map(({ _id, ...data }) => data) || [{}],
-      expenses: invoice.expenses?.length ? invoice.expenses?.map(({ _id, ...data }) => data) : [{}],
+      expenses: invoice.expenses?.length ? invoice.expenses?.map(({ _id, ...data }) => data) : [{ quantity: 1 }],
       totalAmount: invoice.totalAmount || 0,
       paymentDueDate: invoice.paymentDueDat
         ? moment(invoice.paymentDueDate).utc().format(DATE_FORMAT)
@@ -51,11 +52,19 @@ const InvoiceForm = () => {
     formState: { errors },
     watch,
   } = methods;
-  const { fields: itemsCollection, append: appendItem } = useFieldArray({
+  const {
+    fields: itemsCollection,
+    append: appendItem,
+    remove: removeItem,
+  } = useFieldArray({
     control,
     name: 'items',
   });
-  const { fields: expensesCollection, append: appendExpense } = useFieldArray({
+  const {
+    fields: expensesCollection,
+    append: appendExpense,
+    remove: removeExpense,
+  } = useFieldArray({
     control,
     name: 'expenses',
   });
@@ -86,7 +95,7 @@ const InvoiceForm = () => {
     if (key === 'items') {
       appendItem({ description: '', quantity: '', price: '', amount: '' });
     } else {
-      appendExpense({ description: '', price: '', amount: '' });
+      appendExpense({ description: '', quantity: 1, amount: '' });
     }
   };
 
@@ -102,7 +111,6 @@ const InvoiceForm = () => {
       const { _id, ...paymentTypeObj } = paymentMethods.find((method) => method.name === data.paymentType) || {};
       const body = {
         ...data,
-        expenses: cleanupExpenses(data.expenses),
         paymentType: paymentTypeObj,
         ...(issueDate[type] ? { generatedDate: issueDate[type] } : {}),
         status: type === 'preview' ? invoice.status || 'draft' : type,
@@ -125,6 +133,7 @@ const InvoiceForm = () => {
   };
 
   const selectedProject = projectsList.find(({ _id: id }) => id === project);
+  const selectedPaymentMethod = paymentMethods.find((option) => option.name === paymentType);
   const clientSectionProps = { fullWidth: true, InputProps: { readOnly: true } };
 
   // Still waiting for the API response
@@ -158,7 +167,7 @@ const InvoiceForm = () => {
   return (
     <FormProvider {...methods}>
       <form className={styles.invoiceForm}>
-        <Section title="Invoice" className="section-base">
+        <Section title="Invoice" className="section-base" collapsible={isTabletOrMobile} expanded>
           <div>
             <InputLabel>Project</InputLabel>
             <Input
@@ -191,15 +200,10 @@ const InvoiceForm = () => {
           </div>
         </Section>
 
-        <Section title="Items" className="section-items">
+        <Section title="Items" className="section-items" collapsible={isTabletOrMobile} expanded>
           <div className="items">
             {itemsCollection.map((item, idx) => (
-              <InvoiceItem
-                // eslint-disable-next-line react/no-array-index-key
-                key={item.id}
-                idx={idx}
-                data={item}
-              />
+              <InvoiceItem key={item.id} position={idx} onRemove={removeItem} />
             ))}
           </div>
           <Button
@@ -211,14 +215,10 @@ const InvoiceForm = () => {
           </Button>
         </Section>
 
-        <Section title="Additional Expenses" className="section-expenses">
+        <Section title="Additional Expenses" className="section-expenses" collapsible={isTabletOrMobile}>
           <div className="expenses">
             {expensesCollection.map((expense, idx) => (
-              <InvoiceExpense
-                // eslint-disable-next-line react/no-array-index-key
-                key={idx}
-                idx={idx}
-              />
+              <InvoiceExpense key={expense.id} position={idx} onRemove={removeExpense} />
             ))}
           </div>
           <Button
@@ -230,12 +230,12 @@ const InvoiceForm = () => {
           </Button>
         </Section>
 
-        <Section title="Amount Due" className="section-total">
+        <Section title="Amount Due" className="section-total" collapsible={isTabletOrMobile} expanded>
           <span>Amount due</span>
           <span className="h2">$ {getTotalAmount()}</span>
         </Section>
 
-        <Section title="Bill to" className="section-billing">
+        <Section title="Bill to" className="section-billing" collapsible={isTabletOrMobile}>
           <TextField {...clientSectionProps} placeholder="Client" value={selectedProject?.client?.name ?? ''} />
           <TextField
             {...clientSectionProps}
@@ -251,7 +251,7 @@ const InvoiceForm = () => {
           <TextField {...clientSectionProps} placeholder="Adress" value={selectedProject?.client?.address ?? ''} />
         </Section>
 
-        <Section title="Payment" className="section-payment">
+        <Section title="Payment" className="section-payment" collapsible={isTabletOrMobile}>
           <Input
             select
             fullWidth
@@ -266,15 +266,15 @@ const InvoiceForm = () => {
               </MenuItem>
             ))}
           </Input>
-          {paymentMethods[paymentType]?.name && (
+          {selectedPaymentMethod?.name && (
             <div className="account-info">
               <span>Account Info</span>
-              <span>{paymentMethods[paymentType].details}</span>
+              <span>{selectedPaymentMethod.details}</span>
             </div>
           )}
         </Section>
 
-        <Section title="Notes" className="section-notes">
+        <Section title="Notes" className="section-notes" collapsible={isTabletOrMobile}>
           <Input fullWidth multiline rows={4} placeholder="Notes" name="notes" control={control} />
         </Section>
         <div className="section-finale">
@@ -306,7 +306,7 @@ const InvoiceForm = () => {
             Send Now
           </Button>
         </div>
-        <Section title="Schedule (optional)" className="section-schedule">
+        <Section title="Schedule (optional)" className="section-schedule" collapsible={isTabletOrMobile}>
           <div>
             <InputLabel>Send Date</InputLabel>
             <Input

@@ -1,18 +1,19 @@
-import { InputLabel, InputAdornment } from '@mui/material';
+import { InputLabel, InputAdornment, IconButton } from '@mui/material';
 import Input from 'components/input';
 import { useFormContext } from 'react-hook-form';
+import { ReactComponent as DeleteIcon } from 'assets/img/delete-icon.svg';
 
-const InvoiceItem = ({ idx }) => {
+const InvoiceItem = ({ position, onRemove }) => {
   const { control, setValue, getValues } = useFormContext();
   const handleOnChange = () => {
-    const { price = 0, quantity = 0 } = getValues(`items.${idx}`);
-    setValue(`items.${idx}.amount`, price * quantity);
+    const { price = 0, quantity = 0 } = getValues(`items.${position}`);
+    setValue(`items.${position}.amount`, price * quantity);
   };
   return (
     <div className="item">
       <div>
         <InputLabel>Description</InputLabel>
-        <Input control={control} fullWidth rules={{ required: true }} name={`items.${idx}.description`} />
+        <Input control={control} fullWidth rules={{ required: true }} name={`items.${position}.description`} />
       </div>
       <div>
         <InputLabel>Quantity</InputLabel>
@@ -22,7 +23,7 @@ const InvoiceItem = ({ idx }) => {
           control={control}
           rules={{ required: true, min: 0 }}
           InputProps={{ inputProps: { min: 0 } }}
-          name={`items.${idx}.quantity`}
+          name={`items.${position}.quantity`}
           placeholder="Hour or pcs"
           onChange={handleOnChange}
         />
@@ -34,7 +35,7 @@ const InvoiceItem = ({ idx }) => {
           type="number"
           control={control}
           rules={{ required: true, min: 0 }}
-          name={`items.${idx}.price`}
+          name={`items.${position}.price`}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
             inputProps: { min: 0 },
@@ -43,25 +44,25 @@ const InvoiceItem = ({ idx }) => {
         />
       </div>
       <div>
-        <InputLabel>Amount</InputLabel>
-        <Input
-          fullWidth
-          type="number"
-          control={control}
-          name={`items.${idx}.amount`}
-          InputProps={{
-            readOnly: true,
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-        />
-      </div>
-      {/* {idx > 0 && (
+        <div className="amount">
+          <InputLabel>Amount</InputLabel>
+          <Input
+            fullWidth
+            type="number"
+            control={control}
+            name={`items.${position}.amount`}
+            InputProps={{
+              readOnly: true,
+              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            }}
+          />
+        </div>
         <div className="delete-icon">
-          <IconButton>
+          <IconButton onClick={() => onRemove(position)}>
             <DeleteIcon />
           </IconButton>
         </div>
-      )} */}
+      </div>
     </div>
   );
 };

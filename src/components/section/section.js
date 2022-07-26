@@ -26,7 +26,7 @@ const Section = ({ title, collapsible = false, expanded = false, children, ...ot
         {collapsible && (
           <ExpandMore
             expand={isExpanded}
-            onClick={() => setIsExpanded(!expanded)}
+            onClick={() => setIsExpanded(!isExpanded)}
             aria-expanded={expanded}
             aria-label="show more">
             <ExpandMoreIcon />

@@ -5,7 +5,7 @@ import { Container } from '@mui/material';
 import { ROUTES } from 'common/constants';
 import CustomTable from 'components/table/table';
 import ApplicationFilters from 'features/filters/application-filters';
-import { getClients, removeClients } from './clients-slice';
+import { getClients } from './clients-slice';
 import styles from './clients-page.module.scss';
 
 const PAGE_TITLE = 'All Clients';
@@ -79,12 +79,7 @@ const Clients = () => {
   return (
     <Container className={styles.clients}>
       <ApplicationFilters actionButtonConfig={actionButtonConfig} filtersConfig={filtersConfig} />
-      <CustomTable
-        rows={clientsData.results}
-        columns={columns}
-        actions={clientActions}
-        onRemoveItems={(ids) => dispatch(removeClients(ids))}
-      />
+      <CustomTable mobileCaption="Clients" rows={clientsData.results} columns={columns} />
     </Container>
   );
 };

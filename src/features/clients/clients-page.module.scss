@@ -1,5 +1,16 @@
+@import 'styles/responsive';
+
 .clients {
   :global {
+
+    .application-filters {
+      margin-bottom: 2rem;
+      @include mobile {
+        padding: 0 22px;
+        justify-content: space-between;
+      }
+    }
+
     .table {
       margin-top: 2rem;
     }
