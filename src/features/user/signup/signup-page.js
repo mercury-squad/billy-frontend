@@ -23,14 +23,14 @@ const defaultValues = {
 const signupInputs = [
   {
     name: 'firstName',
-    fullWidth: false,
+    fullWidth: true,
     label: 'First Name',
     type: 'text',
     rules: { required: true, minLength: 2, maxLength: 25 },
   },
   {
     name: 'lastName',
-    fullWidth: false,
+    fullWidth: true,
     label: 'Last Name',
     type: 'text',
     rules: { required: true, minLength: 2, maxLength: 25 },
