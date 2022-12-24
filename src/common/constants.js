@@ -8,7 +8,7 @@ export const DRAWER_WIDTH = 217;
 export const DATE_FORMAT = 'YYYY-MM-DD';
 
 export const BASE_URL =
-  process.env.NODE_ENV === 'production' ? 'https://invoice-billy.herokuapp.com/' : 'http://localhost:3200';
+  process.env.NODE_ENV === 'production' ? 'https://invoice-billy.herokuapp.com' : 'http://localhost:3200';
 
 export const API = {
   signup: `${BASE_URL}/api/v1/signup`,
